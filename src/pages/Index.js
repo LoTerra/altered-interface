@@ -70,15 +70,13 @@ export default () => {
     fetchContractQuery();
   }, [fetchContractQuery]);
 
-    const [combo, setCombo] = useState("")
-    const [result, setResult] = useState("")
     const [amount, setAmount] = useState(0)
     let connectedWallet = ""
     if (typeof document !== 'undefined') {
         connectedWallet = useConnectedWallet()
     }
 
-    async function swap(isNative, amount){
+    async function swap(isNative){
         let msg = {}
         if (isNative){
             msg = new MsgExecuteContract(mk.accAddress, alte_ust_pair,{
