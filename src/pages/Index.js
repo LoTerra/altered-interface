@@ -60,52 +60,6 @@ export default () => {
       let alte = new BigNumber(contractPairInfo.assets[0].amount).div(6);
       let formatPrice = ust.dividedBy(alte).toFixed();
       setPrice(formatPrice);
-
-      const contractSimulationInfo = await api.contractQuery(
-            alte_ust_pair,
-          {
-              "simulation": {
-                  "offer_asset": {
-                      "amount":"1",
-                      "info": {
-                          "native_token": {
-                              "denom":"uusd"
-                          }
-                      }
-                  }
-              }
-          });
-      console.log(contractSimulationInfo);
-        let commissionAmount = new BigNumber(contractSimulationInfo.commission_amount).dividedBy(1000000);
-        let returnAmount = new BigNumber(contractSimulationInfo.return_amount).dividedBy(1000000);
-        let spreadAmount = new BigNumber(contractSimulationInfo.spread_amount).dividedBy(1000000);
-        //let test = new BigNumber(commissionAmount).decimalPlaces(6);
-        console.log(commissionAmount.toString());
-        console.log(returnAmount.toString());
-        console.log(spreadAmount.toString());
-
-        const contractSimulationReverseInfo = await api.contractQuery(
-            alte_ust_pair,
-            {
-                "reverse_simulation": {
-                    "ask_asset": {
-                        "amount":"1",
-                        "info": {
-                            "native_token": {
-                                "denom":"uusd"
-                            }
-                        }
-                    }
-                }
-            });
-        console.log(contractSimulationReverseInfo);
-        commissionAmount = new BigNumber(contractSimulationReverseInfo.offer_amount).dividedBy(1000000);
-        returnAmount = new BigNumber(contractSimulationReverseInfo.return_amount).dividedBy(1000000);
-        spreadAmount = new BigNumber(contractSimulationReverseInfo.spread_amount).dividedBy(1000000);
-        //let test = new BigNumber(commissionAmount).decimalPlaces(6);
-        console.log(commissionAmount.toString());
-        console.log(returnAmount.toString());
-        console.log(spreadAmount.toString());
     } catch (e) {
       console.log(e);
     }
