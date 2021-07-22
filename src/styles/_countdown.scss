@@ -1,0 +1,28 @@
+.countdown {
+    .title {
+        color:$primary;
+    }
+    .time-start {
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 2px;
+        margin-bottom: -10px;
+      }
+      .time-low {
+        color: #fff;
+        opacity: 0.6;
+        font-size: 10px;
+        text-transform: uppercase;
+      }
+      .time-dot {
+        color: #fff;
+        font-size:36px;
+        margin-top:15px;
+      }
+      .time {
+        color: #fff;
+        font-size:36px;
+      }
+  }
+  

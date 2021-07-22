@@ -5,6 +5,8 @@ import { Users, Ticket} from "phosphor-react";
 import {StdFee, MsgExecuteContract,LCDClient, WasmAPI, BankAPI} from "@terra-money/terra.js"
 import BigNumber from "bignumber.js";
 import Countdown from "../components/Countdown";
+import CurrentPrice from "../components/CurrentPrice";
+import SwapForm from "../components/SwapForm";
 let useConnectedWallet = {}
 if (typeof document !== 'undefined') {
     useConnectedWallet = require('@terra-money/wallet-provider').useConnectedWallet
@@ -177,33 +179,41 @@ export default () => {
 
 
      return (
-         <div className="container">
+         <>
+             <div className="w-100 align-self-center">
              <div className="row">
-                 <div className="col-12 text-center">
+                 <div className="col-12 text-center mb-4">
                     <h1>ALTERED</h1>
                  </div>
-                 <div className="col-lg-8 mb-4">
-                     <div className="card">
-                         <div className="card-body">
-
-                         </div>
+                 <div className="col-12 col-lg-8 mx-auto">
+                     <div className="row">
+                        <div className="col-lg-8 mb-4">
+                            <div className="card">
+                                <div className="card-body">
+                                        <Countdown expiryTimestamp={expiryTimestamp}/>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-lg-4 mb-4">
+                            <div className="card">
+                                <div className="card-body">
+                                        <CurrentPrice />
+                                </div>
+                            </div>
+                        </div>
                      </div>
-                 </div>
-                 <div className="col-lg-4 mb-4">
-                     <div className="card">
+                 </div>                
+             </div>
+             <div className="row">
+                <div className="col-lg-4 mb-4 mx-auto">
+                    <div className="card">
                          <div className="card-body">
-                             
-                         </div>
-                     </div>
-                 </div>
-                 <div className="col-lg-8 mb-4 mx-auto">
-                 <div className="card">
-                         <div className="card-body">
-                             
+                                <SwapForm />
                          </div>
                      </div>
                  </div>
              </div>
-         </div>
+             </div>
+         </>
      );
 }

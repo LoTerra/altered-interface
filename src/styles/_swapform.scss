@@ -1,0 +1,28 @@
+.swap-form {
+    color:#fff;
+    .label {
+        font-size: 11px;
+        color: #646464;
+        text-transform:uppercase;
+        position: absolute;
+        margin-top: 5px;
+        margin-left: 12px;
+    }
+    .valuta {
+        background: #161616;
+        border-radius: 10px;
+        text-align:center;
+        width:65px;
+        height:21px;
+        line-height:21px;
+        font-size: 11px;
+        color: $primary;
+        position: absolute;
+        right: 0;
+        margin-top: 15px;
+        margin-right: 40px;
+    }
+    .form-control {
+        padding-top: 17px;
+    }
+}

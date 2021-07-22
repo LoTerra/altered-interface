@@ -135,18 +135,24 @@ export default function ConnectWallet(){
     }
 
     return(
-        <div>
-            <div style={{display:"flex"}}>
+        <div className="navbar navbar-expand-md">
+            <div className="container-fluid">
+                <div className="navbar-nav ms-auto">
 
-                { !connected &&
-                <>
-                <button onClick={() => connectTo("extension")} className="btn btn-outline-primary" style={DialogButton}>Terra Station (extension/mobile)</button>
-                <button onClick={() => connectTo("mobile")} className="btn btn-outline-primary" style={DialogButton}>Terra Station (mobile for desktop)</button>
-                </>
-                }
-                 { connected &&
-                <button onClick={() => connectTo("disconnect")} className="btn btn-outline-primary" style={DialogButton}>{connected ? returnBank() : '' }</button>
-            }
+                    { !connected &&
+                        <>
+                        
+                            <button onClick={() => connectTo("extension")} className="btn btn-outline-primary nav-item" style={DialogButton}>Terra Station (extension/mobile)</button>
+                       
+                      
+                            <button onClick={() => connectTo("mobile")} className="btn btn-outline-primary nav-item" style={DialogButton}>Terra Station (mobile for desktop)</button>
+                       
+                        </>
+                    }
+                    { connected &&
+                        <button onClick={() => connectTo("disconnect")} className="btn btn-outline-primary nav-item" style={DialogButton}>{connected ? returnBank() : '' }</button>
+                    }
+                </div>
             </div>
 
             {/*<button onClick={() => display()}>Connect Wallet</button>

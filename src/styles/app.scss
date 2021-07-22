@@ -26,42 +26,51 @@ font-size:10rem;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0px 0px 14px rgba(208, 224, 39, 0.39));
+
+    @media(max-width:768px){
+      font-size:7rem;
+    }
+
+    @media(max-width:515px){
+      font-size:5rem;
+    }
+
+    @media(max-width:350px){
+      font-size:4rem;
+    }
+
 }
 
-textarea::placeholder {
+input::placeholder,textarea::placeholder {
   color: dimgrey;
 }
 
-.countdown {
-  background: #f2145d12;
-  border: 1px solid #f2145d47;
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.form-control {
+  background: #0D0D0D;
+  border: 1px solid #424242;
+  box-sizing: border-box;
   border-radius: 10px;
-}
-
-.countdown .time-start {
-  color: #f2145d;
-  font-size: 16px;
-  font-weight: bold;
-  margin-top: 2px;
-  margin-bottom: -10px;
-}
-
-
-
-.countdown .time-low {
-  color: #f2145d;
-  opacity: 0.6;
-  font-size: 10px;
-  text-transform: uppercase;
-}
-
-.countdown .time {
-  color: #f2145d;
-  font-size:36px;
-}
-
-.countdown .time-dot {
-  color: #f2145d;
-  font-size:36px;
-  margin-top:15px;
+  height:50px;
+  font-size: 18px;
+  color:#fff;
+  font-weight:600;
+    &:focus {
+      border-color:$primary;
+      background:#0D0D0D;
+      outline:none;
+      box-shadow:none; 
+      color:#fff;
+    }
 }
