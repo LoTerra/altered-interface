@@ -135,8 +135,8 @@ export default () => {
 
     function switchValuta(){
         console.log(isNativeToken)
+        setAmount(amount)
         setIsNativeToken(!isNativeToken)
-
         checkAsset()
     }
 
@@ -219,11 +219,11 @@ export default () => {
              </div>
              <div className="row">
                 <div className="col-lg-4 mb-4 mx-auto">
-                    <div className="card">
+                    <div className="card special">
                          <div className="card-body">
-                                <SwapForm switchValuta={() => switchValuta()} inputChange={(e) => inputChange(e)} returnAmount={isNativeToken ? offerAskAmount : returnAmount} isNativeToken={isNativeToken} />
+                                <SwapForm switchValuta={() => switchValuta()} inputChange={(e) => inputChange(e)} returnAmount={isNativeToken ? returnAmount : offerAskAmount} isNativeToken={isNativeToken} />
                                 <div style={{color:'#fff'}}>
-                                    <p>{amount}</p>
+                                    <p>amount: {amount}</p>
                                 <p>commission: {commissionOfferAmount}</p>                                
                                 <p>spread: {spreadAmount}</p>                                
                                 <p>offer: {offerAskAmount}</p>

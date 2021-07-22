@@ -1,11 +1,15 @@
 .btn {
     border-radius:100px;
     &.btn-special {
-        border-radius:10px;
+        border-radius: 10px;
         font-weight: 900;
-        font-size: 24px;
+        font-size: 30px;
         color: #030303;
-        background:$primary;
+        font-family: 'Cosmos';
+        text-transform: uppercase;
+        background: linear-gradient(
+    360deg
+    , rgba(208, 224, 39, 0.2) -0.05%, rgba(220, 239, 20, 0.2) 47.89%, rgba(91, 97, 31, 0.2) 47.9%, rgba(233, 255, 0, 0.2) 100%), #D0E027;
     }
     &.btn-outline-primary {
         border-width: 2px;
