@@ -130,7 +130,7 @@ export default () => {
         let swapAmount = e.target.value
         setAmount(swapAmount)
         console.log(amount)
-        queryAskAsset()
+        queryOfferAsset()
     }
 
     // Query this when you want to sell UST -> ALTE
@@ -138,9 +138,9 @@ export default () => {
         const contractSimulationReverseInfo = await api.contractQuery(
             alte_ust_pair,
             {
-                "simulation": {
+                "reverse_simulation": {
                     "ask_asset": {
-                        "amount": amount,
+                        "amount": String(amount),
                         "info": {
                             "native_token": {
                                 "denom":"uusd"
@@ -149,9 +149,9 @@ export default () => {
                     }
                 }
             });
-        setOfferAskAmount(new BigNumber(contractSimulationReverseInfo.offer_amount).dividedBy(1000000));
-        setReturnAmount(new BigNumber(contractSimulationReverseInfo.return_amount).dividedBy(1000000));
-        setSpreadAmount(new BigNumber(contractSimulationReverseInfo.spread_amount).dividedBy(1000000))
+        setOfferAskAmount(new BigNumber(contractSimulationReverseInfo.offer_amount).dividedBy(1000000).toString());
+        setReturnAmount(new BigNumber(contractSimulationReverseInfo.return_amount).dividedBy(1000000).toString());
+        setSpreadAmount(new BigNumber(contractSimulationReverseInfo.spread_amount).dividedBy(1000000).toString())
     }
 
     // Query this when you want to sell ALTE -> UST
@@ -161,7 +161,7 @@ export default () => {
             {
                 "simulation": {
                     "offer_asset": {
-                        "amount": amount,
+                        "amount": String(amount),
                         "info": {
                             "native_token": {
                                 "denom":"uusd"
@@ -170,9 +170,9 @@ export default () => {
                     }
                 }
             });
-        setCommissionOfferAmount(new BigNumber(contractSimulationInfo.commission_amount).dividedBy(1000000));
-        setReturnAmount(new BigNumber(contractSimulationInfo.return_amount).dividedBy(1000000));
-        setSpreadAmount(new BigNumber(contractSimulationInfo.spread_amount).dividedBy(1000000))
+        setCommissionOfferAmount(new BigNumber(contractSimulationInfo.commission_amount).dividedBy(1000000).toString());
+        setReturnAmount(new BigNumber(contractSimulationInfo.return_amount).dividedBy(1000000).toString());
+        setSpreadAmount(new BigNumber(contractSimulationInfo.spread_amount).dividedBy(1000000).toString())
     }
 
 
