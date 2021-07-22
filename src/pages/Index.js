@@ -21,7 +21,7 @@ const HomeCard={
 const altered_address ="terra19xvyr7c7j8pnp5r96ymcxnv26a4rgfz0xjjcal";
 const alte_ust_pair = "terra10a2w37pwwqvyd8z6eefvzl4d7hak0c7mkm2w6w";
 const fees = new StdFee(1_000_000, { uusd: 200000 })
-
+let api = {}
 export default () => {
     const targetPrice = 1;
     const [altePool, setAltePool] = useState(0)
@@ -36,8 +36,9 @@ export default () => {
     const terra = new LCDClient({
         URL: "https://bombay-lcd.terra.dev",
         chainID: "bombay-0008",
-    })
-    const api = new WasmAPI(terra.apiRequester);
+    });
+
+    api = new WasmAPI(terra.apiRequester);
     try {
       const contractConfigInfo = await api.contractQuery(
           altered_address,
