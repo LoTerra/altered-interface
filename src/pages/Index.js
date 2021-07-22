@@ -128,7 +128,8 @@ export default () => {
         e.preventDefault();
         let swapAmount = e.target.value
         setAmount(swapAmount)
-
+        console.log(amount)
+        queryAskAsset()
     }
 
     // Query this when you want to sell UST -> ALTE
@@ -193,7 +194,7 @@ export default () => {
                         <div className="col-lg-4 mb-4">
                             <div className="card">
                                 <div className="card-body">
-                                        <CurrentPrice />
+                                        <CurrentPrice price={price}/>
                                 </div>
                             </div>
                         </div>
@@ -204,7 +205,8 @@ export default () => {
                 <div className="col-lg-4 mb-4 mx-auto">
                     <div className="card">
                          <div className="card-body">
-                                <SwapForm />
+                                <SwapForm switchValuta={''} inputChange={inputChange} selectedValuta={''} />
+                                <p>{offerAskAmount}</p>
                          </div>
                      </div>
                  </div>
