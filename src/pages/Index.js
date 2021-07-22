@@ -141,7 +141,7 @@ export default () => {
     }
 
     function checkAsset(){
-        if(!isNativeToken || isNativeToken == undefined){
+        if(!isNativeToken){
             queryAskAsset()
         } else {
             queryOfferAsset()
@@ -223,9 +223,11 @@ export default () => {
                          <div className="card-body">
                                 <SwapForm switchValuta={() => switchValuta()} inputChange={(e) => inputChange(e)} returnAmount={isNativeToken ? offerAskAmount : returnAmount} isNativeToken={isNativeToken} />
                                 <div style={{color:'#fff'}}>
+                                    <p>{amount}</p>
                                 <p>commission: {commissionOfferAmount}</p>                                
                                 <p>spread: {spreadAmount}</p>                                
                                 <p>offer: {offerAskAmount}</p>
+                                <p>return: {returnAmount}</p>
                                 </div>
                           
                          </div>
