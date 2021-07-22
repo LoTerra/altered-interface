@@ -13,6 +13,9 @@ import React from 'react';
                     <span className="valuta">UST</span>
                     <input type="number" className="form-control" value="" placeholder="0" />                    
                 </div>
+                <div className="swapper">
+                    
+                </div>
                 <div className="col-12 mb-3">
                     <span className="label">TO</span>
                     <span className="valuta">ALTE</span>

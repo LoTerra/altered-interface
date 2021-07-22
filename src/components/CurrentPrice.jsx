@@ -7,7 +7,7 @@ export default function CurrentPrice(props){
             <div className="row">
                 <div className="col-12">
                     <span>Current price</span>
-                    <p>2,50</p>
+                    <p>1.00</p>
                 </div>
             </div>
         </div>

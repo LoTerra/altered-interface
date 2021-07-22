@@ -26,7 +26,7 @@ export default function Countdown(props){
       <div className="countdown">
         <div className="row">
         <div className="col-12 text-center">      
-            <div className="title">Next draw in</div>
+            <div className="title">COUNTDOWN BEFORE NEXT REBASE</div>
         </div>
       
       <div className="col-12">
