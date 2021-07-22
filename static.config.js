@@ -6,7 +6,7 @@
 // Get started at https://react-static.js.org
 
 export default {
-  plugins: ["react-static-plugin-tailwindcss"],
+  plugins: ["react-static-plugin-sass"],
   getSiteData: async ({ dev }) => ({
     title: 'LoTerra is building a lottery gaming ecosystem thanks smart contracts on Terra blockchain.',
     lastBuilt: Date.now(),

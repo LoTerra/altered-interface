@@ -118,8 +118,8 @@ export default function ConnectWallet(){
             return(
                 <div /*style={Modal}*/ onClick={() => closeModal()}>
                     <div /*style={Dialog}*/ className="card-glass">
-                        <button onClick={() => connectTo("extension")} className="button-pink-outline" style={DialogButton}>Terra Station (extension)</button>
-                        <button onClick={() => connectTo("mobile")} className="button-pink-outline" style={DialogButton}>Terra Station (mobile)</button>
+                        <button onClick={() => connectTo("extension")} className="btn" style={DialogButton}>Terra Station (extension)</button>
+                        <button onClick={() => connectTo("mobile")} className="btn" style={DialogButton}>Terra Station (mobile)</button>
                     </div>
                 </div>
             )
@@ -140,12 +140,12 @@ export default function ConnectWallet(){
 
                 { !connected &&
                 <>
-                <button onClick={() => connectTo("extension")} className="button-pink-outline" style={DialogButton}>Terra Station (extension/mobile)</button>
-                <button onClick={() => connectTo("mobile")} className="button-pink-outline" style={DialogButton}>Terra Station (mobile for desktop)</button>
+                <button onClick={() => connectTo("extension")} className="btn btn-outline-primary" style={DialogButton}>Terra Station (extension/mobile)</button>
+                <button onClick={() => connectTo("mobile")} className="btn btn-outline-primary" style={DialogButton}>Terra Station (mobile for desktop)</button>
                 </>
                 }
                  { connected &&
-                <button onClick={() => connectTo("disconnect")} className="button-pink-outline" style={DialogButton}>{connected ? returnBank() : '' }</button>
+                <button onClick={() => connectTo("disconnect")} className="btn btn-outline-primary" style={DialogButton}>{connected ? returnBank() : '' }</button>
             }
             </div>
 

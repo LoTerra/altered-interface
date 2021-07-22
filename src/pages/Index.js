@@ -177,39 +177,33 @@ export default () => {
 
 
      return (
-         <div>
-             {/* <div style={{display: "flex", flexDirection:"column", alignItems:"center"}}>
-                 <div className="text-4xl font-bold">LoTerra</div>
-                 
-                 <div className="grid grid-cols-2 gap-4 my-4 stats">
-                 <p className="col-span-2 text-center uppercase mt-2 mb-0">Current jackpot</p>
-                 <h2 className="col-span-2">{numeral().format("0,0.00")}<span>UST</span></h2>
-                 <h3><Users size={48} color="#f2145d" />{}</h3>
-                 <h3><Ticket size={48} color="#f2145d" />{}</h3>
+         <div className="container">
+             <div className="row">
+                 <div className="col-12 text-center">
+                    <h1>ALTERED</h1>
                  </div>
-                 <Countdown expiryTimestamp={expiryTimestamp}/>
-              <div className="buy-tickets">
-              <div className="grid grid-cols-3 gap-4">
-                     <div className="col-span-3">
-                        <p className="font-bold m-0 text-2xl">Tickets on sale now!</p>
+                 <div className="col-lg-8 mb-4">
+                     <div className="card">
+                         <div className="card-body">
+
+                         </div>
                      </div>
                  </div>
-                 <div className="amount-block">
-                  <label>Amount of  tickets</label>
-                  <Ticket size={24} color="#f2145d" />
-                  <input type="number" className="amount" value={amount} min="1" max="200" step="1" onChange={(e) => inputChange(e)} />
-                  <p className="mb-4 text-sm">Total: {numeral((amount * price) / 1000000).format("0,0.00")} UST</p>
+                 <div className="col-lg-4 mb-4">
+                     <div className="card">
+                         <div className="card-body">
+                             
+                         </div>
+                     </div>
                  </div>
-                 
-             
-                 <div className="text-sm">{result}</div>
-                 <button onClick={()=> execute()} className="button-pink mt-5" disabled={amount <= 0}>Buy {amount} tickets</button>
-      
-              </div>
-
-              <div className="mt-4">contract-v2.0.1</div>
-                 <div className="text-sm">terra14mevcmeqt0n4myggt7c56l5fl0xw2hwa2mhlg0</div>
-             </div>*/}
+                 <div className="col-lg-8 mb-4 mx-auto">
+                 <div className="card">
+                         <div className="card-body">
+                             
+                         </div>
+                     </div>
+                 </div>
+             </div>
          </div>
      );
 }
