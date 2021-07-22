@@ -130,7 +130,22 @@ export default () => {
         let swapAmount = e.target.value
         setAmount(swapAmount)
         console.log(amount)
-        queryOfferAsset()
+        checkAsset()
+    }
+
+    function switchValuta(){
+        console.log(isNativeToken)
+        setIsNativeToken(!isNativeToken)
+
+        checkAsset()
+    }
+
+    function checkAsset(){
+        if(!isNativeToken || isNativeToken == undefined){
+            queryAskAsset()
+        } else {
+            queryOfferAsset()
+        }
     }
 
     // Query this when you want to sell UST -> ALTE
@@ -206,8 +221,13 @@ export default () => {
                 <div className="col-lg-4 mb-4 mx-auto">
                     <div className="card">
                          <div className="card-body">
-                                <SwapForm switchValuta={''} inputChange={inputChange} selectedValuta={''} />
-                                <p>{offerAskAmount}</p>
+                                <SwapForm switchValuta={() => switchValuta()} inputChange={(e) => inputChange(e)} returnAmount={isNativeToken ? offerAskAmount : returnAmount} isNativeToken={isNativeToken} />
+                                <div style={{color:'#fff'}}>
+                                <p>commission: {commissionOfferAmount}</p>                                
+                                <p>spread: {spreadAmount}</p>                                
+                                <p>offer: {offerAskAmount}</p>
+                                </div>
+                          
                          </div>
                      </div>
                  </div>

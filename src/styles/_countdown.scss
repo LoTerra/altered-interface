@@ -1,6 +1,7 @@
 .countdown {
     .title {
         color:$primary;
+        margin-bottom:15px;
     }
     .time-start {
         color: #fff;
@@ -23,6 +24,7 @@
       .time {
         color: #fff;
         font-size:36px;
+        font-weight: 600;
       }
   }
   

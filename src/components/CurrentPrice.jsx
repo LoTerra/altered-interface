@@ -11,7 +11,7 @@ export default function CurrentPrice(props){
             <div className="row">
                 <div className="col-12">
                     <span>Current price</span>
-                    <p>{ numeral(price*10000000).format("0.00")}</p>
+                    <p>{price}</p>
                 </div>
             </div>
         </div>
