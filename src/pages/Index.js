@@ -71,14 +71,15 @@ export default () => {
   }, [fetchContractQuery]);
 
     const [amount, setAmount] = useState(0)
+    const [isNativeToken, setIsNativeToken] = useState(false)
     let connectedWallet = ""
     if (typeof document !== 'undefined') {
         connectedWallet = useConnectedWallet()
     }
 
-    async function swap(isNative){
+    async function swap(){
         let msg = {}
-        if (isNative){
+        if (isNativeToken){
             msg = new MsgExecuteContract(mk.accAddress, alte_ust_pair,{
                     "swap": {
                         "offer_asset": {
@@ -123,10 +124,11 @@ export default () => {
 
     function inputChange(e){
         e.preventDefault();
-        let ticketAmount = e.target.value
-        if (ticketAmount > 200) ticketAmount = 200
-        multiplier(ticketAmount)
-        setAmount(ticketAmount)
+        let swapAmount = e.target.value
+        setAmount(swapAmount)
+
+
+
     }
 
 
