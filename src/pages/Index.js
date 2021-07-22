@@ -86,6 +86,7 @@ export default () => {
     async function swap(){
         let msg = {}
         if (isNativeToken){
+            // This message is for swapping UST to ALTE
             msg = new MsgExecuteContract(mk.accAddress, alte_ust_pair,{
                     "swap": {
                         "offer_asset": {
@@ -99,20 +100,15 @@ export default () => {
                     }
                 }, {"uusd": amount})
         }else{
-            msg = new MsgExecuteContract(mk.accAddress, alte_ust_pair, {
-                    "swap": {
-                        "offer_asset": {
-                            "info" : {
-                                "token": {
-                                    "contract_addr": altered_address
-                                }
-                            },
-                            "amount": amount
-                        },
-                    }
-                })
+            // This message is for swapping ALTE to UST
+            msg = new MsgExecuteContract(mk.accAddress, altered_address, {
+                "send": {
+                    "contract": alte_ust_pair,
+                    "amount": amount,
+                    "msg": "eyJzd2FwIjp7fX0="
+                }
+            })
         }
-
         try {
             let tx_play = await  connectedWallet.post({
                 msgs: [msg],
