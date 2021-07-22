@@ -2,8 +2,8 @@ import React, {useEffect, useState, useCallback} from "react";
 import numeral from "numeral";
 import { Users, Ticket} from "phosphor-react";
 
-// import Jackpot from "../components/Jackpot";
 import {StdFee, MsgExecuteContract,LCDClient, WasmAPI, BankAPI} from "@terra-money/terra.js"
+import BigNumber from "bignumber.js";
 import Countdown from "../components/Countdown";
 let useConnectedWallet = {}
 if (typeof document !== 'undefined') {
@@ -16,58 +16,51 @@ const HomeCard={
     padding: '30px',
 }
 
-
+const altered_address ="terra19xvyr7c7j8pnp5r96ymcxnv26a4rgfz0xjjcal";
+const alte_ust_pair = "terra10a2w37pwwqvyd8z6eefvzl4d7hak0c7mkm2w6w";
+const fees = new StdFee(1_000_000, { uusd: 200000 })
 
 export default () => {
-
-    const [jackpot, setJackpot] = useState(0);
-  const [tickets, setTickets] = useState(0);
-  const [players, setPlayers] = useState(0);
-  const [price, setPrice] = useState(0);
-  const [expiryTimestamp, setExpiryTimestamp] = useState(
+    const targetPrice = 1;
+    const [altePool, setAltePool] = useState(0)
+    const [ustPool, setUstPool] = useState(0)
+    const [price, setPrice] = useState(0)
+    const [totalSupply, setTotalSupply] = useState(0);
+    const [expiryTimestamp, setExpiryTimestamp] = useState(
     1
-  ); /** default timestamp need to be > 1 */
+    ); /** default timestamp need to be > 1 */
 
   const fetchContractQuery = useCallback(async () => {
     const terra = new LCDClient({
-      URL: "https://lcd.terra.dev/",
-      chainID: "columbus-4",
-    });
+        URL: "https://bombay-lcd.terra.dev",
+        chainID: "bombay-0008",
+    })
     const api = new WasmAPI(terra.apiRequester);
     try {
       const contractConfigInfo = await api.contractQuery(
-        'terra14mevcmeqt0n4myggt7c56l5fl0xw2hwa2mhlg0',
+          altered_address,
         {
-          config: {},
+          token_info: {},
         }
       );
-      setPrice(contractConfigInfo.price_per_ticket_to_register)
-      setExpiryTimestamp(parseInt(contractConfigInfo.block_time_play * 1000));
-      const bank = new BankAPI(terra.apiRequester);
-      const contractBalance = await bank.balance('terra14mevcmeqt0n4myggt7c56l5fl0xw2hwa2mhlg0');
-      const ustBalance = contractBalance.get('uusd').toData();
-      const jackpotAlocation = contractConfigInfo.jackpot_percentage_reward;
-      const contractJackpotInfo = ((ustBalance.amount * jackpotAlocation) / 100);
 
-      setJackpot(parseInt(contractJackpotInfo) / 1000000);
+      setExpiryTimestamp(parseInt(contractConfigInfo.rebase * 1000));
+      setTotalSupply(contractConfigInfo.total_supply)
 
-      const contractTicketsInfo = await api.contractQuery(
-        'terra14mevcmeqt0n4myggt7c56l5fl0xw2hwa2mhlg0',
+      const contractPairInfo = await api.contractQuery(
+          alte_ust_pair,
         {
-          count_ticket: { lottery_id: contractConfigInfo.lottery_counter },
+          pool: {},
         }
       );
-      setTickets(parseInt(contractTicketsInfo));
+      setAltePool(contractPairInfo.assets[0].amount);
+      setUstPool(contractPairInfo.assets[1].amount);
 
-      const contractPlayersInfo = await api.contractQuery(
-        'terra14mevcmeqt0n4myggt7c56l5fl0xw2hwa2mhlg0',
-        {
-          count_player: { lottery_id: contractConfigInfo.lottery_counter },
-        }
-      );
-      setPlayers(parseInt(contractPlayersInfo));
-      // Set default tickets to buy is an average bag
-      multiplier(parseInt(contractTicketsInfo / contractPlayersInfo))
+      let ust = new BigNumber(contractPairInfo.assets[1].amount).div(6);
+      let alte = new BigNumber(contractPairInfo.assets[0].amount).div(6);
+      let formatPrice = ust.dividedBy(alte).toFixed()
+        setPrice(formatPrice);
+
     } catch (e) {
       console.log(e);
     }
@@ -85,52 +78,51 @@ export default () => {
         connectedWallet = useConnectedWallet()
     }
 
-    function execute(){
-        const cart = combo.split(" ")
-        // const obj = new StdFee(1_000_000, { uusd: 200000 })
-        const addToGas = 5000 * cart.length
-        // const obj = new StdFee(1_000_000, { uusd: 30000 + addToGas })
-        const obj = new StdFee(600_000, { uusd: 90000 + addToGas })
-        const msg = new MsgExecuteContract(
-            connectedWallet.walletAddress,
-            "terra14mevcmeqt0n4myggt7c56l5fl0xw2hwa2mhlg0",
-            {
-                register: {
-                    combination: cart,
-                },
-            },
-            { uusd: 1000000 * cart.length }
-        )
+    async function swap(isNative, amount){
+        let msg = {}
+        if (isNative){
+            msg = new MsgExecuteContract(mk.accAddress, alte_ust_pair,{
+                    "swap": {
+                        "offer_asset": {
+                            "info" : {
+                                "native_token": {
+                                    "denom": "uusd"
+                                }
+                            },
+                            "amount": amount
+                        }
+                    }
+                }, {"uusd": amount})
+        }else{
+            msg = new MsgExecuteContract(mk.accAddress, alte_ust_pair, {
+                    "swap": {
+                        "offer_asset": {
+                            "info" : {
+                                "token": {
+                                    "contract_addr": altered_address
+                                }
+                            },
+                            "amount": amount
+                        },
+                    }
+                })
+        }
 
-        connectedWallet.post({
-            msgs: [msg],
-            fee: obj
-            // gasPrices: obj.gasPrices(),
-            // gasAdjustment: 1.5,
-        }).then(e => {
-            if (e.success) {
-                setResult("register combination success")
-            }
-            else{
-                setResult("register combination error")
-            }
-        }).catch(e =>{
-            setResult(e.message)
-        })
+        try {
+            let tx_play = await  connectedWallet.post({
+                msgs: [msg],
+                fee: fees
+            })
 
+            let tx = await terra.tx.broadcast(tx_play)
+            console.log(tx)
+        }catch (e) {
+            console.log(e)
+        }
     }
  
 
-    /*function change(e) {
-        e.preventDefault();
-        setCombo(e.target.value.toLowerCase())
-        console.log(combo.split(" "))
-        let cart = e.target.value.toLowerCase().replace( /\s\s+/g, ' ' ).split(" ")
-        if (cart[0] == ""){
-            cart = []
-        }
-        setAmount(cart.length)
-    } */
+
     function inputChange(e){
         e.preventDefault();
         let ticketAmount = e.target.value
@@ -139,53 +131,19 @@ export default () => {
         setAmount(ticketAmount)
     }
 
-    function generate(){
-        const combination = [
-            '0',
-            '1',
-            '2',
-            '3',
-            '4',
-            '5',
-            '6',
-            '7',
-            '8',
-            '9',
-            'a',
-            'b',
-            'c',
-            'd',
-            'e',
-            'f',
-        ]
-        let randomCombination = ''
-        for (let x = 0; x < 6; x++) {
-            const random = Math.floor(Math.random() * combination.length)
-            randomCombination += combination[random]
-        }
-        return randomCombination
-    }
 
-    function multiplier(mul){
-        let allCombo = "";
-        for (let x=0; x < mul; x++ ){
-            let newCombo = generate()
-            allCombo = allCombo == "" ? newCombo : allCombo + " " + newCombo
-        }
-        setCombo(allCombo)
-        const cart = allCombo.split(" ")
-        setAmount(cart.length)
-    }
+
+
      return (
          <div>
-             <div style={{display: "flex", flexDirection:"column", alignItems:"center"}}>
+             {/* <div style={{display: "flex", flexDirection:"column", alignItems:"center"}}>
                  <div className="text-4xl font-bold">LoTerra</div>
                  
                  <div className="grid grid-cols-2 gap-4 my-4 stats">
                  <p className="col-span-2 text-center uppercase mt-2 mb-0">Current jackpot</p>
-                 <h2 className="col-span-2">{numeral(jackpot).format("0,0.00")}<span>UST</span></h2>
-                 <h3><Users size={48} color="#f2145d" />{players}</h3>
-                 <h3><Ticket size={48} color="#f2145d" />{tickets}</h3>
+                 <h2 className="col-span-2">{numeral().format("0,0.00")}<span>UST</span></h2>
+                 <h3><Users size={48} color="#f2145d" />{}</h3>
+                 <h3><Ticket size={48} color="#f2145d" />{}</h3>
                  </div>
                  <Countdown expiryTimestamp={expiryTimestamp}/>
               <div className="buy-tickets">
@@ -193,13 +151,6 @@ export default () => {
                      <div className="col-span-3">
                         <p className="font-bold m-0 text-2xl">Tickets on sale now!</p>
                      </div>
-                     {/*<button onClick={() => multiplier(1)} className="button-glass font-bold">Generate combination</button>
-                    <button onClick={() => multiplier(10)} className="button-glass font-bold">X10</button>
-                    <button onClick={() => multiplier(100)} className="button-glass font-bold">X100</button>
-                    <div className="col-span-3">
-                        <p className="font-bold m-0">Ticket list</p>
-                        <div className="text-sm">hint: Enter ticket number from [0-9][a-f] max 6 symbols and spaced</div>
-                     </div>*/}
                  </div>
                  <div className="amount-block">
                   <label>Amount of  tickets</label>
@@ -216,7 +167,7 @@ export default () => {
 
               <div className="mt-4">contract-v2.0.1</div>
                  <div className="text-sm">terra14mevcmeqt0n4myggt7c56l5fl0xw2hwa2mhlg0</div>
-             </div>
+             </div>*/}
          </div>
      );
 }
