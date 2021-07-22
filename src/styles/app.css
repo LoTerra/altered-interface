@@ -1,0 +1,282 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  --color: #243746;
+  --color-primary: #158876;
+  --color-secondary: #0e2233;
+  --bg: #ff99c5;
+  --bg-secondary: #bebebe;
+  --bg-third: #ffffff;
+  --border-color: #ffffff;
+  --background-image:
+        radial-gradient(at 96% 55%, hsla(151,78%,77%,1) 0, transparent 43%),
+        radial-gradient(at 90% 44%, hsla(297,89%,74%,1) 0, transparent 51%),
+        radial-gradient(at 8% 40%, hsla(307,90%,77%,1) 0, transparent 49%),
+        radial-gradient(at 90% 91%, hsla(209,89%,73%,1) 0, transparent 59%);
+}
+
+.dark-mode {
+  --color: #ebf4f1;
+  --color-primary: #41b38a;
+  --color-secondary: #fdf9f3;
+  --bg: #1d1f29;
+  --bg-secondary: #0c0c10;
+  --bg-third: #2e3242;
+  --border-color: #0d2538;
+  --background-image: radial-gradient(at 50% 8%, hsla(320,100%,91%,1) 0, transparent 42%),
+  radial-gradient(at 50% 35%, hsla(320,100%,88%,1) 0, transparent 100%),
+  radial-gradient(at 10% 85%, hsla(58,100%,78%,1) 0, transparent 54%),
+  radial-gradient(at 84% 81%, hsla(183,66%,64%,1) 0, transparent 49%);
+}
+
+html {
+  height: 100%;
+  /*background-color: var(--bg);*/
+  /*background-image: var(--background-image)*/
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /*background-color: var(--bg);*/
+  color: var(--color);
+  box-sizing: border-box;
+  background: #ffdee9;
+  background-image: linear-gradient( 
+0deg
+, #ffdee9 0%, #ffffff 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 100% !important;
+width: 100%;
+    height: 100%;
+    overflow-x:hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.App {
+  text-align: center;
+}
+
+.navbar{
+  min-height: 60px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+}
+.navbar nav a {
+  margin-right:50px;
+}
+
+.stats {
+  text-align:center;
+}
+
+.stats h2 {
+  font-weight:bold;
+  background: linear-gradient(
+    90deg
+    ,#f2135d,#5b3cc4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 5rem;
+
+}
+
+.stats p {
+  margin-bottom: -50px;
+  color:#f2135d;
+}
+
+.stats h2 span {
+  font-weight:normal;
+  font-size:21px;
+}
+
+@media(max-width:660px){
+  .stats h2 {
+    font-size:3rem;
+  }
+}
+
+.stats h3 {
+  font-size:36px;
+  line-height:36px;
+  background: linear-gradient(
+    90deg
+    ,#f2135d,#5b3cc4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+}
+
+.stats h3 svg {
+  display:inline-block;
+  margin-top: -4px;
+  fill:#f2135d;
+}
+
+.button-glass{
+  padding: 7px 17px;
+  border-radius: 10px;
+  color: #ffffff;
+  border: 1px solid #f2145d;
+  background: #f2145d;
+  transition:all 200ms ease-in;
+}
+
+.button-glass:hover {
+  transform:scale(1.05);
+  background:#fff;
+  color:#f2145d;
+}
+
+@media(max-width:660px){
+  .button-glass {
+    font-size: 15px;
+    padding: 5px 5px;
+    line-height: 15px;
+  }
+}
+
+.button-pink-outline {
+  padding: 7px 13px;
+  background: transparent;
+  color:#f2135d;
+  border:1px solid #f2135d;
+  border-radius: 10px;
+  margin:5px 0;
+}
+
+.button-pink{
+  padding: 10px 35px;
+  background: linear-gradient(
+90deg
+,#f2135d,#5b3cc4);
+  color: #fff;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 21px;
+  margin: 5px 0;
+  text-shadow: 1px 1px 1px #2a1856;
+}
+
+
+.button-pink:disabled {
+  opacity:0.5;
+}
+
+.button-pink-trans{
+  padding: 7px 18px;
+  background: rgba(242,20,93,0.2);
+  color: #f2145d;
+  border-radius: 10px;
+  margin:5px 0;
+}
+
+
+
+
+.card-glass {
+  background: #fff;
+  border:1px solid #eee;
+  border-radius: 10px;
+}
+
+.drop-down {
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--bg);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.container {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 50px;
+}
+textarea::placeholder {
+  color: dimgrey;
+}
+
+.countdown {
+  background: #f2145d12;
+  border: 1px solid #f2145d47;
+  border-radius: 10px;
+}
+
+.countdown .time-start {
+  color: #f2145d;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 2px;
+  margin-bottom: -10px;
+}
+
+.buy-tickets {
+  background:#fff;
+  padding:1rem 1.2rem;
+  border-radius:10px;
+  margin-top: 25px;
+  box-shadow: 0px 11px 27px #f2145d0d;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.amount {
+  padding: 7px 15px 7px 40px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 7px;
+  border: 1px solid #f2135d;
+  width: 300px;
+  max-width:100%;
+  
+}
+
+.amount-block label {
+  display:block;
+  font-weight:bold;
+  color: #f2145d;
+  margin-top:10px;
+}
+
+.amount-block svg {
+    position:absolute;
+    margin-top:9px;
+    margin-left:10px;
+}
+
+.countdown .time-low {
+  color: #f2145d;
+  opacity: 0.6;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.countdown .time {
+  color: #f2145d;
+  font-size:36px;
+}
+
+.countdown .time-dot {
+  color: #f2145d;
+  font-size:36px;
+  margin-top:15px;
+}
