@@ -58,9 +58,54 @@ export default () => {
 
       let ust = new BigNumber(contractPairInfo.assets[1].amount).div(6);
       let alte = new BigNumber(contractPairInfo.assets[0].amount).div(6);
-      let formatPrice = ust.dividedBy(alte).toFixed()
-        setPrice(formatPrice);
+      let formatPrice = ust.dividedBy(alte).toFixed();
+      setPrice(formatPrice);
 
+      const contractSimulationInfo = await api.contractQuery(
+            alte_ust_pair,
+          {
+              "simulation": {
+                  "offer_asset": {
+                      "amount":"1",
+                      "info": {
+                          "native_token": {
+                              "denom":"uusd"
+                          }
+                      }
+                  }
+              }
+          });
+      console.log(contractSimulationInfo);
+        let commissionAmount = new BigNumber(contractSimulationInfo.commission_amount).dividedBy(1000000);
+        let returnAmount = new BigNumber(contractSimulationInfo.return_amount).dividedBy(1000000);
+        let spreadAmount = new BigNumber(contractSimulationInfo.spread_amount).dividedBy(1000000);
+        //let test = new BigNumber(commissionAmount).decimalPlaces(6);
+        console.log(commissionAmount.toString());
+        console.log(returnAmount.toString());
+        console.log(spreadAmount.toString());
+
+        const contractSimulationReverseInfo = await api.contractQuery(
+            alte_ust_pair,
+            {
+                "reverse_simulation": {
+                    "ask_asset": {
+                        "amount":"1",
+                        "info": {
+                            "native_token": {
+                                "denom":"uusd"
+                            }
+                        }
+                    }
+                }
+            });
+        console.log(contractSimulationReverseInfo);
+        commissionAmount = new BigNumber(contractSimulationReverseInfo.offer_amount).dividedBy(1000000);
+        returnAmount = new BigNumber(contractSimulationReverseInfo.return_amount).dividedBy(1000000);
+        spreadAmount = new BigNumber(contractSimulationReverseInfo.spread_amount).dividedBy(1000000);
+        //let test = new BigNumber(commissionAmount).decimalPlaces(6);
+        console.log(commissionAmount.toString());
+        console.log(returnAmount.toString());
+        console.log(spreadAmount.toString());
     } catch (e) {
       console.log(e);
     }
@@ -72,6 +117,11 @@ export default () => {
 
     const [amount, setAmount] = useState(0)
     const [isNativeToken, setIsNativeToken] = useState(false)
+    const [offerAskAmount, setOfferAskAmount] = useState(0)
+    const [commissionOfferAmount, setCommissionOfferAmount] = useState(0)
+    const [returnAmount, setReturnAmount] = useState(0)
+    const [spreadAmount, setSpreadAmount] = useState(0)
+
     let connectedWallet = ""
     if (typeof document !== 'undefined') {
         connectedWallet = useConnectedWallet()
@@ -127,11 +177,49 @@ export default () => {
         let swapAmount = e.target.value
         setAmount(swapAmount)
 
-
-
     }
 
+    // Query this when you want to sell UST -> ALTE
+    async function queryAskAsset(){
+        const contractSimulationReverseInfo = await api.contractQuery(
+            alte_ust_pair,
+            {
+                "simulation": {
+                    "ask_asset": {
+                        "amount": amount,
+                        "info": {
+                            "native_token": {
+                                "denom":"uusd"
+                            }
+                        }
+                    }
+                }
+            });
+        setOfferAskAmount(new BigNumber(contractSimulationReverseInfo.offer_amount).dividedBy(1000000));
+        setReturnAmount(new BigNumber(contractSimulationReverseInfo.return_amount).dividedBy(1000000));
+        setSpreadAmount(new BigNumber(contractSimulationReverseInfo.spread_amount).dividedBy(1000000))
+    }
 
+    // Query this when you want to sell ALTE -> UST
+    async function queryOfferAsset(){
+        const contractSimulationInfo = await api.contractQuery(
+            alte_ust_pair,
+            {
+                "simulation": {
+                    "offer_asset": {
+                        "amount": amount,
+                        "info": {
+                            "native_token": {
+                                "denom":"uusd"
+                            }
+                        }
+                    }
+                }
+            });
+        setCommissionOfferAmount(new BigNumber(contractSimulationInfo.commission_amount).dividedBy(1000000));
+        setReturnAmount(new BigNumber(contractSimulationInfo.return_amount).dividedBy(1000000));
+        setSpreadAmount(new BigNumber(contractSimulationInfo.spread_amount).dividedBy(1000000))
+    }
 
 
      return (
