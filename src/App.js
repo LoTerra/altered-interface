@@ -3,8 +3,7 @@ import { Root, Routes } from 'react-static'
 import { Router, Link } from '@reach/router'
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
-import './styles/app.css'
+import './styles/base.scss'
 import {Head} from "react-static";
 
 class App extends Component {
@@ -14,8 +13,8 @@ class App extends Component {
             <Root>
                 <Head>
                     <meta charSet="UTF-8" />
-                    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, shrink-to-fit=no"/>
-                    <title>LoTerra interface</title>
+                    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                    <title>Altered interface</title>
                     <meta property="og:title" content="LoTerra" />
                     <meta property="og:image" content="https://loterra.io/loterra.png" />
                     <meta property="og:image:alt" content="LoTerra icon" />

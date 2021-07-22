@@ -1,0 +1,67 @@
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image:url('../../public/bg.svg');
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--color);
+  box-sizing: border-box;
+  background-size:cover;
+  background-color: #0D0D0D;
+  width: 100%;
+  height: 100%;
+  overflow-x:hidden;
+}
+
+
+h1 {
+  color:$primary;
+  font-family: 'Cosmos';
+font-size:10rem;
+  background: linear-gradient(360deg, rgba(208, 224, 39, 0.2) -0.05%, rgba(220, 239, 20, 0.2) 47.89%, rgba(91, 97, 31, 0.2) 47.9%, rgba(233, 255, 0, 0.2) 100%), #D0E027;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0px 0px 14px rgba(208, 224, 39, 0.39));
+}
+
+textarea::placeholder {
+  color: dimgrey;
+}
+
+.countdown {
+  background: #f2145d12;
+  border: 1px solid #f2145d47;
+  border-radius: 10px;
+}
+
+.countdown .time-start {
+  color: #f2145d;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 2px;
+  margin-bottom: -10px;
+}
+
+
+
+.countdown .time-low {
+  color: #f2145d;
+  opacity: 0.6;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.countdown .time {
+  color: #f2145d;
+  font-size:36px;
+}
+
+.countdown .time-dot {
+  color: #f2145d;
+  font-size:36px;
+  margin-top:15px;
+}
