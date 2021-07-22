@@ -59,10 +59,13 @@ export default () => {
       setAltePool(contractPairInfo.assets[0].amount);
       setUstPool(contractPairInfo.assets[1].amount);
 
-      let ust = new BigNumber(contractPairInfo.assets[1].amount).div(6);
-      let alte = new BigNumber(contractPairInfo.assets[0].amount).div(6);
-      let formatPrice = ust.dividedBy(alte).toFixed();
-      setPrice(formatPrice);
+      let ust = new BigNumber(contractPairInfo.assets[1].amount);
+      let alte = new BigNumber(contractPairInfo.assets[0].amount);
+        console.log(ust.toString())
+        console.log(alte.toString())
+
+      let formatPrice = ust.dividedBy(alte);
+      setPrice(formatPrice.dividedBy(1000000).toFixed());
     } catch (e) {
       console.log(e);
     }
@@ -129,7 +132,7 @@ export default () => {
         e.preventDefault();
         let swapAmount = e.target.value
         setAmount(swapAmount)
-        console.log(amount)
+        console.log(swapAmount)
         checkAsset()
     }
 
@@ -164,9 +167,9 @@ export default () => {
                     }
                 }
             });
-        setOfferAskAmount(new BigNumber(contractSimulationReverseInfo.offer_amount).dividedBy(1000000).toString());
-        setReturnAmount(new BigNumber(contractSimulationReverseInfo.return_amount).dividedBy(1000000).toString());
-        setSpreadAmount(new BigNumber(contractSimulationReverseInfo.spread_amount).dividedBy(1000000).toString())
+        setOfferAskAmount(contractSimulationReverseInfo.offer_amount > 0 ? new BigNumber(contractSimulationReverseInfo.offer_amount).dividedBy(1000000).toString(): 0);
+        setReturnAmount(contractSimulationReverseInfo.return_amount > 0 ? new BigNumber(contractSimulationReverseInfo.return_amount).dividedBy(1000000).toString(): 0);
+        setSpreadAmount(contractSimulationReverseInfo.spread_amount > 0 ? new BigNumber(contractSimulationReverseInfo.spread_amount).dividedBy(1000000).toString(): 0)
     }
 
     // Query this when you want to sell ALTE -> UST
@@ -185,9 +188,9 @@ export default () => {
                     }
                 }
             });
-        setCommissionOfferAmount(new BigNumber(contractSimulationInfo.commission_amount).dividedBy(1000000).toString());
-        setReturnAmount(new BigNumber(contractSimulationInfo.return_amount).dividedBy(1000000).toString());
-        setSpreadAmount(new BigNumber(contractSimulationInfo.spread_amount).dividedBy(1000000).toString())
+        setCommissionOfferAmount(contractSimulationInfo.offer_amount > 0 ? new BigNumber(contractSimulationInfo.commission_amount).dividedBy(1000000).toString(): 0);
+        setReturnAmount(contractSimulationInfo.offer_amount > 0 ? new BigNumber(contractSimulationInfo.return_amount).dividedBy(1000000).toString() : 0);
+        setSpreadAmount(contractSimulationInfo.offer_amount > 0 ? new BigNumber(contractSimulationInfo.spread_amount).dividedBy(1000000).toString(): 0)
     }
 
 
