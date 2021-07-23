@@ -72,7 +72,7 @@ export default () => {
         console.log(alte.toString())
 
       let formatPrice = ust.dividedBy(alte);
-      setPrice(formatPrice.dividedBy(1000000).toFixed());
+      setPrice(formatPrice.toFixed());
     } catch (e) {
       console.log(e);
     }
