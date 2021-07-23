@@ -155,7 +155,7 @@ export default function ConnectWallet(){
                         </>
                     }
                     { connected &&
-                        <button onClick={() => connectTo("disconnect")} className="btn btn-outline-primary nav-item" style={DialogButton}>{connected ? returnBank() : '' }</button>
+                        <button onClick={() => connectTo("disconnect")} className="btn btn-outline-primary nav-item">{connected ? returnBank() : '' }</button>
                     }
                 </div>
             </div>
