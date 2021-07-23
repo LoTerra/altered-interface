@@ -8,5 +8,15 @@
 
     &.special {
         background: linear-gradient(228.88deg, rgba(0, 0, 0, 0.2) 18.2%, rgba(176, 176, 176, 0.107292) 77.71%, rgba(0, 0, 0, 0.0885417) 99.78%, rgba(0, 0, 0, 0) 146.58%), #171717;
+        h2 {
+            text-align:center;
+            font-family: 'Cosmos';
+                color:$primary;
+              background: linear-gradient(360deg, rgba(208, 224, 39, 0.2) -0.05%, rgba(220, 239, 20, 0.2) 47.89%, rgba(91, 97, 31, 0.2) 47.9%, rgba(233, 255, 0, 0.2) 100%), #D0E027;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              filter: drop-shadow(0px 0px 14px rgba(208, 224, 39, 0.39));
+              margin-bottom:15px;
+        }
     }
 }

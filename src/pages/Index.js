@@ -230,7 +230,7 @@ export default () => {
          <>
              <div className="w-100 align-self-center">
              <div className="row">
-                 <div className="col-12 text-center mb-4">
+                 <div className="col-12 text-center mb-md-4">
                     <h1>ALTERED</h1>
                  </div>
                  <div className="col-12 col-lg-8 mx-auto">
@@ -256,13 +256,14 @@ export default () => {
                 <div className="col-lg-4 mb-4 mx-auto">
                     <div className="card special">
                          <div className="card-body">
+                                <h2>Make your move</h2>
                                 <SwapForm switchValuta={() => switchValuta()} doSwap={() => doSwap()} current={commissionOfferAmount, spreadAmount} inputChange={(e) => inputChange(e)} returnAmount={returnAmount} isNativeToken={isNativeToken} />
-                                <div style={{color:'#fff', fontSize:'11px'}}>
+                                {/* DEV PURPOSES <div style={{color:'#fff', fontSize:'11px'}}>
                                     <p>amount: {amount}</p>
                                 <p>commission: {commissionOfferAmount}</p>                                
                                 <p>spread: {spreadAmount}</p>
                                 <p>return: {returnAmount}</p>
-                                </div>
+                                </div> */}
                           
                          </div>
                      </div>

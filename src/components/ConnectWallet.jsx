@@ -135,14 +135,14 @@ export default function ConnectWallet(){
     }
 
     return(
-        <div className="navbar navbar-expand-md">
+        <div className="navbar navbar-expand p-2">
             <div className="container-fluid">
                 <div className="navbar-nav ms-auto">
 
                     { !connected &&
                         <>
                         <div className="btn-group">
-                        <button  className="btn btn-outline-primary nav-item dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style={DialogButton}><Wallet size={18} style={{marginTop:'-4px', marginRight:'4px'}}/>Connect</button>
+                        <button  className="btn btn-outline-primary nav-item dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><Wallet size={18} style={{marginTop:'-4px', marginRight:'4px'}}/>Connect</button>
                             <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                             <button onClick={() => connectTo("extension")} className="dropdown-item"><CaretRight size={16} style={{marginTop:'-4px'}}/> Terra Station (extension/mobile)</button>                     
                             <button onClick={() => connectTo("mobile")} className="dropdown-item"><CaretRight size={16} style={{marginTop:'-4px'}} /> Terra Station (mobile for desktop)</button>
