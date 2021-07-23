@@ -16,18 +16,24 @@
         font-size: 28px;    
         color:#fff;
         &.big {
-            font-size: 3.2rem;
-            margin-top: -10px;
+            font-size: 3.8rem;
+            margin-top: -10px;           
+            margin-bottom: -14px;
+            font-family: 'Cosmos';
             span {
                 font-weight:400;
                 font-size: 2rem;
+               
+
             }
         }
         &.small {
             font-size:16px;
+            font-family: 'Cosmos';
             span {
                 font-size:12px;
                 font-weight:400;
+               
 
             }
         }
