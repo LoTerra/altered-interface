@@ -13,7 +13,7 @@ export default function CurrentPrice(props){
                     <p className="heading">Target price</p>
                     <p className="big">1.00 <span>UST</span></p>
                     <p className="heading">Current price</p>
-                    <p className="small">{price} <span>UST</span></p>
+                    <p className="small">{numeral(price).format("0,0.000000")} <span>UST</span></p>
                 </div>
             </div>
         </div>
