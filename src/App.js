@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import './styles/base.scss'
 import {Head} from "react-static";
+import { popper } from '@popperjs/core';
+import bootstrap from 'bootstrap';
 
 class App extends Component {
   render() {
@@ -14,7 +16,7 @@ class App extends Component {
                 <Head>
                     <meta charSet="UTF-8" />
                     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-                    <title>Altered protocol</title>
+                    <title>Altered protocol</title> 
                     <meta property="og:title" content="Altered" />
                     <meta property="og:image" content="https://loterra.io/loterra.png" />
                     <meta property="og:image:alt" content="Altered icon" />

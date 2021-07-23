@@ -10,10 +10,10 @@ export default function CurrentPrice(props){
         <div className="current-price">
             <div className="row">
                 <div className="col-12">
-                    <p class="heading">Target price</p>
-                    <p class="big">1.00 <span>UST</span></p>
-                    <p class="heading">Current price</p>
-                    <p class="small">{price} <span>UST</span></p>
+                    <p className="heading">Target price</p>
+                    <p className="big">1.00 <span>UST</span></p>
+                    <p className="heading">Current price</p>
+                    <p className="small">{price} <span>UST</span></p>
                 </div>
             </div>
         </div>

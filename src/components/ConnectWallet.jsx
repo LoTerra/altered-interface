@@ -141,11 +141,16 @@ export default function ConnectWallet(){
 
                     { !connected &&
                         <>
-                        
-                            <button onClick={() => connectTo("extension")} className="btn btn-outline-primary nav-item" style={DialogButton}>Terra Station (extension/mobile)</button>
-                       
-                      
-                            <button onClick={() => connectTo("mobile")} className="btn btn-outline-primary nav-item" style={DialogButton}>Terra Station (mobile for desktop)</button>
+                        <div className="btn-group">
+                        <button  className="btn btn-outline-primary nav-item dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style={DialogButton}>Connect wallet</button>
+                            <ul className="dropdown-menu dropdown-menu-start" aria-labelledby="dropdownMenuButton1">
+                            <li onClick={() => connectTo("extension")} className="dropdown-item" style={DialogButton}>Terra Station (extension/mobile)</li>                     
+                            <li onClick={() => connectTo("mobile")} className="dropdown-item" style={DialogButton}>Terra Station (mobile for desktop)</li>
+                            </ul>
+                        </div>
+                            
+
+                            
                        
                         </>
                     }
