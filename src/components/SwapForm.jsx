@@ -1,33 +1,50 @@
-import { Swap } from 'phosphor-react';
-import React from 'react';
+import { Swap,CaretRight } from 'phosphor-react';
+import React,{useCallback} from 'react';
+import debounce from 'lodash.debounce';
+
 
 
  export default function SwapForm(props){
 
-    const {switchValuta, isNativeToken, inputChange, returnAmount} = props;
+    const {switchValuta, isNativeToken, inputChange, returnAmount, current} = props;
 
-    function handleChange(e){
-        inputChange(e)
-    }
+    const handleChange = event => {	
+        event.persist()
+		const debouncedSave = debounce(() => inputChange(event), 1000);
+		debouncedSave();
+		// highlight-ends
+	};
 
     return(
         <div className="swap-form">
             <div className="row">
-                <div className="col-12 text-center mb-5">
+                {/* <div className="col-12 text-center mb-5">
                     <h3>Swap</h3>
-                </div>
+                </div> */}
                 <div className="col-12 mb-3">
                     <span className="label">FROM</span>
                     <span className="valuta">{isNativeToken ? 'ALTE' : 'UST'}</span>
-                    <input type="number" className="form-control" onChange={(e) => handleChange(e)} placeholder="0" />                    
+                    <input type="number" className="form-control" onChange={handleChange} placeholder="0" />                    
+                </div>
+                <div className="swapper-info">
+                    <p>Inputs are interchangeable you can swap UST for ALTE or ALTE for UST</p>                    
+                    <CaretRight size={28} color={'#5F5F5F'} />
                 </div>
                 <button className="swapper" onClick={switchValuta}>
-                    <Swap size={36} color={'#DCEF14'}/>
+                <Swap size={36} color={'#DCEF14'}/>    
                 </button>
                 <div className="col-12 mb-3">
                     <span className="label">TO</span>
                     <span className="valuta">{isNativeToken ? 'UST' : 'ALTE'}</span>
-                    <input readOnly type="number" className="form-control" value={returnAmount} placeholder="0" />
+                    <input readOnly type="number" className="form-control" value={returnAmount > 0 ? returnAmount : ''} placeholder="0" />
+                </div>
+                <div className="swap-final-info">
+                    { current.commissionOfferAmount &&
+                    <small>Commission: {current.commissionOfferAmount}</small>
+                    }
+                    { current.spreadAmount &&
+                    <small>Spread: {current.spreadAmount}</small>
+                    }
                 </div>
                 <div className="col-12 mb-3">
                     <button className="btn btn-special w-100">Swap</button>

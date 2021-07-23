@@ -2,6 +2,7 @@ import React, {useEffect, useState, useCallback} from "react";
 import numeral from "numeral";
 import { Users, Ticket} from "phosphor-react";
 
+
 import {StdFee, MsgExecuteContract,LCDClient, WasmAPI, BankAPI} from "@terra-money/terra.js"
 import BigNumber from "bignumber.js";
 import Countdown from "../components/Countdown";
@@ -129,7 +130,8 @@ export default () => {
 
 
     function inputChange(e){
-        e.preventDefault();
+        // e.preventDefault();       
+
         let swapAmount = e.target.value
         setAmount(swapAmount)
         console.log(swapAmount)
@@ -203,14 +205,14 @@ export default () => {
                  </div>
                  <div className="col-12 col-lg-8 mx-auto">
                      <div className="row">
-                        <div className="col-lg-8 mb-4">
+                        <div className="col-lg-6 mb-4">
                             <div className="card">
                                 <div className="card-body">
                                         <Countdown expiryTimestamp={expiryTimestamp}/>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-4 mb-4">
+                        <div className="col-lg-6 mb-4">
                             <div className="card">
                                 <div className="card-body">
                                         <CurrentPrice price={price}/>
@@ -224,8 +226,8 @@ export default () => {
                 <div className="col-lg-4 mb-4 mx-auto">
                     <div className="card special">
                          <div className="card-body">
-                                <SwapForm switchValuta={() => switchValuta()} inputChange={(e) => inputChange(e)} returnAmount={isNativeToken ? returnAmount : offerAskAmount} isNativeToken={isNativeToken} />
-                                <div style={{color:'#fff'}}>
+                                <SwapForm switchValuta={() => switchValuta()} current={commissionOfferAmount, spreadAmount} inputChange={(e) => inputChange(e)} returnAmount={isNativeToken ? returnAmount : offerAskAmount} isNativeToken={isNativeToken} />
+                                <div style={{color:'#fff', fontSize:'11px'}}>
                                     <p>amount: {amount}</p>
                                 <p>commission: {commissionOfferAmount}</p>                                
                                 <p>spread: {spreadAmount}</p>                                
