@@ -54,7 +54,7 @@ export default () => {
         }
       );
 
-      setExpiryTimestamp(parseInt(contractConfigInfo.rebase /  1_000_000_000));
+      setExpiryTimestamp(parseInt((contractConfigInfo.rebase / 1_000_000_000) * 1000));
       setTotalSupply(contractConfigInfo.total_supply)
 
       const contractPairInfo = await api.contractQuery(
