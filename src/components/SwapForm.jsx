@@ -7,8 +7,7 @@ import debounce from 'lodash.debounce';
  export default function SwapForm(props){
 
     const {switchValuta, isNativeToken, inputChange, returnAmount, current, doSwap} = props;
-
-    const handleChange = event => {	
+    const handleChange = event => {
         event.persist()
 		const debouncedSave = debounce(() => inputChange(event), 1000);
 		debouncedSave();

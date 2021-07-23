@@ -32,8 +32,14 @@ export default () => {
     const [expiryTimestamp, setExpiryTimestamp] = useState(
     1
     ); /** default timestamp need to be > 1 */
+    const [amount, setAmount] = useState(0)
+    const [isNativeToken, setIsNativeToken] = useState(false)
+    const [offerAskAmount, setOfferAskAmount] = useState(0)
+    const [commissionOfferAmount, setCommissionOfferAmount] = useState(0)
+    const [returnAmount, setReturnAmount] = useState(0)
+    const [spreadAmount, setSpreadAmount] = useState(0)
 
-  const fetchContractQuery = useCallback(async () => {
+    const fetchContractQuery = useCallback(async () => {
     const terra = new LCDClient({
         URL: "https://bombay-lcd.terra.dev",
         chainID: "bombay-0008",
@@ -70,18 +76,13 @@ export default () => {
     } catch (e) {
       console.log(e);
     }
-  }, []);
+    }, []);
 
-  useEffect(() => {
-    fetchContractQuery();
-  }, [fetchContractQuery]);
+    useEffect(() => {
+        fetchContractQuery();
+        checkAsset()
+    },[fetchContractQuery, amount]);
 
-    const [amount, setAmount] = useState(0)
-    const [isNativeToken, setIsNativeToken] = useState(false)
-    const [offerAskAmount, setOfferAskAmount] = useState(0)
-    const [commissionOfferAmount, setCommissionOfferAmount] = useState(0)
-    const [returnAmount, setReturnAmount] = useState(0)
-    const [spreadAmount, setSpreadAmount] = useState(0)
 
     let connectedWallet = ""
     if (typeof document !== 'undefined') {
@@ -126,23 +127,19 @@ export default () => {
             console.log(e)
         }
     }
- 
 
 
     function inputChange(e){
-        // e.preventDefault();       
-
+        // e.preventDefault();
         let swapAmount = e.target.value
         setAmount(swapAmount)
-        console.log(swapAmount)
-        checkAsset()
+        console.log(amount)
     }
 
     function switchValuta(){
         console.log(isNativeToken)
         setAmount(amount)
         setIsNativeToken(!isNativeToken)
-        checkAsset()
     }
 
     function checkAsset(){
@@ -190,9 +187,9 @@ export default () => {
                     }
                 }
             });
-        setCommissionOfferAmount(contractSimulationInfo.offer_amount > 0 ? new BigNumber(contractSimulationInfo.commission_amount).dividedBy(1000000).toString(): 0);
-        setReturnAmount(contractSimulationInfo.offer_amount > 0 ? new BigNumber(contractSimulationInfo.return_amount).dividedBy(1000000).toString() : 0);
-        setSpreadAmount(contractSimulationInfo.offer_amount > 0 ? new BigNumber(contractSimulationInfo.spread_amount).dividedBy(1000000).toString(): 0)
+        setCommissionOfferAmount(contractSimulationInfo.commission_amount > 0 ? new BigNumber(contractSimulationInfo.commission_amount).dividedBy(1000000).toString(): 0);
+        setReturnAmount(contractSimulationInfo.return_amount > 0 ? new BigNumber(contractSimulationInfo.return_amount).dividedBy(1000000).toString() : 0);
+        setSpreadAmount(contractSimulationInfo.spread_amount > 0 ? new BigNumber(contractSimulationInfo.spread_amount).dividedBy(1000000).toString(): 0)
     }
 
     function doSwap(){
