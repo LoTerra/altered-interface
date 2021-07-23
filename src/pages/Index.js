@@ -195,6 +195,14 @@ export default () => {
         setSpreadAmount(contractSimulationInfo.offer_amount > 0 ? new BigNumber(contractSimulationInfo.spread_amount).dividedBy(1000000).toString(): 0)
     }
 
+    function doSwap(){
+        let token = 'ust';
+        if(isNativeToken){
+            token = 'alte'
+        }
+        alert('Do swap simulation with'+amount+' '+token)
+    }
+
 
      return (
          <>
@@ -226,7 +234,7 @@ export default () => {
                 <div className="col-lg-4 mb-4 mx-auto">
                     <div className="card special">
                          <div className="card-body">
-                                <SwapForm switchValuta={() => switchValuta()} current={commissionOfferAmount, spreadAmount} inputChange={(e) => inputChange(e)} returnAmount={isNativeToken ? returnAmount : offerAskAmount} isNativeToken={isNativeToken} />
+                                <SwapForm switchValuta={() => switchValuta()} doSwap={() => doSwap()} current={commissionOfferAmount, spreadAmount} inputChange={(e) => inputChange(e)} returnAmount={isNativeToken ? returnAmount : offerAskAmount} isNativeToken={isNativeToken} />
                                 <div style={{color:'#fff', fontSize:'11px'}}>
                                     <p>amount: {amount}</p>
                                 <p>commission: {commissionOfferAmount}</p>                                
