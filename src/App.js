@@ -17,8 +17,10 @@ class App extends Component {
                     <meta charSet="UTF-8" />
                     <meta name="viewport" content="width=device-width, initial-scale=1"/>
                     <title>Altered protocol</title> 
+                    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+                    <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
                     <meta property="og:title" content="Altered" />
-                    <meta property="og:image" content="https://loterra.io/loterra.png" />
+                    {/* <meta property="og:image" content="https://loterra.io/loterra.png" /> */}
                     <meta property="og:image:alt" content="Altered icon" />
                     <meta property="og:type" content="website" />
                     <meta property="og:site_name" content="Altered protocol" />
