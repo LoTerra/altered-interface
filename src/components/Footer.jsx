@@ -22,6 +22,7 @@ export default function Footer(){
         } else {
             document.documentElement.classList.remove('dark')
         }
+
     }
 
     return (
