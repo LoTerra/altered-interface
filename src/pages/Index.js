@@ -160,7 +160,7 @@ export default () => {
             {
                 "simulation": {
                     "offer_asset": {
-                        "amount": String(amount),
+                        "amount": String(amount * 1000000),
                         "info": {
                             "native_token": {
                                 "denom":"uusd"
@@ -203,7 +203,7 @@ export default () => {
             {
                 "simulation": {
                     "offer_asset": {
-                        "amount": String(amount),
+                        "amount": String(amount * 1000000),
                         "info": {
                             "token": {
                                 "contract_addr": altered_address
