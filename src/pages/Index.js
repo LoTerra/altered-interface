@@ -200,7 +200,7 @@ export default () => {
         if(isNativeToken){
             token = 'alte'
         }
-        alert('Do swap simulation with'+amount+' '+token)
+        alert('Do swap simulation with '+amount+' '+token)
     }
 
 
