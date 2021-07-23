@@ -34,7 +34,7 @@ export default () => {
     ); /** default timestamp need to be > 1 */
     const [amount, setAmount] = useState(0)
     const [isNativeToken, setIsNativeToken] = useState(false)
-    const [offerAskAmount, setOfferAskAmount] = useState(0)
+    //const [offerAskAmount, setOfferAskAmount] = useState(0)
     const [commissionOfferAmount, setCommissionOfferAmount] = useState(0)
     const [returnAmount, setReturnAmount] = useState(0)
     const [spreadAmount, setSpreadAmount] = useState(0)
@@ -152,6 +152,27 @@ export default () => {
 
     // Query this when you want to sell UST -> ALTE
     async function queryAskAsset(){
+        setReturnAmount(0)
+        setSpreadAmount(0)
+        setCommissionOfferAmount(0)
+        const contractSimulationInfo = await api.contractQuery(
+            alte_ust_pair,
+            {
+                "simulation": {
+                    "offer_asset": {
+                        "amount": String(amount),
+                        "info": {
+                            "native_token": {
+                                "denom":"uusd"
+                            }
+                        }
+                    }
+                }
+            });
+        setCommissionOfferAmount(contractSimulationInfo.commission_amount > 0 ? new BigNumber(contractSimulationInfo.commission_amount).dividedBy(1000000).toString(): 0);
+        setReturnAmount(contractSimulationInfo.return_amount > 0 ? new BigNumber(contractSimulationInfo.return_amount).dividedBy(1000000).toString() : 0);
+        setSpreadAmount(contractSimulationInfo.spread_amount > 0 ? new BigNumber(contractSimulationInfo.spread_amount).dividedBy(1000000).toString(): 0)
+        /*
         const contractSimulationReverseInfo = await api.contractQuery(
             alte_ust_pair,
             {
@@ -168,11 +189,15 @@ export default () => {
             });
         setOfferAskAmount(contractSimulationReverseInfo.offer_amount > 0 ? new BigNumber(contractSimulationReverseInfo.offer_amount).dividedBy(1000000).toString(): 0);
         setReturnAmount(contractSimulationReverseInfo.return_amount > 0 ? new BigNumber(contractSimulationReverseInfo.return_amount).dividedBy(1000000).toString(): 0);
-        setSpreadAmount(contractSimulationReverseInfo.spread_amount > 0 ? new BigNumber(contractSimulationReverseInfo.spread_amount).dividedBy(1000000).toString(): 0)
+        setSpreadAmount(contractSimulationReverseInfo.spread_amount > 0 ? new BigNumber(contractSimulationReverseInfo.spread_amount).dividedBy(1000000).toString(): 0);
+        */
     }
 
     // Query this when you want to sell ALTE -> UST
     async function queryOfferAsset(){
+        setReturnAmount(0)
+        setSpreadAmount(0)
+        setCommissionOfferAmount(0)
         const contractSimulationInfo = await api.contractQuery(
             alte_ust_pair,
             {
@@ -180,8 +205,8 @@ export default () => {
                     "offer_asset": {
                         "amount": String(amount),
                         "info": {
-                            "native_token": {
-                                "denom":"uusd"
+                            "token": {
+                                "contract_addr": altered_address
                             }
                         }
                     }
@@ -231,12 +256,11 @@ export default () => {
                 <div className="col-lg-4 mb-4 mx-auto">
                     <div className="card special">
                          <div className="card-body">
-                                <SwapForm switchValuta={() => switchValuta()} doSwap={() => doSwap()} current={commissionOfferAmount, spreadAmount} inputChange={(e) => inputChange(e)} returnAmount={isNativeToken ? returnAmount : offerAskAmount} isNativeToken={isNativeToken} />
+                                <SwapForm switchValuta={() => switchValuta()} doSwap={() => doSwap()} current={commissionOfferAmount, spreadAmount} inputChange={(e) => inputChange(e)} returnAmount={returnAmount} isNativeToken={isNativeToken} />
                                 <div style={{color:'#fff', fontSize:'11px'}}>
                                     <p>amount: {amount}</p>
                                 <p>commission: {commissionOfferAmount}</p>                                
-                                <p>spread: {spreadAmount}</p>                                
-                                <p>offer: {offerAskAmount}</p>
+                                <p>spread: {spreadAmount}</p>
                                 <p>return: {returnAmount}</p>
                                 </div>
                           
