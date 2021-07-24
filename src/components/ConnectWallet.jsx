@@ -8,7 +8,7 @@ import {
   ConnectType,
 } from "@terra-money/wallet-provider";
 
-import { Wallet, CaretRight} from "phosphor-react";
+import { Wallet, CaretRight, ArrowSquareOut} from "phosphor-react";
 import numeral from "numeral"
 
 // let useWallet = {}
@@ -135,12 +135,13 @@ export default function ConnectWallet(){
     }
 
     return(
-        <div className="navbar navbar-expand p-2">
+        <div className="navbar navbar-expand p-2 p-md-3">
             <div className="container-fluid">
                 <div className="navbar-nav ms-auto">
 
                     { !connected &&
                         <>
+                        <a href="https://docs.alteredprotocol.com" target="_blank" className="btn btn-outline-secondary nav-item mx-3"><ArrowSquareOut size={18} style={{marginTop:'-4px', marginRight:'4px'}}/> Docs</a>
                         <div className="btn-group">
                         <button  className="btn btn-outline-primary nav-item dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><Wallet size={18} style={{marginTop:'-4px', marginRight:'4px'}}/>Connect</button>
                             <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">

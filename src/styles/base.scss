@@ -4,7 +4,7 @@
 @import "../../node_modules/bootstrap/scss/mixins";
 
 $primary: #DCEF14;
-$secondary: green;
+$secondary: #848484;
 
 $theme-colors: (
   primary: $primary,
@@ -23,9 +23,14 @@ $theme-colors: (
                             'embedded-opentype', and 'svg' */
 }
 
+a {
+  color:$primary;
+}
+
 @import "./buttons";
 @import "./cards";
 @import "./countdown";
 @import "./currentprice";
 @import "./swapform";
+@import "./footer";
 @import "./app.scss";

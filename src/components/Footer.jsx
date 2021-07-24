@@ -1,41 +1,25 @@
 import React, {useState} from "react";
+import { TelegramLogo, TwitterLogo } from "phosphor-react";
 
-const FootBar = {
-    display: "flex",
-    justifyContent: "flex-end"
-}
-const FootContent = {
-    width: "500px",
-    display: "flex",
-    flex: "wrap",
-    justifyContent: "space-between"
-}
 export default function Footer(){
-    const [isDarkMode, setDarkMode] = useState(false)
 
-    function darkMode (){
-        setDarkMode(!isDarkMode)
-        isDarkMode ? localStorage.theme = 'dark' : localStorage.theme = 'light'
-        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark')
-        } else {
-            document.documentElement.classList.remove('dark')
-        }
-
-    }
 
     return (
-        <footer className="container">
-            <div style={FootBar}>
-                <div style={FootContent}>
-                    <a href="">Discord</a>
-                    <a href="">GitHub</a>
-                    <a href="">Twitter</a>
-                    <a href="">Telegram</a>
-                    <button onClick={()=> darkMode()}>Dark Mode</button>
+        <footer className="container pt-3 pb-5">
+       
+                <div className="row">
+                    <div className="col-lg-8 mx-auto">
+                        <div className="row justify-content-center">          
+                            <div className="col-2 col-md-1 text-center">
+                                <a href="https://twitter.com/Altered_ALTE" target="_blank"><TwitterLogo size={24} weight="fill" /></a>
+                            </div>
+                            <div className="col-2 col-md-1 text-center">
+                                <a href="https://t.me/Altered_ALTE" target="_blank"><TelegramLogo size={24} weight="fill" /></a>
+                            </div>                            
+                        </div>
+                    </div>
                 </div>
-            </div>
+          
         </footer>
     )
 }

@@ -228,7 +228,7 @@ export default () => {
 
      return (
          <>
-             <div className="w-100 align-self-center">
+           
              <div className="row">
                  <div className="col-12 text-center mb-md-4">
                     <h1>ALTERED</h1>
@@ -269,7 +269,7 @@ export default () => {
                      </div>
                  </div>
              </div>
-             </div>
+   
          </>
      );
 }

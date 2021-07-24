@@ -32,10 +32,10 @@ class App extends Component {
                     <meta property="og:description" content="Altered elastic protocol"/>
                 </Head>
               <Navbar/>
-              <div className="container d-flex" style={{minHeight:'85vh'}}>
+              <div className="container">
                   <Routes default />
               </div>
-              {/*<Footer/>*/}
+              <Footer/>
             </Root>
         </Suspense>
 
