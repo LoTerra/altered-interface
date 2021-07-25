@@ -39,6 +39,7 @@ export default () => {
     const [returnAmount, setReturnAmount] = useState(0)
     const [spreadAmount, setSpreadAmount] = useState(0)
 
+
     const fetchContractQuery = useCallback(async () => {
     const terra = new LCDClient({
         URL: "https://bombay-lcd.terra.dev",
@@ -222,7 +223,7 @@ export default () => {
         if(isNativeToken){
             token = 'alte'
         }
-        alert('Do swap simulation with '+amount+' '+token)
+        setProcessingModal(!processingModal)
     }
 
 
@@ -257,7 +258,7 @@ export default () => {
                     <div className="card special">
                          <div className="card-body">
                                 <h2>Make your move</h2>
-                                <SwapForm switchValuta={() => switchValuta()} doSwap={() => doSwap()} current={commissionOfferAmount, spreadAmount} inputChange={(e) => inputChange(e)} returnAmount={returnAmount} isNativeToken={isNativeToken} />
+                                <SwapForm switchValuta={() => switchValuta()} doSwap={() => doSwap()} amount={amount} current={commissionOfferAmount, spreadAmount} inputChange={(e) => inputChange(e)} returnAmount={returnAmount} isNativeToken={isNativeToken} />
                                 {/* DEV PURPOSES <div style={{color:'#fff', fontSize:'11px'}}>
                                     <p>amount: {amount}</p>
                                 <p>commission: {commissionOfferAmount}</p>                                
@@ -269,7 +270,6 @@ export default () => {
                      </div>
                  </div>
              </div>
-   
          </>
      );
 }

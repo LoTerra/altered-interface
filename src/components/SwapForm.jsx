@@ -6,7 +6,7 @@ import debounce from 'lodash.debounce';
 
  export default function SwapForm(props){
 
-    const {switchValuta, isNativeToken, inputChange, returnAmount, current, doSwap} = props;
+    const {switchValuta, isNativeToken, inputChange, returnAmount, current, doSwap, amount} = props;
     const handleChange = event => {
         event.persist()
 		const debouncedSave = debounce(() => inputChange(event), 1000);
@@ -46,7 +46,7 @@ import debounce from 'lodash.debounce';
                     }
                 </div>
                 <div className="col-12 mb-3">
-                    <button className="btn btn-special w-100" onClick={doSwap}>Swap</button>
+                    <button className={(amount > 0) ? 'btn btn-special w-100 grow' : 'btn btn-special w-100'} disabled={amount <= 0} onClick={doSwap} >Swap</button>
                 </div>
             </div>
         </div>

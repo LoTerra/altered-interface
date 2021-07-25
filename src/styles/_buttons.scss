@@ -10,6 +10,19 @@
         background: linear-gradient(
     360deg
     , rgba(208, 224, 39, 0.2) -0.05%, rgba(220, 239, 20, 0.2) 47.89%, rgba(91, 97, 31, 0.2) 47.9%, rgba(233, 255, 0, 0.2) 100%), #D0E027;
+    transition:all 150ms ease-in-out;
+    filter: drop-shadow(0px 0px 0px rgba(208, 224, 39, 0.39));
+        &.grow {
+            filter: drop-shadow(0px 0px 14px rgba(208, 224, 39, 0.39));
+            transform:scale(1.02);
+        }
+        &:focus {
+            outline:none;
+            box-shadow:none;
+        }
+        &:hover {
+            transform:scale(1.03);
+        }
     }
     &.btn-outline-primary {
         border-width: 2px;
