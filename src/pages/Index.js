@@ -8,9 +8,9 @@ import BigNumber from "bignumber.js";
 import Countdown from "../components/Countdown";
 import CurrentPrice from "../components/CurrentPrice";
 import SwapForm from "../components/SwapForm";
-let useConnectedWallet = {}
+let connectedWallet = {}
 if (typeof document !== 'undefined') {
-    useConnectedWallet = require('@terra-money/wallet-provider').useConnectedWallet
+    connectedWallet = require('@terra-money/wallet-provider').useConnectedWallet
 }
 
 const HomeCard={
