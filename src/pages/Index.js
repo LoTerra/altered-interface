@@ -13,7 +13,7 @@ if (typeof document !== 'undefined') {
 
 const altered_address ="terra1eug9cq580rs6rxv5kmv8ngue9r57qut8tkwxce";
 const alte_ust_pair = "terra1w5ncydn7kuz3txyvfq4dw984wxczs9dstgqsnr";
-const fees = new StdFee(1_000_000, { uusd: 200000 })
+const fees = new StdFee(400_000, { uusd: 60000 })
 let api = {}
 
 
