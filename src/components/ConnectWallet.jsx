@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useMemo} from "react";
 
-import { LCDClient } from "@terra-money/terra.js";
+import { LCDClient, WasmAPI } from "@terra-money/terra.js";
 import {
   useWallet,
   WalletStatus,
@@ -10,7 +10,7 @@ import {
 
 import { Wallet, CaretRight, ArrowSquareOut} from "phosphor-react";
 import numeral from "numeral"
-
+const altered_address ="terra1eug9cq580rs6rxv5kmv8ngue9r57qut8tkwxce";
 // let useWallet = {}
 // if (typeof document !== 'undefined') {
 //     useWallet = require('@terra-money/wallet-provider').useWallet
@@ -39,24 +39,28 @@ export default function ConnectWallet(){
     let connectedWallet = "";
     const [isDisplayDialog, setIsDisplayDialog] = useState(false);
     const [bank, setBank] = useState();
+    const [bankAlte, setBankAlte] = useState();
     const [connected, setConnected]= useState(false);
     let wallet = ""
     if (typeof document !== 'undefined') {
         wallet = useWallet();
         connectedWallet = useConnectedWallet()
     }
+    let api
     const lcd = useMemo(() => {
 
         if (!connectedWallet) {
           return null;
         }
-    
-        return new LCDClient({
-          URL: connectedWallet.network.lcd,
-          chainID: connectedWallet.network.chainID,
+        const lcd = new LCDClient({
+            URL: connectedWallet.network.lcd,
+            chainID: connectedWallet.network.chainID,
         });
+        api = new WasmAPI(lcd.apiRequester)
+        return lcd
+
       }, [connectedWallet]);
-    
+
 
 
 
@@ -90,8 +94,17 @@ export default function ConnectWallet(){
             if (connectedWallet && connectedWallet.walletAddress && lcd) {
                 //   setShowConnectOptions(false);
                 let coins
+                let token
                 try {
                     coins = await lcd.bank.balance(connectedWallet.walletAddress);
+                    token = await api.contractQuery(
+                        altered_address,
+                        {
+                            balance: {
+                                address: connectedWallet.walletAddress,
+                            },
+                        }
+                    )
 
                 }catch (e) {
                     console.log(e)
@@ -102,6 +115,8 @@ export default function ConnectWallet(){
                 });
                 let ust = parseInt(uusd) / 1000000;
                 setBank(numeral(ust).format("0,0.00"));
+                let alte = parseInt(token.balance) / 1000000;
+                setBankAlte(numeral(alte).format("0,0.00"));
                 // connectTo("extension")
                 setConnected(true)
             } else {
@@ -129,7 +144,7 @@ export default function ConnectWallet(){
     function returnBank(){
         return(
             <>
-            <Wallet size={21} color="#DCEF14" style={{display:'inline-block', marginTop:'-3px'}} /> {bank} <span className="text-sm">UST</span>
+                <Wallet size={21} color="#DCEF14" style={{display:'inline-block', marginTop:'-3px'}} /> {bank} <span className="text-sm">UST</span>
             </>
         )
     }
