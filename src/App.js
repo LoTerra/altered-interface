@@ -25,11 +25,11 @@ class App extends Component {
                     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
                     <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
                     <meta property="og:title" content="Altered" />
-                    {/* <meta property="og:image" content="https://loterra.io/loterra.png" /> */}
+                    <meta property="og:image" content="https://testnet.alteredprotocol.com/altered.png" />
                     <meta property="og:image:alt" content="Altered icon" />
                     <meta property="og:type" content="website" />
                     <meta property="og:site_name" content="Altered protocol" />
-                    <meta property="og:description" content="Altered elastic protocol"/>
+                    <meta property="og:description" content="Altered protocol is a synthetic commodity-money with near-perfect supply elasticity on Terra. Supply is elastic and can change every day while the ownership of the ALTE tokens is never diluted"/>
                 </Head>
               <Navbar/>
               <div className="container"> 
