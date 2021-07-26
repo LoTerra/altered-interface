@@ -87,10 +87,10 @@ export default () => {
     },[fetchContractQuery, amount]);
 
 
-    let connectedWallet = ""
+    /*let connectedWallet = ""
     if (typeof document !== 'undefined') {
         connectedWallet = useConnectedWallet()
-    }
+    } */
 
     function inputChange(e){
         // e.preventDefault();
@@ -187,6 +187,7 @@ export default () => {
             alert('You first need to connect your wallet');
             return false;
         }
+        console.log(connectedWallet.accAddress)
         if (!isNativeToken){
             // This message is for swapping UST to ALTE
             msg = new MsgExecuteContract(connectedWallet.accAddress, alte_ust_pair,{
