@@ -193,10 +193,10 @@ export default () => {
                                     "denom": "uusd"
                                 }
                             },
-                            "amount": amount
+                            "amount": String(amount * 1000000)
                         }
                     }
-                }, {"uusd": amount})
+                }, {"uusd": String(amount * 1000000)})
         }else{
             // This message is for swapping ALTE to UST
             msg = new MsgExecuteContract(connectedWallet.walletAddress, altered_address, {
