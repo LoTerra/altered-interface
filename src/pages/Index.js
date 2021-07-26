@@ -11,8 +11,8 @@ if (typeof document !== 'undefined') {
 }
 
 
-const altered_address ="terra1vw0rq89lcf43f6fgjjz6wvx7p55wj2382wc869";
-const alte_ust_pair = "terra1lgzv5s3yr7jhpv449h7qjtd2fth8pl42lm0jcn";
+const altered_address ="terra1eug9cq580rs6rxv5kmv8ngue9r57qut8tkwxce";
+const alte_ust_pair = "terra1w5ncydn7kuz3txyvfq4dw984wxczs9dstgqsnr";
 const fees = new StdFee(1_000_000, { uusd: 200000 })
 let api = {}
 
