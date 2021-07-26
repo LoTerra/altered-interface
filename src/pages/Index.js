@@ -8,9 +8,11 @@ import BigNumber from "bignumber.js";
 import Countdown from "../components/Countdown";
 import CurrentPrice from "../components/CurrentPrice";
 import SwapForm from "../components/SwapForm";
+
 let useConnectedWallet = {}
 if (typeof document !== 'undefined') {
     useConnectedWallet = require('@terra-money/wallet-provider').useConnectedWallet
+
 }
 
 const HomeCard={
@@ -23,6 +25,8 @@ const altered_address ="terra1vw0rq89lcf43f6fgjjz6wvx7p55wj2382wc869";
 const alte_ust_pair = "terra1lgzv5s3yr7jhpv449h7qjtd2fth8pl42lm0jcn";
 const fees = new StdFee(1_000_000, { uusd: 200000 })
 let api = {}
+
+
 export default () => {
     const targetPrice = 1;
     const [altePool, setAltePool] = useState(0)
@@ -41,14 +45,15 @@ export default () => {
 
 
     const fetchContractQuery = useCallback(async () => {
+
     const terra = new LCDClient({
         /*URL: "https://bombay-lcd.terra.dev",
         chainID: "bombay-0008",*/
         URL: "https://tequila-lcd.terra.dev",
         chainID: "tequila-0004",
     });
-
     api = new WasmAPI(terra.apiRequester);
+
     try {
       const contractConfigInfo = await api.contractQuery(
           altered_address,
@@ -84,13 +89,14 @@ export default () => {
     useEffect(() => {
         fetchContractQuery();
         checkAsset()
-    },[fetchContractQuery, amount, isNativeToken]);
+    },[fetchContractQuery, amount]);
 
 
-    /*let connectedWallet = ""
+    let connectedWallet = ""
     if (typeof document !== 'undefined') {
         connectedWallet = useConnectedWallet()
-    } */
+    }
+    console.log(connectedWallet)
 
     function inputChange(e){
         // e.preventDefault();
@@ -187,10 +193,9 @@ export default () => {
             alert('You first need to connect your wallet');
             return false;
         }
-        console.log(connectedWallet.accAddress)
         if (!isNativeToken){
             // This message is for swapping UST to ALTE
-            msg = new MsgExecuteContract(connectedWallet.accAddress, alte_ust_pair,{
+            msg = new MsgExecuteContract(connectedWallet.walletAddress, alte_ust_pair,{
                     "swap": {
                         "offer_asset": {
                             "info" : {
@@ -204,7 +209,7 @@ export default () => {
                 }, {"uusd": amount})
         }else{
             // This message is for swapping ALTE to UST
-            msg = new MsgExecuteContract(connectedWallet.accAddress, altered_address, {
+            msg = new MsgExecuteContract(connectedWallet.walletAddress, altered_address, {
                 "send": {
                     "contract": alte_ust_pair,
                     "amount": amount,
@@ -218,8 +223,9 @@ export default () => {
                 fee: fees
             })
 
-            let tx = await terra.tx.broadcast(tx_play)
-            console.log(tx)
+            // let tx = await terra.tx.broadcast(tx_play)
+            // console.log(tx)
+            console.log(tx_play)
         }catch (e) {
             console.log(e)
         }
