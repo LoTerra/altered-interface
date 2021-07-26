@@ -181,9 +181,13 @@ export default () => {
 
     async function swap(){
         let msg = {}
-        if (isNativeToken){
+        if(!connectedWallet){
+            alert('You first need to connect your wallet');
+            return false;
+        }
+        if (!isNativeToken){
             // This message is for swapping UST to ALTE
-            msg = new MsgExecuteContract(mk.accAddress, alte_ust_pair,{
+            msg = new MsgExecuteContract(connectedWallet.accAddress, alte_ust_pair,{
                     "swap": {
                         "offer_asset": {
                             "info" : {
@@ -197,7 +201,7 @@ export default () => {
                 }, {"uusd": amount})
         }else{
             // This message is for swapping ALTE to UST
-            msg = new MsgExecuteContract(mk.accAddress, altered_address, {
+            msg = new MsgExecuteContract(connectedWallet.accAddress, altered_address, {
                 "send": {
                     "contract": alte_ust_pair,
                     "amount": amount,
@@ -221,13 +225,13 @@ export default () => {
     //Final swap function
     function doSwap(){
 
-        let token = 'ust';
-        if(isNativeToken){
-            token = 'alte'
-        }
+        // let token = 'ust';
+        // if(isNativeToken){
+        //     token = 'alte'
+        // }
 
-        alert('simulate swap from '+amount+' '+token)
-
+        // alert('simulate swap from '+amount+' '+token)
+        swap();
         //Check if wallet is connected else > alert
 
         //Run swap function >> swap()
