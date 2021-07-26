@@ -33,12 +33,20 @@ if (typeof document !== 'undefined') {
     ? ReactDOM.hydrate
     : ReactDOM.render
 
+  let inProduction = true;
+
   const render = Comp => {
     renderMethod(
         <Wallet defaultNetwork={mainnet} walletConnectChainIds={{
           0: testnet,
           1: mainnet,
-        }}>
+        }}
+        connectorOpts={{
+          bridge: inProduction
+            ? 'https://walletconnect.terra.dev/'
+            : 'https://tequila-walletconnect.terra.dev/',
+        }}
+        >
           <AppContainer>
             <Provider store={store}>
                 <Comp />

@@ -1,8 +1,4 @@
 import React, {useEffect, useState, useCallback} from "react";
-import numeral from "numeral";
-import { Users, Ticket} from "phosphor-react";
-
-
 import {StdFee, MsgExecuteContract,LCDClient, WasmAPI, BankAPI} from "@terra-money/terra.js"
 import BigNumber from "bignumber.js";
 import Countdown from "../components/Countdown";
@@ -14,11 +10,6 @@ if (typeof document !== 'undefined') {
     useConnectedWallet = require('@terra-money/wallet-provider').useConnectedWallet
 }
 
-const HomeCard={
-    marginTop: '50px',
-    width: '100px',
-    padding: '30px',
-}
 
 const altered_address ="terra1vw0rq89lcf43f6fgjjz6wvx7p55wj2382wc869";
 const alte_ust_pair = "terra1lgzv5s3yr7jhpv449h7qjtd2fth8pl42lm0jcn";
