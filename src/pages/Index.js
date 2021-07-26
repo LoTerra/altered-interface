@@ -88,7 +88,7 @@ export default () => {
     useEffect(() => {
         fetchContractQuery();
         checkAsset()
-    },[fetchContractQuery, amount]);
+    },[fetchContractQuery, amount, isNativeToken]);
 
 
     let connectedWallet = ""
