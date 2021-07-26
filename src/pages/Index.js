@@ -90,46 +90,6 @@ export default () => {
         connectedWallet = useConnectedWallet()
     }
 
-    async function swap(){
-        let msg = {}
-        if (isNativeToken){
-            // This message is for swapping UST to ALTE
-            msg = new MsgExecuteContract(mk.accAddress, alte_ust_pair,{
-                    "swap": {
-                        "offer_asset": {
-                            "info" : {
-                                "native_token": {
-                                    "denom": "uusd"
-                                }
-                            },
-                            "amount": amount
-                        }
-                    }
-                }, {"uusd": amount})
-        }else{
-            // This message is for swapping ALTE to UST
-            msg = new MsgExecuteContract(mk.accAddress, altered_address, {
-                "send": {
-                    "contract": alte_ust_pair,
-                    "amount": amount,
-                    "msg": "eyJzd2FwIjp7fX0="
-                }
-            })
-        }
-        try {
-            let tx_play = await  connectedWallet.post({
-                msgs: [msg],
-                fee: fees
-            })
-
-            let tx = await terra.tx.broadcast(tx_play)
-            console.log(tx)
-        }catch (e) {
-            console.log(e)
-        }
-    }
-
-
     function inputChange(e){
         // e.preventDefault();
         let swapAmount = e.target.value
@@ -218,12 +178,63 @@ export default () => {
         setSpreadAmount(contractSimulationInfo.spread_amount > 0 ? new BigNumber(contractSimulationInfo.spread_amount).dividedBy(1000000).toString(): 0)
     }
 
+
+    async function swap(){
+        let msg = {}
+        if (isNativeToken){
+            // This message is for swapping UST to ALTE
+            msg = new MsgExecuteContract(mk.accAddress, alte_ust_pair,{
+                    "swap": {
+                        "offer_asset": {
+                            "info" : {
+                                "native_token": {
+                                    "denom": "uusd"
+                                }
+                            },
+                            "amount": amount
+                        }
+                    }
+                }, {"uusd": amount})
+        }else{
+            // This message is for swapping ALTE to UST
+            msg = new MsgExecuteContract(mk.accAddress, altered_address, {
+                "send": {
+                    "contract": alte_ust_pair,
+                    "amount": amount,
+                    "msg": "eyJzd2FwIjp7fX0="
+                }
+            })
+        }
+        try {
+            let tx_play = await  connectedWallet.post({
+                msgs: [msg],
+                fee: fees
+            })
+
+            let tx = await terra.tx.broadcast(tx_play)
+            console.log(tx)
+        }catch (e) {
+            console.log(e)
+        }
+    }
+
+    //Final swap function
     function doSwap(){
+
         let token = 'ust';
         if(isNativeToken){
             token = 'alte'
         }
-        setProcessingModal(!processingModal)
+
+        alert('simulate swap from '+amount+' '+token)
+
+        //Check if wallet is connected else > alert
+
+        //Run swap function >> swap()
+        
+
+        //swap() > Return result
+        //swap() success > Reset form values to zero
     }
 
 
