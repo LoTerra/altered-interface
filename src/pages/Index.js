@@ -12,7 +12,6 @@ import SwapForm from "../components/SwapForm";
 let useConnectedWallet = {}
 if (typeof document !== 'undefined') {
     useConnectedWallet = require('@terra-money/wallet-provider').useConnectedWallet
-
 }
 
 const HomeCard={
