@@ -19,8 +19,8 @@ const HomeCard={
     padding: '30px',
 }
 
-const altered_address ="terra19xvyr7c7j8pnp5r96ymcxnv26a4rgfz0xjjcal";
-const alte_ust_pair = "terra10a2w37pwwqvyd8z6eefvzl4d7hak0c7mkm2w6w";
+const altered_address ="terra1vw0rq89lcf43f6fgjjz6wvx7p55wj2382wc869";
+const alte_ust_pair = "terra1lgzv5s3yr7jhpv449h7qjtd2fth8pl42lm0jcn";
 const fees = new StdFee(1_000_000, { uusd: 200000 })
 let api = {}
 export default () => {
@@ -42,8 +42,10 @@ export default () => {
 
     const fetchContractQuery = useCallback(async () => {
     const terra = new LCDClient({
-        URL: "https://bombay-lcd.terra.dev",
-        chainID: "bombay-0008",
+        /*URL: "https://bombay-lcd.terra.dev",
+        chainID: "bombay-0008",*/
+        URL: "https://tequila-lcd.terra.dev",
+        chainID: "tequila-0004",
     });
 
     api = new WasmAPI(terra.apiRequester);
@@ -51,11 +53,11 @@ export default () => {
       const contractConfigInfo = await api.contractQuery(
           altered_address,
         {
-          token_info: {},
+          extra_token_info: {},
         }
       );
 
-      setExpiryTimestamp(parseInt((contractConfigInfo.rebase / 1_000_000_000) * 1000));
+      setExpiryTimestamp(parseInt(contractConfigInfo.rebase * 1000));
       setTotalSupply(contractConfigInfo.total_supply)
 
       const contractPairInfo = await api.contractQuery(
