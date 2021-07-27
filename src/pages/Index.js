@@ -202,7 +202,7 @@ export default () => {
             msg = new MsgExecuteContract(connectedWallet.walletAddress, altered_address, {
                 "send": {
                     "contract": alte_ust_pair,
-                    "amount": amount,
+                    "amount": String(amount * 1000000),
                     "msg": "eyJzd2FwIjp7fX0="
                 }
             })
