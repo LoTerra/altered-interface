@@ -31,7 +31,8 @@ export default function Countdown(props) {
         <div className="countdown">
             <div className="row">
                 <div className="col-12 text-center">
-                    <div className="title">COUNTDOWN BEFORE NEXT REBASE</div>
+                    {/*<div className="title">COUNTDOWN BEFORE NEXT REBASE</div>*/}
+                    <div className="title">PRICE ALTERATION IN PROGRESS...</div>
                 </div>
                 <div className="col-12">
                     <div className="progress">
