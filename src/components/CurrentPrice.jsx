@@ -2,7 +2,7 @@ import React from 'react'
 import numeral from 'numeral'
 
 export default function CurrentPrice(props) {
-    const { price, totalSupply } = props
+    const { price, total } = props
 
     return (
         <div className="current-price">
@@ -12,13 +12,13 @@ export default function CurrentPrice(props) {
                     <p className="big">
                         1.00 <span>UST</span>
                     </p>
-                    <p className="heading">Current price</p>
+                    <p className="heading">Current <strong>ALTE</strong> price</p>
                     <p className="small">
                         {numeral(price).format('0,0.000000')} <span>UST</span>
                     </p>
                     <p className="heading">Total supply</p>
                     <p className="small">
-                        {totalSupply} <span>ALTE</span>
+                        {numeral(total/1000000).format('0,0.00')} <span>ALTE</span>
                     </p>
                 </div>
             </div>

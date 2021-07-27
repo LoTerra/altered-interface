@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { useTimer } from 'react-timer-hook'
+import numeral from 'numeral'
 
 export default function Countdown(props) {
     const { expiryTimestamp } = props
@@ -9,6 +10,8 @@ export default function Countdown(props) {
         expiryTimestamp,
         onExpire: () => console.warn('onExpire called'),
     })
+
+    let percetageTillRebase = (Date.now() * 100) / expiryTimestamp;
 
     useEffect(() => {
         console.log(expiryTimestamp)
@@ -30,12 +33,12 @@ export default function Countdown(props) {
                         <div
                             className="progress-bar"
                             role="progressbar"
-                            style={{ width: '25%' }}
-                            aria-valuenow="25"
+                            style={{ width: percetageTillRebase+'%' }}
+                            aria-valuenow={percetageTillRebase}
                             aria-valuemin="0"
                             aria-valuemax="100"
                         >
-                            25%
+                            {numeral(percetageTillRebase).format('0.00000')}%
                         </div>
                     </div>
                 </div>
