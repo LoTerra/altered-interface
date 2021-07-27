@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react'
+
 import {
     StdFee,
     MsgExecuteContract,
@@ -26,6 +27,8 @@ export default () => {
     const targetPrice = 1
     const [altePool, setAltePool] = useState(0)
     const [ustPool, setUstPool] = useState(0)
+    const [predictedPrice, setPredictedPrice] = useState(0)
+    const [predictedTotalSupply, setPredictedTotalSupply] = useState(0)
     const [price, setPrice] = useState(0)
     const [totalSupply, setTotalSupply] = useState(0)
     const [expiryTimestamp, setExpiryTimestamp] =
@@ -64,8 +67,30 @@ export default () => {
             setAltePool(contractPairInfo.assets[0].amount)
             setUstPool(contractPairInfo.assets[1].amount)
 
+
+
             let ust = new BigNumber(contractPairInfo.assets[1].amount)
             let alte = new BigNumber(contractPairInfo.assets[0].amount)
+            if (ust < alte){
+                let totalSupplyBig = new BigNumber(contractConfigInfo.total_supply)
+                let percentageSupply = alte.multipliedBy(100).dividedBy(totalSupplyBig);
+                let rebasedSupply = ust.multipliedBy(totalSupplyBig.dividedBy(alte));
+                let rebase = totalSupplyBig.minus(rebasedSupply).dividedBy(10);
+                let expectedRebaseSupply = totalSupplyBig.minus(rebase)
+                let expectedPoolSupplyAlte = expectedRebaseSupply.multipliedBy(percentageSupply).dividedBy(100)
+                setPredictedPrice(ust.dividedBy(1000000).dividedBy(expectedPoolSupplyAlte.dividedBy(1000000)).toFixed())
+                setPredictedTotalSupply(expectedRebaseSupply)
+
+            }else {
+                let totalSupplyBig = new BigNumber(contractConfigInfo.total_supply)
+                let percentageSupply = alte.multipliedBy(100).dividedBy(totalSupplyBig);
+                let rebasedSupply = alte.multipliedBy(totalSupplyBig.dividedBy(ust));
+                let rebase = totalSupplyBig.minus(rebasedSupply).dividedBy(10);
+                let expectedRebaseSupply = totalSupplyBig.minus(rebase)
+                let expectedPoolSupplyAlte = expectedRebaseSupply.multipliedBy(percentageSupply).dividedBy(100)
+                setPredictedPrice(ust.dividedBy(1000000).dividedBy(expectedPoolSupplyAlte.dividedBy(1000000)).toFixed())
+                setPredictedTotalSupply(expectedRebaseSupply)
+            }
             console.log(ust.toString())
             console.log(alte.toString())
 
