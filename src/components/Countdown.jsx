@@ -43,7 +43,7 @@ export default function Countdown(props) {
                             aria-valuemin="0"
                             aria-valuemax="100"
                         >
-                            {numeral(percentageTillRebase).format('0.00000')}%
+                            {numeral(percentageTillRebase).format('0')}%
                         </div>
                     </div>
                 </div>
