@@ -28,7 +28,11 @@ export default function Countdown(props){
         <div className="col-12 text-center">      
             <div className="title">COUNTDOWN BEFORE NEXT REBASE</div>
         </div>
-      
+        <div className="col-12">
+          <div className="progress">
+            <div className="progress-bar" role="progressbar" style={{width:'25%'}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+          </div>
+        </div>
       <div className="col-12">
       <div className="row text-center">
         <div className="col px-1">
@@ -62,6 +66,7 @@ export default function Countdown(props){
           </div>
           <div className="text-sm time-low">Seconds</div>
         </div>
+       
       </div>
       </div>
    

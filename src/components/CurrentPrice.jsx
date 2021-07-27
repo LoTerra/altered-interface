@@ -3,7 +3,7 @@ import numeral from 'numeral';
 
 export default function CurrentPrice(props){
 
-    const {price} = props;
+    const {price, totalSupply} = props;
     
 
     return (
@@ -14,6 +14,8 @@ export default function CurrentPrice(props){
                     <p className="big">1.00 <span>UST</span></p>
                     <p className="heading">Current price</p>
                     <p className="small">{numeral(price).format("0,0.000000")} <span>UST</span></p>
+                    <p className="heading">Total supply</p>
+                    <p className="small">{totalSupply} <span>ALTE</span></p>
                 </div>
             </div>
             <svg width="96" height="89" viewBox="0 0 96 89" fill="none" xmlns="http://www.w3.org/2000/svg">

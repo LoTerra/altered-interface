@@ -79,7 +79,7 @@ export default () => {
     useEffect(() => {
         fetchContractQuery();
         checkAsset()
-    },[fetchContractQuery, amount, isNativeToken]);
+    },[fetchContractQuery, amount, isNativeToken, totalSupply]);
 
 
     let connectedWallet = ""
@@ -260,7 +260,7 @@ export default () => {
                         <div className="col-lg-6 mb-4">
                             <div className="card">
                                 <div className="card-body">
-                                        <CurrentPrice price={price}/>
+                                        <CurrentPrice price={price} total={totalSupply}/>
                                 </div>
                             </div>
                         </div>
