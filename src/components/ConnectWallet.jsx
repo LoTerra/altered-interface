@@ -144,7 +144,7 @@ export default function ConnectWallet(){
     function returnBank(){
         return(
             <>
-                <Wallet size={21} color="#DCEF14" style={{display:'inline-block', marginTop:'-3px'}} /> {bank} <span className="text-sm">UST</span>
+                <Wallet size={21} color="#DCEF14" style={{display:'inline-block', marginTop:'-3px'}} /> {bankAlte} <span className="text-sm">ALTE</span>
             </>
         )
     }
