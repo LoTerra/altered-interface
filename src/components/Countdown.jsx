@@ -11,7 +11,12 @@ export default function Countdown(props) {
         onExpire: () => console.warn('onExpire called'),
     })
 
-    let percetageTillRebase = (Date.now() * 100) / expiryTimestamp;
+    const start = new Date(
+        new Date(expiryTimestamp).getTime() - 24 * 60 * 60 * 1000
+    )
+    const now = Date.now()
+    const end = new Date(expiryTimestamp).getTime()
+    let percentageTillRebase = Math.round(((now - start) / (end - start)) * 100)
 
     useEffect(() => {
         console.log(expiryTimestamp)
@@ -33,12 +38,12 @@ export default function Countdown(props) {
                         <div
                             className="progress-bar"
                             role="progressbar"
-                            style={{ width: percetageTillRebase+'%' }}
-                            aria-valuenow={percetageTillRebase}
+                            style={{ width: percentageTillRebase + '%' }}
+                            aria-valuenow={percentageTillRebase}
                             aria-valuemin="0"
                             aria-valuemax="100"
                         >
-                            {numeral(percetageTillRebase).format('0.00000')}%
+                            {numeral(percentageTillRebase).format('0.00000')}%
                         </div>
                     </div>
                 </div>
