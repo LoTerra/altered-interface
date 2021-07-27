@@ -1,36 +1,33 @@
 // (Required) Import Bootstrap
-@import "../../node_modules/bootstrap/scss/functions";
-@import "../../node_modules/bootstrap/scss/variables";
-@import "../../node_modules/bootstrap/scss/mixins";
+@import '../../node_modules/bootstrap/scss/functions';
+@import '../../node_modules/bootstrap/scss/variables';
+@import '../../node_modules/bootstrap/scss/mixins';
 
-$primary: #DCEF14;
+$primary: #dcef14;
 $secondary: #848484;
 
 $theme-colors: (
-  primary: $primary,
-  secondary: $secondary
+    primary: $primary,
+    secondary: $secondary,
 );
 // (Required) Import Bootstrap
-@import "../../node_modules/bootstrap/scss/bootstrap";
-
-
-
+@import '../../node_modules/bootstrap/scss/bootstrap';
 
 @font-face {
-  font-family: 'Cosmos';
-  src: local('Cosmos'), url('../fonts/AVCosmos-Regular.woff') format('woff');
-  /* other formats include: 'woff2', 'truetype, 'opentype',
+    font-family: 'Cosmos';
+    src: local('Cosmos'), url('../fonts/AVCosmos-Regular.woff') format('woff');
+    /* other formats include: 'woff2', 'truetype, 'opentype',
                             'embedded-opentype', and 'svg' */
 }
 
 a {
-  color:$primary;
+    color: $primary;
 }
 
-@import "./buttons";
-@import "./cards";
-@import "./countdown";
-@import "./currentprice";
-@import "./swapform";
-@import "./footer";
-@import "./app.scss";
+@import './buttons';
+@import './cards';
+@import './countdown';
+@import './currentprice';
+@import './swapform';
+@import './footer';
+@import './app.scss';

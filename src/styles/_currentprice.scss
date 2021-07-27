@@ -1,40 +1,36 @@
 .current-price {
-    color:#fff;
+    color: #fff;
     font-family: 'Oswald', sans-serif;
     .heading {
-        display:block;
-        color:$primary;
-        margin:0;
+        display: block;
+        color: $primary;
+        margin: 0;
         font-weight: normal;
         font-size: 11px;
-        text-transform:uppercase;
+        text-transform: uppercase;
     }
     p {
-        margin:0;
-        font-size:4rem;
+        margin: 0;
+        font-size: 4rem;
         font-weight: 600;
-        font-size: 28px;    
-        color:#fff;
+        font-size: 28px;
+        color: #fff;
         &.big {
             font-size: 3.8rem;
-            margin-top: -10px;           
+            margin-top: -10px;
             margin-bottom: -14px;
             font-family: 'Cosmos';
             span {
-                font-weight:400;
+                font-weight: 400;
                 font-size: 2rem;
-               
-
             }
         }
         &.small {
-            font-size:30px;
+            font-size: 30px;
             font-family: 'Cosmos';
             span {
-                font-size:12px;
-                font-weight:400;
-               
-
+                font-size: 12px;
+                font-weight: 400;
             }
         }
     }

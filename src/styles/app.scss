@@ -1,91 +1,102 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
 
 html {
-  height: 100%;
+    height: 100%;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  background-image:url('../../public/bg.svg');
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: var(--color);
-  box-sizing: border-box;
-  background-size:cover;
-  background-color: #0D0D0D;
-  width: 100%;
-  height: 100%;
-  overflow-x:hidden;
+    margin: 0;
+    padding: 0;
+    background-image: url('../../public/bg.svg');
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: var(--color);
+    box-sizing: border-box;
+    background-size: cover;
+    background-color: #0d0d0d;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
 }
 
 .dropdown-menu {
-  border-radius:10px;
-  background: linear-gradient(
-228.88deg
-, rgba(0, 0, 0, 0.2) 18.2%, rgba(176, 176, 176, 0.107292) 77.71%, rgba(0, 0, 0, 0.0885417) 99.78%, rgba(0, 0, 0, 0) 146.58%), #171717;
-  .dropdown-item {
-    color:$primary;
-    &:hover {
-      background:rgba(0, 0, 0, 0.534);
+    border-radius: 10px;
+    background: linear-gradient(
+            228.88deg,
+            rgba(0, 0, 0, 0.2) 18.2%,
+            rgba(176, 176, 176, 0.107292) 77.71%,
+            rgba(0, 0, 0, 0.0885417) 99.78%,
+            rgba(0, 0, 0, 0) 146.58%
+        ),
+        #171717;
+    .dropdown-item {
+        color: $primary;
+        &:hover {
+            background: rgba(0, 0, 0, 0.534);
+        }
     }
-  }
 }
-
 
 h1 {
-  color:$primary;
-  font-family: 'Cosmos';
-font-size:10rem;
-  background: linear-gradient(360deg, rgba(208, 224, 39, 0.2) -0.05%, rgba(220, 239, 20, 0.2) 47.89%, rgba(91, 97, 31, 0.2) 47.9%, rgba(233, 255, 0, 0.2) 100%), #D0E027;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0px 0px 14px rgba(208, 224, 39, 0.39));
+    color: $primary;
+    font-family: 'Cosmos';
+    font-size: 10rem;
+    background: linear-gradient(
+            360deg,
+            rgba(208, 224, 39, 0.2) -0.05%,
+            rgba(220, 239, 20, 0.2) 47.89%,
+            rgba(91, 97, 31, 0.2) 47.9%,
+            rgba(233, 255, 0, 0.2) 100%
+        ),
+        #d0e027;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0px 0px 14px rgba(208, 224, 39, 0.39));
 
-    @media(max-width:768px){
-      font-size:7rem;
+    @media (max-width: 768px) {
+        font-size: 7rem;
     }
 
-    @media(max-width:515px){
-      font-size:5rem;
+    @media (max-width: 515px) {
+        font-size: 5rem;
     }
 
-    @media(max-width:350px){
-      font-size:4rem;
+    @media (max-width: 350px) {
+        font-size: 4rem;
     }
-
 }
 
-input::placeholder,textarea::placeholder {
-  color: dimgrey;
+input::placeholder,
+textarea::placeholder {
+    color: dimgrey;
 }
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
+input[type='number'] {
+    -moz-appearance: textfield;
 }
 
 .form-control {
-  background: #0D0D0D;
-  border: 1px solid #424242;
-  box-sizing: border-box;
-  border-radius: 10px;
-  height:50px;
-  font-size: 18px;
-  color:#fff;
-  font-weight:600;
+    background: #0d0d0d;
+    border: 1px solid #424242;
+    box-sizing: border-box;
+    border-radius: 10px;
+    height: 50px;
+    font-size: 18px;
+    color: #fff;
+    font-weight: 600;
     &:focus {
-      border-color:$primary;
-      background:#0D0D0D;
-      outline:none;
-      box-shadow:none; 
-      color:#fff;
+        border-color: $primary;
+        background: #0d0d0d;
+        outline: none;
+        box-shadow: none;
+        color: #fff;
     }
 }
