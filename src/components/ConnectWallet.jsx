@@ -10,7 +10,7 @@ import {
 
 import { Wallet, CaretRight, ArrowSquareOut } from 'phosphor-react'
 import numeral from 'numeral'
-const altered_address = 'terra1a6ha4vrfzgtx33j2n7wushhrh0yeu0lew54xhl'
+const altered_address = 'terra1vm2qefyrld6l20924g8y7t99r7ntpfyzpn02sq'
 // let useWallet = {}
 // if (typeof document !== 'undefined') {
 //     useWallet = require('@terra-money/wallet-provider').useWallet

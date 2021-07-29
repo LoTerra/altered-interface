@@ -18,8 +18,8 @@ if (typeof document !== 'undefined') {
         require('@terra-money/wallet-provider').useConnectedWallet
 }
 
-const altered_address = 'terra1a6ha4vrfzgtx33j2n7wushhrh0yeu0lew54xhl'
-const alte_ust_pair = 'terra12w3xaakp9rkfvvyhpmu8v28kx5572qgqr6qqp0'
+const altered_address = 'terra1vm2qefyrld6l20924g8y7t99r7ntpfyzpn02sq'
+const alte_ust_pair = 'terra1rafx44epd90pwxe4g8pdjmep83w7dclk0aahgw'
 const fees = new StdFee(400_000, { uusd: 60000 + 2000000 })
 let api = {}
 
