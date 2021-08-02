@@ -56,6 +56,22 @@
                 #d0e027;
         }
     }
+    .prediction-amount {
+        color: #fff;
+        text-align: center;
+        margin-top: 24px;
+        p {
+            color:$primary;
+            text-transform:uppercase;
+            margin:0;
+            font-size:11px;
+        }
+        span {
+            font-family: 'Cosmos';
+            font-weight: 600;
+            font-size: 21px;
+        }
+    }
 }
 
 @keyframes flickerAnimation {
