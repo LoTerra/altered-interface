@@ -284,6 +284,21 @@ export default () => {
             console.log(e)
         }
     }
+    // rebase function
+    async function rebase(){
+        try {
+            let rebaseMsg = new MsgExecuteContract(connectedWallet.walletAddress, altered_address, {
+                rebase: {}
+            })
+            let txRebase = await connectedWallet.post({
+                msgs: [rebaseMsg],
+                fee: fees
+            })
+            console.log(txRebase)
+        }catch (e) {
+            console.log(e)
+        }
+    }
 
     //Final swap function
     function doSwap() {
