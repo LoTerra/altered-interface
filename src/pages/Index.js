@@ -334,6 +334,7 @@ export default () => {
                                         expiryTimestamp={expiryTimestamp}
                                         predictedPrice={predictedPrice}
                                         predictedTotalSupply={predictedTotalSupply}
+                                        doRebase={() => rebase()}
                                     />
                                 </div>
                             </div>
