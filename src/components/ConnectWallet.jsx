@@ -87,11 +87,14 @@ export default function ConnectWallet() {
             let token
             try {
                 coins = await lcd.bank.balance(connectedWallet.walletAddress)
+
                 token = await api.contractQuery(altered_address, {
                     balance: {
                         address: connectedWallet.walletAddress,
                     },
                 })
+                console.log(token)
+
             } catch (e) {
                 console.log(e)
             }

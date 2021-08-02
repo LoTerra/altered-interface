@@ -79,8 +79,7 @@ export default () => {
                 let expectedRebaseSupply = totalSupplyBig.minus(rebase)
                 let expectedPoolSupplyAlte = expectedRebaseSupply.multipliedBy(percentageSupply).dividedBy(100)
                 setPredictedPrice(ust.dividedBy(1000000).dividedBy(expectedPoolSupplyAlte.dividedBy(1000000)).toFixed())
-                setPredictedTotalSupply(expectedRebaseSupply)
-
+                setPredictedTotalSupply(expectedRebaseSupply.dividedBy(1000000).toFixed())
             }else {
                 let totalSupplyBig = new BigNumber(contractConfigInfo.total_supply)
                 let percentageSupply = alte.multipliedBy(100).dividedBy(totalSupplyBig);
@@ -89,7 +88,7 @@ export default () => {
                 let expectedRebaseSupply = totalSupplyBig.minus(rebase)
                 let expectedPoolSupplyAlte = expectedRebaseSupply.multipliedBy(percentageSupply).dividedBy(100)
                 setPredictedPrice(ust.dividedBy(1000000).dividedBy(expectedPoolSupplyAlte.dividedBy(1000000)).toFixed())
-                setPredictedTotalSupply(expectedRebaseSupply)
+                setPredictedTotalSupply(expectedRebaseSupply.dividedBy(1000000).toFixed())
             }
             console.log(ust.toString())
             console.log(alte.toString())
