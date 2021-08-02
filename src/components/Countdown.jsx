@@ -105,6 +105,9 @@ export default function Countdown(props) {
                 }
                 <div className="col-12">
                     <div className="row">
+                        <div className="col-12 text-center prediction-intro">
+                            <p>Next alteration</p>
+                        </div>
                         <div className="col-6">
                                 <div className="prediction-amount">
                                 <p>Predicted price</p>

@@ -56,10 +56,16 @@
                 #d0e027;
         }
     }
+    .prediction-intro {
+        p {
+            color: #5f5f5f;
+            text-transform: uppercase;
+            margin: 15px 0 15px 0;
+        }
+    }
     .prediction-amount {
         color: #fff;
         text-align: center;
-        margin-top: 24px;
         p {
             color:$primary;
             text-transform:uppercase;
