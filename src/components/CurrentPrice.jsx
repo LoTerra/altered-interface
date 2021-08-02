@@ -4,15 +4,26 @@ import numeral from 'numeral'
 export default function CurrentPrice(props) {
     const { price, total } = props
 
+    const indicatorPercentage = (data) => {
+        let diff = 1.05 - numeral(data).format('0,0.000000');
+        let percentage = diff * 10;
+        if(percentage >= 100){
+            return '100%';
+        } else {
+            return percentage+'%';
+        }
+        
+    }
+
     return (
         <div className="current-price">
             <div className="row">
                 <div className="col-12 overflow-hidden mb-4">
                     <div className="eq">
                         <img src="eq.svg" />
-                        <div style={{marginLeft:'47%'}} className="indicator" > 
+                        <div style={{marginLeft:(numeral(price).format('0,0.000000') <= 0.95 ? '0%' : indicatorPercentage(price))}} className="indicator" > 
                             <span></span>
-                            <label>0.98</label>
+                            <label>{numeral(price).format('0,0.000000')}</label>
                         </div>
                         <div className="static-indicator">
                             <span>0.95</span>

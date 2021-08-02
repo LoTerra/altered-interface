@@ -54,12 +54,15 @@
             bottom: -20px;
             text-align: center;
             color:$primary;
+            z-index:9;
             span {
                 width: 2px;
                 height: 138px;
                 background: #dcef14;
                 display: block;
                 margin: 0 auto;
+                position:absolute;
+                bottom:0;
             }
         }
         .static-indicator {
