@@ -49,6 +49,12 @@ export default function Countdown(props) {
                         </div>
                     </div>
                 </div>
+                { expiryTimestamp < new Date() &&
+                <div className="col-12">
+                    <button className="btn btn-special-black w-100">Alter now</button>
+                </div>
+                }   
+                { expiryTimestamp > new Date() &&
                 <div className="col-12">
                     <div className="row text-center">
                         <div className="col px-1">
@@ -94,18 +100,19 @@ export default function Countdown(props) {
                         </div>
                     </div>
                 </div>
+                }
                 <div className="col-12">
                     <div className="row">
                         <div className="col-6">
                                 <div className="prediction-amount">
                                 <p>Predicted price</p>
-                                <span>{numeral(predictedPrice).format('0,0.000000')}</span>
+                                <span>{numeral(predictedPrice).format('0,0.000000')} <i>UST</i></span>
                                 </div>                                
                         </div>
                         <div className="col-6">
                                 <div className="prediction-amount">
                                     <p>Predicted supply</p>
-                                <span>{numeral(predictedTotalSupply).format('0,0.00')}</span>
+                                <span>{numeral(predictedTotalSupply).format('0,0.00')} <i>ALTE</i></span>
                                 </div>
                         </div>
                     </div>
