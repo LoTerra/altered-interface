@@ -41,4 +41,41 @@
         transform: translate(-50%, -50%);
         z-index: -1;
     }
+
+    .eq {
+        width:100%;
+        position:relative;
+        margin-bottom:35px;
+        img {
+            max-width:100%;
+        }
+        .indicator {
+            position: absolute;
+            bottom: -20px;
+            text-align: center;
+            color:$primary;
+            span {
+                width: 2px;
+                height: 138px;
+                background: #dcef14;
+                display: block;
+                margin: 0 auto;
+            }
+        }
+        .static-indicator {
+            position:absolute;
+            width:100%;
+            bottom:3px;
+            span {
+                &:first-child{
+                    left:0;
+                    position:absolute;
+                }
+                &:last-child {
+                    right:0;
+                    position:absolute;
+                }
+            }
+        }
+    }
 }

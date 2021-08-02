@@ -323,7 +323,7 @@ export default () => {
         <>
             <div className="row">
                 <div className="col-12 text-center logo">
-                    <img src="logo.png" className="img-fluid"/>
+                    <h1>ALTERED</h1>
                 </div>
                 <div className="col-12 col-lg-8 mx-auto">
                     <div className="row">
