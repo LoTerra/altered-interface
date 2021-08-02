@@ -330,6 +330,8 @@ export default () => {
                                 <div className="card-body">
                                     <Countdown
                                         expiryTimestamp={expiryTimestamp}
+                                        predictedPrice={predictedPrice}
+                                        predictedTotalSupply={predictedTotalSupply}
                                     />
                                 </div>
                             </div>

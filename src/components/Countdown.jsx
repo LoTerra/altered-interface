@@ -3,7 +3,7 @@ import { useTimer } from 'react-timer-hook'
 import numeral from 'numeral'
 
 export default function Countdown(props) {
-    const { expiryTimestamp } = props
+    const { expiryTimestamp, predictedPrice, predictedTotalSupply } = props
 
     const { seconds, minutes, hours, days, restart } = useTimer({
         autoStart: false,
@@ -20,6 +20,7 @@ export default function Countdown(props) {
 
     useEffect(() => {
         console.log(expiryTimestamp)
+        console.log(predictedPrice, predictedTotalSupply)
         if (
             expiryTimestamp >
             1 /** in ordder to avoid unnecessary re-rendering/ layout */
@@ -90,6 +91,16 @@ export default function Countdown(props) {
                                     : '-'}
                             </div>
                             <div className="text-sm time-low">Seconds</div>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-12">
+                    <div className="row">
+                        <div className="col-6">
+                      
+                        </div>
+                        <div className="col-6">
+                    
                         </div>
                     </div>
                 </div>
