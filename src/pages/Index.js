@@ -339,7 +339,7 @@ export default () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-6 mb-4">
+                        <div className="col-lg-6 h-100 mb-4">
                             <div className="card">
                                 <div className="card-body">
                                     <CurrentPrice
