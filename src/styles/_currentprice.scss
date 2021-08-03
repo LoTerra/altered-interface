@@ -51,10 +51,19 @@
             text-align: center;
             color:$primary;
             z-index:9;
-            span {
+            .span-in {
                 width: 1px;
                 height: 138px;
-                background: linear-gradient(180deg, rgba(220, 239, 20, 0) 0%, #DCEF14 100%);
+                background: linear-gradient(180deg, rgba(220, 239, 20, 0) 0%, $primary 100%);
+                display: block;
+                margin: 0 auto;
+                position:absolute;
+                bottom:0;
+            }
+            .span-out {
+                width: 1px;
+                height: 138px;
+                background: linear-gradient(180deg, rgba(220, 239, 20, 0) 0%, $thirsty 100%);
                 display: block;
                 margin: 0 auto;
                 position:absolute;
