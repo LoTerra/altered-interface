@@ -36,11 +36,7 @@ export default function CurrentPrice(props) {
                         </div>
                     </div>
                 </div>
-                <div className="col-12">
-                    <p className="heading">Target price</p>
-                    <p className="big">
-                        1.00 <span>UST</span>
-                    </p>
+                <div className="col-12">                  
                     <p className="heading">
                         Current <strong>ALTE</strong> price
                     </p>
