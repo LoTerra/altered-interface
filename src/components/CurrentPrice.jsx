@@ -22,17 +22,17 @@ export default function CurrentPrice(props) {
                     <p className="heading" style={{paddingBottom:"10px"}}>Equilibrium</p>
                     <div className="eq">
                         <img src="eq.svg" />
-                        <div style={{marginLeft:'50%'}} className="indicator" >
+                        <div style={{marginLeft:'50%'}} className="indicator subtle">
                             <span></span>
-                            <label>Target 1UST</label>
+                            <label>TARGET 1<i>UST</i></label>
                         </div>
                         <div style={{marginLeft:(numeral(price).format('0,0.000000') <= 0.95 ? '0%' : indicatorPercentage(price))}} className="indicator" > 
                             <span></span>
-                            <label>{numeral(price).format('0,0.000000')}</label>
+                            <label>{numeral(price).format('0,0.000000')}<i>UST</i></label>
                         </div>
                         <div className="static-indicator">
                             <span> {'<'}0.95</span>
-                            <span> 1.05></span>
+                            <span> 1.05{'>'} </span>
                         </div>
                     </div>
                 </div>
