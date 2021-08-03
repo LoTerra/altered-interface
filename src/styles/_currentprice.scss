@@ -49,7 +49,6 @@
             position: absolute;
             bottom: -20px;
             text-align: center;
-            color: #c8d914;
             z-index:9;
 
             .colored-in {
@@ -76,6 +75,7 @@
                 position:absolute;
                 bottom:0;
             }
+
             label {
                 margin-left:10px;
 
@@ -106,9 +106,14 @@
                     position: relative;
                     font-size: 14px;
                 }
-                span {
+                .span-stable {
+                    width: 1px;
+                    height: 138px;
                     background: linear-gradient(180deg, #AAAAAA 0%, rgba(170, 170, 170, 0) 54.17%, rgba(170, 170, 170, 0) 100%);
-                    top: 0;
+                    display: block;
+                    margin: 0 auto;
+                    position:absolute;
+                    top:0;
                 }
             }
         }

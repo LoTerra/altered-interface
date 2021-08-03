@@ -25,7 +25,7 @@ export default function CurrentPrice(props) {
                         {/* <img src="eq.svg" /> */}
                         <Equilibrium style={{width:'100%', maxWidth:'100%'}}/>
                         <div style={{marginLeft:'50%'}} className="indicator subtle">
-                            <span></span>
+                            <span className={"span-stable"}></span>
                             <label>TARGET 1<i>UST</i></label>
                         </div>
                         <div style={{marginLeft:(numeral(price).format('0,0.000000') <= 0.95 ? '0%' : indicatorPercentage(price))}} className="indicator" > 
