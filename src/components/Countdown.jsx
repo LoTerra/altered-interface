@@ -3,7 +3,7 @@ import { useTimer } from 'react-timer-hook'
 import numeral from 'numeral'
 
 export default function Countdown(props) {
-    const { expiryTimestamp, predictedPrice, predictedTotalSupply } = props
+    const { expiryTimestamp, predictedPrice, predictedTotalSupply, doRebase } = props
 
     const { seconds, minutes, hours, days, restart } = useTimer({
         autoStart: false,
@@ -35,6 +35,7 @@ export default function Countdown(props) {
                     {/*<div className="title">COUNTDOWN BEFORE NEXT REBASE</div>*/}
                     <div className="title">PRICE ALTERATION IN PROGRESS...</div>
                 </div>
+                { expiryTimestamp > new Date() &&
                 <div className="col-12">
                     <div className="progress">
                         <div
@@ -49,6 +50,13 @@ export default function Countdown(props) {
                         </div>
                     </div>
                 </div>
+                }
+                { expiryTimestamp < new Date() &&
+                <div className="col-12">
+                    <button className="btn btn-special-black w-100" onClick={doRebase}>Alter now</button>
+                </div>
+                }   
+                { expiryTimestamp > new Date() &&
                 <div className="col-12">
                     <div className="row text-center">
                         <div className="col px-1">
@@ -94,18 +102,22 @@ export default function Countdown(props) {
                         </div>
                     </div>
                 </div>
+                }
                 <div className="col-12">
                     <div className="row">
-                        <div className="col-6">
+                        <div className="col-12 text-center prediction-intro">
+                            <p>Next alteration</p>
+                        </div>
+                        <div className="col-6 p-0">
                                 <div className="prediction-amount">
                                 <p>Predicted price</p>
-                                <span>{numeral(predictedPrice).format('0,0.000000')}</span>
+                                <span>{numeral(predictedPrice).format('0,0.000000')} <i>UST</i></span>
                                 </div>                                
                         </div>
-                        <div className="col-6">
+                        <div className="col-6 p-0">
                                 <div className="prediction-amount">
                                     <p>Predicted supply</p>
-                                <span>{numeral(predictedTotalSupply).format('0,0.00')}</span>
+                                <span>{numeral(predictedTotalSupply).format('0,0.00')} <i>ALTE</i></span>
                                 </div>
                         </div>
                     </div>

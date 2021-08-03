@@ -323,7 +323,7 @@ export default () => {
     return (
         <>
             <div className="row">
-                <div className="col-12 text-center mb-md-4">
+                <div className="col-12 text-center logo">
                     <h1>ALTERED</h1>
                 </div>
                 <div className="col-12 col-lg-8 mx-auto">
@@ -335,12 +335,13 @@ export default () => {
                                         expiryTimestamp={expiryTimestamp}
                                         predictedPrice={predictedPrice}
                                         predictedTotalSupply={predictedTotalSupply}
+                                        doRebase={() => rebase()}
                                     />
                                 </div>
                             </div>
                         </div>
                         <div className="col-lg-6 mb-4">
-                            <div className="card">
+                            <div className="card h-100">
                                 <div className="card-body">
                                     <CurrentPrice
                                         price={price}
