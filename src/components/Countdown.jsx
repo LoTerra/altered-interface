@@ -110,7 +110,7 @@ export default function Countdown(props) {
                         </div>
                         <div className="col-6 p-0">
                                 <div className="prediction-amount">
-                                <p>Price</p>
+                                <p>Next <strong>ALTE</strong> price</p>
                                 <span>{numeral(predictedPrice).format('0,0.000000')} <i>UST</i></span>
                                 </div>                                
                         </div>
