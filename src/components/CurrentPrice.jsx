@@ -20,7 +20,7 @@ export default function CurrentPrice(props) {
         <div className="current-price">
             <div className="row">
                 <div className="col-12 overflow-hidden mb-4">
-                    <p className="heading" style={{paddingBottom:"10px", fontSize:"16px"}}>Equilibrium</p>
+                    <p className="heading" style={{paddingBottom:"10px", fontSize:"16px"}}>Equilibrium Zone</p>
                     <div className="eq">
                         {/* <img src="eq.svg" /> */}
                         <Equilibrium style={{width:'100%', maxWidth:'100%'}}/>
