@@ -39,6 +39,7 @@ export default () => {
     const [commissionOfferAmount, setCommissionOfferAmount] = useState(0)
     const [returnAmount, setReturnAmount] = useState(0)
     const [spreadAmount, setSpreadAmount] = useState(0)
+    const [isLoaded, setLoaded] = useState(false)
 
     const fetchContractQuery = useCallback(async () => {
         const terra = new LCDClient({
@@ -81,8 +82,6 @@ export default () => {
                 let expectedPoolSupplyAlte = expectedRebaseSupply.multipliedBy(percentageSupply).dividedBy(100)
                 setPredictedPrice(ust.dividedBy(1000000).dividedBy(expectedPoolSupplyAlte.dividedBy(1000000)).toFixed())
                 setPredictedTotalSupply(expectedRebaseSupply.dividedBy(1000000).toFixed())
-                console.log("expectedRebaseSupply.dividedBy(1000000).toFixed()")
-                console.log(expectedRebaseSupply.dividedBy(1000000).toFixed())
             }else {
                 let totalSupplyBig = new BigNumber(contractConfigInfo.total_supply)
                 let percentageSupply = alte.multipliedBy(100).dividedBy(totalSupplyBig);
@@ -98,6 +97,8 @@ export default () => {
 
             let formatPrice = ust.dividedBy(alte)
             setPrice(formatPrice.toFixed())
+            // Set loaded
+            setLoaded(true)
         } catch (e) {
             console.log(e)
         }
