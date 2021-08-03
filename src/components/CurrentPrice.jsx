@@ -29,12 +29,12 @@ export default function CurrentPrice(props) {
                             <label>TARGET 1<i>UST</i></label>
                         </div>
                         <div style={{marginLeft:(numeral(price).format('0,0.000000') <= 0.95 ? '0%' : indicatorPercentage(price))}} className="indicator" > 
-                            <span></span>
-                            <label className="current">{numeral(price).format('0,0.000000')}<i>UST</i></label>
+                            <span style={{background: price < 0.95 || price > 1.05 ? "#7C1E97": "#D0E027"}}></span>
+                            <label style={{color: price < 0.95 || price > 1.05 ? "#7C1E97": "#D0E027"}} className="current">{numeral(price).format('0,0.000000')}<i>UST</i></label>
                         </div>
                         <div className="static-indicator">
                             <span> {'<'}0.95</span>
-                            <span> 1.05{'>'} </span>
+                            <span> 1.05{'<'} </span>
                         </div>
                     </div>
                 </div>
