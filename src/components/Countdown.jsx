@@ -3,7 +3,7 @@ import { useTimer } from 'react-timer-hook'
 import numeral from 'numeral'
 
 export default function Countdown(props) {
-    const { expiryTimestamp, predictedPrice, predictedTotalSupply, doRebase } = props
+    const { expiryTimestamp, predictedPrice, predictedTotalSupply, doRebase, loading } = props
 
     const { seconds, minutes, hours, days, restart } = useTimer({
         autoStart: false,
@@ -51,7 +51,7 @@ export default function Countdown(props) {
                     </div>
                 </div>
                 }
-                { expiryTimestamp < new Date() &&
+                { expiryTimestamp < new Date() && loading &&
                 <div className="col-12">
                     <button className="btn btn-special-black w-100" onClick={doRebase}>Alter now</button>
                 </div>

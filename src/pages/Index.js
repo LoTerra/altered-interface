@@ -336,6 +336,7 @@ export default () => {
                                         predictedPrice={predictedPrice}
                                         predictedTotalSupply={predictedTotalSupply}
                                         doRebase={() => rebase()}
+                                        loading={isLoaded}
                                     />
                                 </div>
                             </div>
