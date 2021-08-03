@@ -1,5 +1,6 @@
 import React from 'react'
 import numeral from 'numeral'
+import Equilibrium from './Equilibrium';
 
 export default function CurrentPrice(props) {
     const { price, total } = props
@@ -21,7 +22,8 @@ export default function CurrentPrice(props) {
                 <div className="col-12 overflow-hidden mb-4">
                     <p className="heading" style={{paddingBottom:"10px", fontSize:"16px"}}>Equilibrium</p>
                     <div className="eq">
-                        <img src="eq.svg" />
+                        {/* <img src="eq.svg" /> */}
+                        <Equilibrium style={{width:'100%', maxWidth:'100%'}}/>
                         <div style={{marginLeft:'50%'}} className="indicator subtle">
                             <span></span>
                             <label>TARGET 1<i>UST</i></label>

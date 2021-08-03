@@ -34,20 +34,14 @@
             }
         }
     }
-    svg {
-        top: 50%;
-        right: -5%;
-        position: absolute;
-        transform: translate(-50%, -50%);
-        z-index: -1;
-    }
+    
 
     .eq {
         width:100%;
         position:relative;
         margin-bottom:35px;
         margin-top:15px;
-        img {
+        svg {
             max-width:100%;
             width:100%;
         }
