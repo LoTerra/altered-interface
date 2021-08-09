@@ -11,6 +11,7 @@ import BigNumber from 'bignumber.js'
 import Countdown from '../components/Countdown'
 import CurrentPrice from '../components/CurrentPrice'
 import SwapForm from '../components/SwapForm'
+import Notification from '../components/Notification'
 
 let useConnectedWallet = {}
 if (typeof document !== 'undefined') {
@@ -25,6 +26,7 @@ let api = {}
 
 export default () => {
     const targetPrice = 1
+    const [notification,setNotification] = useState({type:'success',message:'',show:false})
     const [altePool, setAltePool] = useState(0)
     const [ustPool, setUstPool] = useState(0)
     const [predictedPrice, setPredictedPrice] = useState(0)
@@ -107,7 +109,7 @@ export default () => {
     useEffect(() => {
         fetchContractQuery()
         checkAsset()
-    }, [fetchContractQuery, amount, isNativeToken, totalSupply])
+    }, [fetchContractQuery, amount, isNativeToken, totalSupply, notification])
 
     let connectedWallet = ''
     if (typeof document !== 'undefined') {
@@ -124,6 +126,7 @@ export default () => {
 
     function switchValuta() {
         console.log(isNativeToken)
+        
         setAmount(amount)
         setIsNativeToken(!isNativeToken)
     }
@@ -303,6 +306,33 @@ export default () => {
         }
     }
 
+    function hideNotification(){
+        setNotification({
+            message:notification.message,
+            type: notification.type,
+            show: false
+        })
+    }
+
+    function showNotification(message,type,duration){
+        console.log('fired notification')
+        setNotification({
+            message:message,
+            type: type,
+            show: true
+        })
+        console.log(notification)
+        //Disable after $var seconds
+        setTimeout(() => {           
+            setNotification({ 
+                message:message,
+                type: type,              
+                show: false
+            })        
+            console.log('disabled',notification)
+        },duration)
+    }
+
     //Final swap function
     function doSwap() {
         // let token = 'ust';
@@ -378,6 +408,7 @@ export default () => {
                     </div>
                 </div>
             </div>
+            <Notification notification={notification} close={() => hideNotification()}/>
         </>
     )
 }
