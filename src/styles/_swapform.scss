@@ -22,11 +22,24 @@
         margin-top: 15px;
         margin-right: 40px;
     }
+    .balance {
+        position: absolute;
+        font-size: 12px;
+        right: 0;
+        margin-right: 116px;
+        margin-top: 16px;
+        text-decoration: underline;
+        opacity: 0.5;
+        &:hover {
+            cursor:pointer;
+        }
+    }
     .form-control {
         padding-top: 17px;
         font-family: 'Cosmos';
         &:read-only {
             background: #0d0d0d;
+            border-color: #0d0d0d;
         }
     }
     .swapper-info {

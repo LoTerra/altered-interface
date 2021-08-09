@@ -150,7 +150,7 @@ export default function ConnectWallet() {
                     color="#DCEF14"
                     style={{ display: 'inline-block', marginTop: '-3px' }}
                 />{' '}
-                {bankAlte} <span className="text-sm">ALTE</span>
+                {bankAlte == null ? "0.00" : bankAlte} <span className="text-sm">ALTE</span>
             </>
         )
     }
