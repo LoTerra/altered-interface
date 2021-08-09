@@ -8,7 +8,7 @@ import {
     ConnectType,
 } from '@terra-money/wallet-provider'
 
-import { Wallet, CaretRight, ArrowSquareOut } from 'phosphor-react'
+import { Wallet, CaretRight, ArrowSquareOut,Power } from 'phosphor-react'
 import numeral from 'numeral'
 const altered_address = 'terra1vm2qefyrld6l20924g8y7t99r7ntpfyzpn02sq'
 // let useWallet = {}
@@ -147,7 +147,6 @@ export default function ConnectWallet() {
             <>
                 <Wallet
                     size={21}
-                    color="#DCEF14"
                     style={{ display: 'inline-block', marginTop: '-3px' }}
                 />{' '}
                 {bankAlte == null ? "0.00" : bankAlte} <span className="text-sm">ALTE</span>
@@ -221,12 +220,30 @@ export default function ConnectWallet() {
                         </>
                     )}
                     {connected && (
-                        <button
-                            onClick={() => connectTo('disconnect')}
-                            className="btn btn-outline-primary nav-item"
+                        <>
+                        <button                            
+                            className="btn btn-outline-primary nav-item dropdown-toggle"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
                         >
                             {connected ? returnBank() : ''}
                         </button>
+                        <ul
+                        className="dropdown-menu dropdown-menu-end"
+                        aria-labelledby="dropdownMenuButton2"
+                        >
+                            <button
+                                        onClick={() => connectTo('disconnect')}
+                                        className="dropdown-item"
+                                    >
+                                        <Power
+                                            size={16}
+                                            style={{ marginTop: '-4px' }}
+                                        />{' '}
+                                        Disconnect
+                                    </button>
+                        </ul>
+                        </>
                     )}
                 </div>
             </div>
