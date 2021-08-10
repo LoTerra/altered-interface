@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback, useRef } from 'react'
 
 import {
     StdFee,
@@ -12,6 +12,8 @@ import Countdown from '../components/Countdown'
 import CurrentPrice from '../components/CurrentPrice'
 import SwapForm from '../components/SwapForm'
 import Notification from '../components/Notification'
+import { Swap } from 'phosphor-react'
+
 
 let useConnectedWallet = {}
 if (typeof document !== 'undefined') {
@@ -42,6 +44,9 @@ export default () => {
     const [returnAmount, setReturnAmount] = useState(0)
     const [spreadAmount, setSpreadAmount] = useState(0)
     const [isLoaded, setLoaded] = useState(false)
+
+    const formswap = useRef(null)
+
 
     const fetchContractQuery = useCallback(async () => {
         const terra = new LCDClient({
@@ -350,11 +355,18 @@ export default () => {
         //swap() success > Reset form values to zero
     }
 
+    const scrollTo = () => {
+       formswap.current.scrollIntoView()
+    }
+
     return (
         <>
             <div className="row">
                 <div className="col-12 text-center logo">
                     <h1>ALTERED</h1>
+                </div>
+                <div className="col-12 d-block d-sm-none mb-3">
+                    <button className="btn btn-default w-100" onClick={() => scrollTo()}><Swap size={24} color={'#DCEF14'} /> Start swapping</button>
                 </div>
                 <div className="col-12 col-lg-8 mx-auto">
                     <div className="row">
@@ -386,10 +398,10 @@ export default () => {
             </div>
             <div className="row">
                 <div className="col-lg-4 mb-4 mx-auto">
-                    <div className="card special">
+                    <div className="card special" ref={formswap}>
                         <div className="card-body">
                             <h2>Make your move</h2>
-                            <SwapForm
+                            <SwapForm                                
                                 switchValuta={() => switchValuta()}
                                 doSwap={() => doSwap()}
                                 amount={amount}
