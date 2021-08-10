@@ -190,8 +190,10 @@ export default function ConnectWallet() {
     }
 
     function getPercentage(){
-        const sum = numeral(bankAlte).format('0.00') * 100 / numeral(totalSupply / 1000000).format('0,0.00')
-        return sum
+        let bank = numeral(bankAlte).format('0.00') * 100 
+        let supp =  numeral(totalSupply / 1000000).format('0,0.00')
+        let sum = bank / supp;
+        return numeral(sum).format('0.00')
     }
 
     return (
