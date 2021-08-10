@@ -88,7 +88,7 @@ export default function SwapForm(props) {
     const setAmount = (amount) => {       
         let input = document.querySelector('.amount');     
         const lastValue = input.value;
-        input.value = amount;
+        input.value = numeral(amount).format('0.00');
         const event = new Event("input", { bubbles: true });
         const tracker = input._valueTracker;
         if (tracker) {
