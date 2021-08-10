@@ -1,0 +1,7 @@
+.idea
+.env
+node_modules
+artifacts
+dist
+.next
+yarn-error.log

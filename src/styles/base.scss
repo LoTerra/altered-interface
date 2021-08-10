@@ -1,0 +1,34 @@
+// (Required) Import Bootstrap
+@import '../../node_modules/bootstrap/scss/functions';
+@import '../../node_modules/bootstrap/scss/variables';
+@import '../../node_modules/bootstrap/scss/mixins';
+
+$primary: #dcef14;
+$secondary: #848484;
+$thirsty: #FF4C29;
+$theme-colors: (
+    primary: $primary,
+    secondary: $secondary,
+);
+// (Required) Import Bootstrap
+@import '../../node_modules/bootstrap/scss/bootstrap';
+
+@font-face {
+    font-family: 'Cosmos';
+    src: local('Cosmos'), url('../fonts/AVCosmos-Regular.woff') format('woff');
+    /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+}
+
+a {
+    color: $primary;
+}
+
+@import './buttons';
+@import './cards';
+@import './countdown';
+@import './currentprice';
+@import './swapform';
+@import './notifications';
+@import './footer';
+@import './app.scss';

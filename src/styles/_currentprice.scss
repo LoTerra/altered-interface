@@ -1,0 +1,142 @@
+.current-price {
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    .heading {
+        display: block;
+        color: $primary;
+        margin: 0;
+        font-weight: normal;
+        font-size: 11px;
+        text-transform: uppercase;
+    }
+    p {
+        margin: 0;
+        font-size: 4rem;
+        font-weight: 600;
+        font-size: 28px;
+        color: #fff;
+        &.big {
+            font-size: 3.8rem;
+            margin-top: -10px;
+            margin-bottom: -14px;
+            font-family: 'Cosmos';
+            span {
+                font-weight: 400;
+                font-size: 2rem;
+            }
+        }
+        &.small {
+            font-size: 30px;
+            font-family: 'Cosmos';
+            span {
+                font-size: 12px;
+                font-weight: 400;
+            }
+        }
+    }
+    
+
+    .eq {
+        width:100%;
+        position:relative;
+        margin-bottom:35px;
+        margin-top:15px;
+        svg {
+            max-width:100%;
+            width:100%;
+        }
+        .indicator {
+            position: absolute;
+            bottom: -20px;
+            text-align: center;
+            z-index:9;
+
+            .colored-in {
+                color:$primary;
+            }
+            .colored-out {
+                color:$thirsty;
+            }
+            .span-in {
+                width: 1px;
+                height: 138px;
+                background: linear-gradient(180deg, rgba(220, 239, 20, 0) 0%, $primary 100%);
+                display: block;
+                margin: 0 auto;
+                position:absolute;
+                bottom:0;
+            }
+            .span-out {
+                width: 1px;
+                height: 138px;
+                background: linear-gradient(180deg, rgba(220, 239, 20, 0) 0%, $thirsty 100%);
+                display: block;
+                margin: 0 auto;
+                position:absolute;
+                bottom:0;
+            }
+
+            label {
+                margin-left:10px;
+
+                i {
+                    font-style:normal;
+                    font-size:13px;
+                    margin-left:3px;
+                }
+                &.current {
+                    position: relative;
+                    top: 8px;
+                    padding: 2px 10px;
+                    left: -11px;
+                    border-radius: 23px;
+                }
+            }
+            &.subtle {
+                color:#aaa;
+                top:0px;
+                label {
+                    margin-left: -44px;
+                    background: #1f1f1f;
+                    padding: 2px 10px;
+                    color: #d0e026;
+                    border-radius: 21px;
+                    box-shadow: 0px 3px 7px #00000063;
+                    z-index: 99;
+                    position: relative;
+                    font-size: 14px;
+                }
+                .span-stable {
+                    width: 1px;
+                    height: 120px;
+                    background: linear-gradient(180deg, #AAAAAA 0%, rgba(170, 170, 170, 0) 54.17%, rgba(170, 170, 170, 0) 100%);
+                    display: block;
+                    margin: 0 auto;
+                    position:absolute;
+                    top:0;
+                }
+            }
+        }
+        .static-indicator {
+            position:absolute;
+            width:100%;
+            top:3px;
+            z-index:9;
+            span {
+                background: #212121;
+                padding: 2px 10px;
+                color: #b7b7b7;
+                border-radius: 21px;
+                box-shadow: 0px 3px 7px #00000063;
+                &:first-child{
+                    left:0;
+                    position:absolute;
+                }
+                &:last-child {
+                    right:0;
+                    position:absolute;
+                }
+            }
+        }
+    }
+}

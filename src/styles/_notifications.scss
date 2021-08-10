@@ -1,0 +1,37 @@
+.notification {
+    width: 300px;
+    position: fixed;
+    right: -100%;
+    bottom: 25px;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 30px 48px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 15px 15px;
+    color: #ffff;
+    transition:all 200ms linear;
+    p {
+        margin:0;
+        font-weight:bold;
+    }
+    svg {
+        position:relative;
+        top:-2px;
+        margin-right:4px;
+    }
+    &.success {
+        border:2px solid #dcef14;
+        svg {
+            color : #dcef14;
+        }
+    }
+    &.error {
+        border:2px solid red;
+        svg {
+            color:red;
+        }
+    }
+
+    &.show {
+        right: 25px;
+    }
+}
