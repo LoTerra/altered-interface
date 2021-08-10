@@ -21,6 +21,9 @@ body {
 
 .logo {
     margin:25px 0;
+    @media(max-width:660px){
+        margin:0;
+    }
 }
 
 .dropdown-menu {
