@@ -88,6 +88,7 @@ export default function ConnectWallet() {
             let coins
             let token
             let contractConfigInfo
+
             try {
                 coins = await lcd.bank.balance(connectedWallet.walletAddress)
 
@@ -96,6 +97,7 @@ export default function ConnectWallet() {
                         address: connectedWallet.walletAddress,
                     },
                 })
+
                 contractConfigInfo = await api.contractQuery(
                     altered_address,
                     {
@@ -113,6 +115,7 @@ export default function ConnectWallet() {
                 return c.denom === 'uusd'
             })
             let ust = parseInt(uusd) / 1000000
+
             setBank(ust)
             let alte = parseInt(token.balance) / 1000000
             setBankAlte(alte)
@@ -164,6 +167,7 @@ export default function ConnectWallet() {
                     style={{ display: 'inline-block', marginTop: '-3px' }}
                 />{' '}
                 {bankAlte == null ? "0.00" : numeral(bankAlte).format('0,0.00')} <span className="text-sm">ALTE</span>
+
             </>
         )
     }

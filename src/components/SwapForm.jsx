@@ -2,6 +2,7 @@ import { Swap, CaretRight } from 'phosphor-react'
 import React, { useCallback, useState, useMemo, useEffect } from 'react'
 import debounce from 'lodash.debounce'
 import { LCDClient, WasmAPI } from '@terra-money/terra.js'
+
 const altered_address = 'terra1vm2qefyrld6l20924g8y7t99r7ntpfyzpn02sq'
 
 import {
@@ -57,6 +58,7 @@ export default function SwapForm(props) {
     async function contactBalance() {
         if (connectedWallet && connectedWallet.walletAddress && lcd) {
             //   setShowConnectOptions(false);
+
             let coins
             let token
             try {
@@ -66,6 +68,7 @@ export default function SwapForm(props) {
                         address: connectedWallet.walletAddress,
                     },
                 })
+
                 console.log(coins)
 
             } catch (e) {
@@ -87,11 +90,13 @@ export default function SwapForm(props) {
         }
     }
 
+
     const setAmount = (amount) => {
         if (!amount) return
         let input = document.querySelector('.amount');     
         const lastValue = input.value;
         input.value = amount;
+
         const event = new Event("input", { bubbles: true });
         const tracker = input._valueTracker;
         if (tracker) {
@@ -120,9 +125,11 @@ export default function SwapForm(props) {
                     <span className="valuta">
                         {isNativeToken ? 'ALTE' : 'UST'}
                     </span>
+
                     {
                         (
                             <span className="balance" onClick={() => setAmount((isNativeToken ? bankAlte : bankUst),(isNativeToken ? 'ALTE' : 'UST'))}>{isNativeToken && bankUst > 0 ? 'MAX:'+numeral(bankAlte).format('0,0.00')+'ALTE' : bankAlte > 0 ? 'MAX:'+numeral(bankUst).format('0,0.00')+'UST': ''}</span>
+
                         )
                     }
                     <input                          
