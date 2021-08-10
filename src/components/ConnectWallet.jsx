@@ -189,7 +189,10 @@ export default function ConnectWallet() {
         )
     }
 
- 
+    function getPercentage(){
+        const sum = numeral(bankAlte).format('0.00') * 100 / numeral(totalSupply / 1000000).format('0,0.00')
+        return sum
+    }
 
     return (
         <div className="navbar navbar-expand p-2 p-md-3">
@@ -260,7 +263,7 @@ export default function ConnectWallet() {
                         <>
                         <div className="nav-item user-info">
                             <p className="top">Your stats</p>
-                            <p className="bottom">{(numeral(20).format('0.00') * 100) / numeral(totalSupply).format('0.00')}% of total supply </p>
+                            <p className="bottom">{numeral(getPercentage).format('0.00')}% of total supply </p>
                         </div>
                         <button                            
                             className="btn btn-outline-primary nav-item dropdown-toggle"
