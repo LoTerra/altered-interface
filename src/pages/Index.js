@@ -291,8 +291,9 @@ export default () => {
             // let tx = await terra.tx.broadcast(tx_play)
             // console.log(tx)
             console.log(tx_play)
+            showNotification('Successful','success',4000)
         } catch (e) {
-            console.log(e)
+            showNotification('Error','error',4000)
         }
     }
     // rebase function
