@@ -251,7 +251,7 @@ export default function ConnectWallet() {
                         <>
                         <div className="nav-item user-info">
                             <p className="top">Your stats</p>
-                            <p className="bottom">You own {numeral(bankAlte * 100 / totalSupply).format('0.00')}% of total supply </p>
+                            <p className="bottom">{numeral(bankAlte * 100 / totalSupply).format('0.00')}% of total supply </p>
                         </div>
                         <button                            
                             className="btn btn-outline-primary nav-item dropdown-toggle"
