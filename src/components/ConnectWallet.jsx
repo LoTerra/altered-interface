@@ -40,6 +40,7 @@ export default function ConnectWallet() {
     const [isDisplayDialog, setIsDisplayDialog] = useState(false)
     const [bank, setBank] = useState()
     const [totalSupply, setTotalSupply] = useState(0)
+    const [yourPercentage, setYourPercentage] = useState(0)
     const [bankAlte, setBankAlte] = useState()
     const [connected, setConnected] = useState(false)
     let wallet = ''
@@ -133,6 +134,8 @@ export default function ConnectWallet() {
 
        
             setTotalSupply(contractConfigInfo.total_supply)
+           
+            // setYourPercentage(test.mulipliedby(100).dividedBy(totalSupply))
 
             
         } catch (e) {
@@ -140,10 +143,14 @@ export default function ConnectWallet() {
         }
     }, [])
 
+   
+
     useEffect(() => {
         contactBalance()
         fetchContractQuery()
-    }, [fetchContractQuery,connectedWallet, lcd,totalSupply])
+     
+
+    }, [fetchContractQuery,connectedWallet, lcd,totalSupply, bankAlte])
 
     function renderDialog() {
         if (isDisplayDialog) {
@@ -182,11 +189,13 @@ export default function ConnectWallet() {
         )
     }
 
+ 
+
     return (
         <div className="navbar navbar-expand p-2 p-md-3">
             <div className="container-fluid">
                 <div className="navbar-nav ms-auto">
-                    {!connected && (
+                    {!connectedWallet && (
                         <>
                             <a
                                 href="https://docs.alteredprotocol.com"
@@ -247,18 +256,18 @@ export default function ConnectWallet() {
                             </div>
                         </>
                     )}
-                    {connected && (
+                    {connectedWallet && (
                         <>
                         <div className="nav-item user-info">
                             <p className="top">Your stats</p>
-                            <p className="bottom">{numeral(bankAlte * 100 / totalSupply).format('0.00')}% of total supply </p>
+                            <p className="bottom">{(numeral(20).format('0.00') * 100) / numeral(totalSupply).format('0.00')}% of total supply </p>
                         </div>
                         <button                            
                             className="btn btn-outline-primary nav-item dropdown-toggle"
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
                         >
-                            {connected ? returnBank() : ''}
+                            {connectedWallet ? returnBank() : ''}
                         </button>
                         <ul
                         className="dropdown-menu dropdown-menu-end"
