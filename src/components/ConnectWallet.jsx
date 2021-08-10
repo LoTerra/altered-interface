@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect, useMemo, useCallback } from 'react'
 
 import { LCDClient, WasmAPI } from '@terra-money/terra.js'
 import {
@@ -39,6 +39,7 @@ export default function ConnectWallet() {
     let connectedWallet = ''
     const [isDisplayDialog, setIsDisplayDialog] = useState(false)
     const [bank, setBank] = useState()
+    const [totalSupply, setTotalSupply] = useState(0)
     const [bankAlte, setBankAlte] = useState()
     const [connected, setConnected] = useState(false)
     let wallet = ''
@@ -113,9 +114,36 @@ export default function ConnectWallet() {
         }
     }
 
+    const fetchContractQuery = useCallback(async () => {
+        const terra = new LCDClient({
+            /*URL: "https://bombay-lcd.terra.dev",
+        chainID: "bombay-0008",*/
+            URL: 'https://tequila-lcd.terra.dev',
+            chainID: 'tequila-0004',
+        })
+        api = new WasmAPI(terra.apiRequester)
+
+        try {
+            const contractConfigInfo = await api.contractQuery(
+                altered_address,
+                {
+                    extra_token_info: {},
+                }
+            )
+
+       
+            setTotalSupply(contractConfigInfo.total_supply)
+
+            
+        } catch (e) {
+            console.log(e)
+        }
+    }, [])
+
     useEffect(() => {
         contactBalance()
-    }, [connectedWallet, lcd])
+        fetchContractQuery()
+    }, [fetchContractQuery,connectedWallet, lcd,totalSupply])
 
     function renderDialog() {
         if (isDisplayDialog) {
@@ -221,6 +249,10 @@ export default function ConnectWallet() {
                     )}
                     {connected && (
                         <>
+                        <div className="nav-item user-info">
+                            <p className="top">Your stats</p>
+                            <p className="bottom">You own {numeral(bankAlte * 100 / totalSupply).format('0.00')}% of total supply </p>
+                        </div>
                         <button                            
                             className="btn btn-outline-primary nav-item dropdown-toggle"
                             data-bs-toggle="dropdown"

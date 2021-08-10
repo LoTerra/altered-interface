@@ -104,3 +104,20 @@ input[type='number'] {
         color: #fff;
     }
 }
+
+.user-info {
+    background:#000;
+    border-radius:7px;
+    padding:5px 10px;
+    p {
+        margin:0;
+        color:#fff;
+        font-size:13px;
+        &.top { 
+            text-transform:uppercase;
+        }
+        &.bottom {
+
+        }
+    }
+}
