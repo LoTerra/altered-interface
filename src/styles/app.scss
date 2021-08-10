@@ -105,6 +105,18 @@ input[type='number'] {
     }
 }
 
+.loading_animation{
+    animation-name: flickerAnimation;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes flickerAnimation {
+    0%   { opacity:1; }
+    50%  { opacity:0.5; }
+    100% { opacity:1; }
+  }
+
 .user-info {
     background:#000;
     border-radius:7px;

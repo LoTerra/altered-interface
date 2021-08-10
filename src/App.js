@@ -15,7 +15,19 @@ if (typeof document !== 'undefined') {
 class App extends Component {
     render() {
         return (
-            <Suspense fallback={<div>Loading... </div>}>
+            <Suspense fallback={<div className="vh-100 d-flex">
+              <div className="align-self-center w-100 text-center">
+              <h1 style={{fontSize:'75px', marginBottom:'0'}}>ALTERED</h1>
+                <p style={{                
+                textTransform: 'uppercase',
+                fontSize: '18px',  
+                color:'#fff',
+                fontFamily: 'Cosmos',     
+                fontWeight: '300',
+                marginTop: '-30px'                   
+            }} className="loading_animation">Loading... </p>
+              </div>
+            </div>}>
                 <Root>
                     <Head>
                         <meta charSet="UTF-8" />
