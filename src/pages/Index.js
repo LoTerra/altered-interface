@@ -356,19 +356,14 @@ export default () => {
         //swap() success > Reset form values to zero
     }
 
-    const scrollTo = () => {
-       formswap.current.scrollIntoView()
-    }
-
     return (
-        <>
-            <div className="row">
-                <div className="col-12 text-center logo">
-                    <h1>ALTERED</h1>
-                </div>
-                <div className="col-12 d-block d-sm-none mb-3">
-                    <button className="btn btn-default w-100" onClick={() => scrollTo()}><Swap size={24} color={'#DCEF14'} /> Start swapping</button>
-                </div>
+        <div className="wrapper" style={{display:'flex',flexDirection:'column'}}>
+        <div className="row order-1">
+            <div className="col-12 text-center logo">
+                <h1>ALTERED</h1>
+            </div>  
+        </div>
+            <div className="row order-3 order-lg-2">                           
                 <div className="col-12 col-lg-8 mx-auto">
                     <div className="row">
                         <div className="col-lg-6 mb-4">
@@ -397,9 +392,9 @@ export default () => {
                     </div>
                 </div>
             </div>
-            <div className="row">
+            <div className="row order-2 order-lg-3">
                 <div className="col-lg-4 mb-4 mx-auto">
-                    <div className="card special" ref={formswap}>
+                    <div className="card special">
                         <div className="card-body">
                             <h2>Make your move</h2>
                             <SwapForm                                
@@ -422,6 +417,6 @@ export default () => {
                 </div>
             </div>
             <Notification notification={notification} close={() => hideNotification()}/>
-        </>
+        </div>
     )
 }
