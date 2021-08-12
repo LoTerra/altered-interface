@@ -3,7 +3,7 @@ import React, { useCallback, useState, useMemo, useEffect } from 'react'
 import debounce from 'lodash.debounce'
 import { LCDClient, WasmAPI } from '@terra-money/terra.js'
 
-const altered_address = 'terra1vm2qefyrld6l20924g8y7t99r7ntpfyzpn02sq'
+const altered_address = 'terra1les6rz5ktjf44lcv35tl0a3a9rvkux9gdlzces'
 
 import {
     useWallet,
