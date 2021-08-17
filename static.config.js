@@ -4,7 +4,7 @@
 // - ...tons of other things!
 
 // Get started at https://react-static.js.org
-
+require('dotenv').config()
 export default {
     plugins: ['react-static-plugin-sass'],
     getSiteData: async ({ dev }) => ({
