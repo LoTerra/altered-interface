@@ -40,8 +40,8 @@ if (typeof document !== 'undefined') {
             <Wallet
                 defaultNetwork={mainnet}
                 walletConnectChainIds={{
-                    0: mainnet,
-                    1: testnet,
+                    0: testnet,
+                    1: mainnet,
                 }}
                 connectorOpts={{
                     bridge: inProduction
