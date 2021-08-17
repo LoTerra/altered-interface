@@ -1,3 +1,4 @@
+require("dotenv").config()
 import React, { useState, useEffect, useMemo, useCallback } from 'react'
 
 import { LCDClient, WasmAPI } from '@terra-money/terra.js'
@@ -10,7 +11,8 @@ import {
 
 import { Wallet, CaretRight, ArrowSquareOut,Power } from 'phosphor-react'
 import numeral from 'numeral'
-const altered_address = 'terra1ke2gz90rykm52t06grkjzxaed2ngz73d65nev2'
+const altered_address = process.env.DEV ? process.env.ALTERED_ADDR_TESTNET : process.env.ALTERED_ADDR
+
 // let useWallet = {}
 // if (typeof document !== 'undefined') {
 //     useWallet = require('@terra-money/wallet-provider').useWallet

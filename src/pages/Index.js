@@ -22,8 +22,8 @@ if (typeof document !== 'undefined') {
         require('@terra-money/wallet-provider').useConnectedWallet
 }
 
-const altered_address = 'terra1ke2gz90rykm52t06grkjzxaed2ngz73d65nev2'
-const alte_ust_pair = 'terra1wenxvd3y6sapz9wns4vfw4mdv26240u9wyfdm7'
+const altered_address = process.env.DEV ? process.env.ALTERED_ADDR_TESTNET : process.env.ALTERED_ADDR
+const alte_ust_pair = process.env.DEV ? process.env.POOL_ADDR_TESTNET : process.env.POOL_ADDR
 
 // const fees = new StdFee(400_000, { uusd: 60000 + 2000000 })
 const fees = new StdFee(600_000, { uusd: 90000 + 5700 })

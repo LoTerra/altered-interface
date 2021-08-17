@@ -1,9 +1,9 @@
+require("dotenv").config()
 import { Swap, CaretRight } from 'phosphor-react'
 import React, { useCallback, useState, useMemo, useEffect } from 'react'
 import debounce from 'lodash.debounce'
 import { LCDClient, WasmAPI } from '@terra-money/terra.js'
-
-const altered_address = 'terra1ke2gz90rykm52t06grkjzxaed2ngz73d65nev2'
+const altered_address = process.env.DEV ? process.env.ALTERED_ADDR_TESTNET : process.env.ALTERED_ADDR
 
 import {
     useWallet,
