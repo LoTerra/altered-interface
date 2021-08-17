@@ -56,12 +56,10 @@ export default function ConnectWallet() {
         if (!connectedWallet) {
             return null
         }
-        const lcd = new LCDClient({
+        return new LCDClient({
             URL: connectedWallet.network.lcd,
             chainID: connectedWallet.network.chainID,
-        })
-        api = new WasmAPI(lcd.apiRequester)
-        return lcd
+          });
     }, [connectedWallet])
 
     //const installChrome = useInstallChromeExtension();
@@ -93,6 +91,7 @@ export default function ConnectWallet() {
             let contractConfigInfo
 
             try {
+                const api = new WasmAPI(lcd.apiRequester);
                 coins = await lcd.bank.balance(connectedWallet.walletAddress)
 
                 token = await api.contractQuery(altered_address, {
@@ -134,7 +133,9 @@ export default function ConnectWallet() {
     }
 
     useEffect(() => {
-        contactBalance()
+        if(connectedWallet){
+            contactBalance()  
+        }   
     }, [connectedWallet, lcd])
 
     function renderDialog() {
