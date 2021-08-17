@@ -12,7 +12,7 @@ import {
 import { Wallet, CaretRight, ArrowSquareOut,Power } from 'phosphor-react'
 import numeral from 'numeral'
 
-const altered_address = process.env.DEV ? process.env.ALTERED_ADDR_TESTNET : process.env.ALTERED_ADDR
+const altered_address = process.env.DEV == true ? process.env.ALTERED_ADDR_TESTNET : process.env.ALTERED_ADDR
 
 // let useWallet = {}
 // if (typeof document !== 'undefined') {

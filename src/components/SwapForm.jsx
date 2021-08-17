@@ -3,7 +3,7 @@ import React, { useCallback, useState, useMemo, useEffect } from 'react'
 import debounce from 'lodash.debounce'
 import { LCDClient, WasmAPI } from '@terra-money/terra.js'
 
-const altered_address = process.env.DEV ? process.env.ALTERED_ADDR_TESTNET : process.env.ALTERED_ADDR
+const altered_address = process.env.DEV == true ? process.env.ALTERED_ADDR_TESTNET : process.env.ALTERED_ADDR
 
 import {
     useWallet,

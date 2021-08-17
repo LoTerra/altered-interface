@@ -33,7 +33,7 @@ if (typeof document !== 'undefined') {
         ? ReactDOM.hydrate
         : ReactDOM.render
 
-    let inProduction = process.env.DEV
+    let inProduction = true
 
     const render = (Comp) => {
         renderMethod(

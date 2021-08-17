@@ -21,10 +21,10 @@ if (typeof document !== 'undefined') {
         require('@terra-money/wallet-provider').useConnectedWallet
 }
 
-const altered_address = process.env.DEV ? process.env.ALTERED_ADDR_TESTNET : process.env.ALTERED_ADDR
-const alte_ust_pair = process.env.DEV ? process.env.POOL_ADDR_TESTNET : process.env.POOL_ADDR
+const altered_address = process.env.DEV == true ? process.env.ALTERED_ADDR_TESTNET : process.env.ALTERED_ADDR
+const alte_ust_pair = process.env.DEV == true ? process.env.POOL_ADDR_TESTNET : process.env.POOL_ADDR
 
-const fees = process.env.DEV ? new StdFee(400_000, { uusd: 60000 + 2000000 }) :new StdFee(600_000, { uusd: 90000 + 5700 })
+const fees = process.env.DEV == true ? new StdFee(400_000, { uusd: 60000 + 2000000 }) :new StdFee(600_000, { uusd: 90000 + 1520379 })
 let api = {}
 
 export default () => {
@@ -50,11 +50,13 @@ export default () => {
 
 
     const fetchContractQuery = useCallback(async () => {
+        console.log(process.env.URL)
+
         const terra = new LCDClient({
             /*URL: "https://bombay-lcd.terra.dev",
         chainID: "bombay-0008",*/
-            URL: process.env.DEV ? process.env.URL_TESTNET : process.env.URL ,
-            chainID: process.env.DEV ? process.env.CHAIN_ID_TESTNET : process.env.CHAIN_ID,
+            URL: process.env.DEV == true ? process.env.URL_TESTNET : process.env.URL ,
+            chainID: process.env.DEV == true ? process.env.CHAIN_ID_TESTNET : process.env.CHAIN_ID,
         })
         api = new WasmAPI(terra.apiRequester)
 
@@ -294,6 +296,7 @@ export default () => {
             console.log(tx_play)
             showNotification('Successful','success',4000)
         } catch (e) {
+            console.log(e)
             showNotification('Error','error',4000)
         }
     }
@@ -362,7 +365,7 @@ export default () => {
         <div className="row order-1">
             <div className="col-12 text-center logo">
                 <h1>ALTERED</h1>
-                {process.env.DEV &&
+                {process.env.DEV == true &&
                     <span className="badge bg-primary" style={{color:'#000'}}>Testnet mode</span>
                 }
             </div>  
