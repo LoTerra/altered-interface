@@ -119,6 +119,13 @@ export default function Countdown(props) {
                                     <p>Total supply</p>
                                 <span>{numeral(predictedTotalSupply).format('0,0.00')} <i>ALTE</i></span>
                                 </div>
+                                
+                        </div>
+                        <div className="col-12 mt-2">
+                                <div className="prediction-amount">
+                                    <p>Market cap</p>
+                                    <span>{numeral((predictedPrice * predictedTotalSupply)).format('0,0.00')} <i>UST</i></span>
+                                </div>
                         </div>
                     </div>
                 </div>
