@@ -55,8 +55,8 @@ export default () => {
         const terra = new LCDClient({
             /*URL: "https://bombay-lcd.terra.dev",
         chainID: "bombay-0008",*/
-            URL: process.env.DEV == true ? process.env.URL_TESTNET : process.env.URL ,
-            chainID: process.env.DEV == true ? process.env.CHAIN_ID_TESTNET : process.env.CHAIN_ID,
+            URL: process.env.DEV == true ? process.env.URL_TESTNET : process.env.URL_MAINNET ,
+            chainID: process.env.DEV == true ? process.env.CHAIN_ID_TESTNET : process.env.CHAIN_ID_MAINNET,
         })
         api = new WasmAPI(terra.apiRequester)
 
