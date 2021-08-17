@@ -50,6 +50,11 @@ export default function CurrentPrice(props) {
                         {numeral(total / 1000000).format('0,0.00')}{' '}
                         <span>ALTE</span>
                     </p>
+                    <p className="heading">Market Cap</p>
+                    <p className="small">
+                        {numeral(price * (total / 1000000)).format('0,0.00')}{' '}
+                        <span>UST</span>                        
+                    </p>
                 </div>
             </div>           
         </div>
