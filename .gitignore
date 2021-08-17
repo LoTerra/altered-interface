@@ -5,3 +5,4 @@ artifacts
 dist
 .next
 yarn-error.log
+.DS_Store
