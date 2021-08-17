@@ -85,7 +85,7 @@ export default () => {
                 let totalSupplyBig = new BigNumber(contractConfigInfo.total_supply)
                 let percentageSupply = alte.multipliedBy(100).dividedBy(totalSupplyBig);
                 let rebasedSupply = ust.multipliedBy(totalSupplyBig.dividedBy(alte));
-                let rebase = totalSupplyBig.minus(rebasedSupply).dividedBy(10);
+                let rebase = totalSupplyBig.minus(rebasedSupply).dividedBy(Date.now() > contractConfigInfo.rebase_damping_launch ? 10 : 30);
                 let expectedRebaseSupply = totalSupplyBig.minus(rebase)
                 let expectedPoolSupplyAlte = expectedRebaseSupply.multipliedBy(percentageSupply).dividedBy(100)
                 setPredictedPrice(ust.dividedBy(1000000).dividedBy(expectedPoolSupplyAlte.dividedBy(1000000)).toFixed())
