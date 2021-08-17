@@ -12,7 +12,7 @@ import Countdown from '../components/Countdown'
 import CurrentPrice from '../components/CurrentPrice'
 import SwapForm from '../components/SwapForm'
 import Notification from '../components/Notification'
-import { Swap } from 'phosphor-react'
+import { Swap, Warning } from 'phosphor-react'
 
 
 let useConnectedWallet = {}
@@ -365,10 +365,7 @@ export default () => {
         <div className="wrapper" style={{display:'flex',flexDirection:'column'}}>
         <div className="row order-1">
             <div className="col-12 text-center logo">
-                <h1>ALTERED</h1>
-                {process.env.DEV &&
-                    <span className="badge bg-primary" style={{color:'#000'}}>Testnet mode</span>
-                }
+                <h1>ALTERED</h1>               
             </div>  
         </div>
             <div className="row order-3 order-lg-2">                           
@@ -404,7 +401,11 @@ export default () => {
                 <div className="col-lg-4 mb-4 mx-auto">
                     <div className="card special">
                         <div className="card-body">
+                        {process.env.DEV &&
+                    <span className="badge bg-primary" style={{color:'#000', fontSize:'18px', display:'block',marginBottom:'15px'}}><Warning size={21} style={{position:'relative',top:'-2px'}}/> Testnet mode</span>
+                }
                             <h2>Make your move</h2>
+                          
                             <SwapForm                                
                                 switchValuta={() => switchValuta()}
                                 doSwap={() => doSwap()}
