@@ -24,9 +24,7 @@ if (typeof document !== 'undefined') {
 
 const altered_address = 'terra1ke2gz90rykm52t06grkjzxaed2ngz73d65nev2'
 const alte_ust_pair = 'terra1wenxvd3y6sapz9wns4vfw4mdv26240u9wyfdm7'
-if (process.env){
 
-}
 // const fees = new StdFee(400_000, { uusd: 60000 + 2000000 })
 const fees = new StdFee(600_000, { uusd: 90000 + 5700 })
 let api = {}
