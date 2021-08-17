@@ -362,6 +362,9 @@ export default () => {
         <div className="row order-1">
             <div className="col-12 text-center logo">
                 <h1>ALTERED</h1>
+                {!process.env.DEV &&
+                    <span className="badge bg-primary" style={{color:'#000'}}>Testnet mode</span>
+                }
             </div>  
         </div>
             <div className="row order-3 order-lg-2">                           
