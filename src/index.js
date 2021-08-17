@@ -33,15 +33,15 @@ if (typeof document !== 'undefined') {
         ? ReactDOM.hydrate
         : ReactDOM.render
 
-    let inProduction = true
+    let inProduction = process.env.DEV
 
     const render = (Comp) => {
         renderMethod(
             <Wallet
                 defaultNetwork={mainnet}
                 walletConnectChainIds={{
-                    0: testnet,
-                    1: mainnet,
+                    0: mainnet,
+                    1: testnet,
                 }}
                 connectorOpts={{
                     bridge: inProduction

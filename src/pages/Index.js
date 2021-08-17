@@ -24,8 +24,7 @@ if (typeof document !== 'undefined') {
 const altered_address = process.env.DEV ? process.env.ALTERED_ADDR_TESTNET : process.env.ALTERED_ADDR
 const alte_ust_pair = process.env.DEV ? process.env.POOL_ADDR_TESTNET : process.env.POOL_ADDR
 
-// const fees = new StdFee(400_000, { uusd: 60000 + 2000000 })
-const fees = new StdFee(600_000, { uusd: 90000 + 5700 })
+const fees = process.env.DEV ? new StdFee(400_000, { uusd: 60000 + 2000000 }) :new StdFee(600_000, { uusd: 90000 + 5700 })
 let api = {}
 
 export default () => {
@@ -54,8 +53,8 @@ export default () => {
         const terra = new LCDClient({
             /*URL: "https://bombay-lcd.terra.dev",
         chainID: "bombay-0008",*/
-            URL: 'https://tequila-lcd.terra.dev',
-            chainID: 'tequila-0004',
+            URL: process.env.DEV ? process.env.URL_TESTNET : process.env.URL ,
+            chainID: process.env.DEV ? process.env.CHAIN_ID_TESTNET : process.env.CHAIN_ID,
         })
         api = new WasmAPI(terra.apiRequester)
 
