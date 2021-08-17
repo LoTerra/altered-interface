@@ -128,7 +128,7 @@ export default function SwapForm(props) {
 
                     {
                         (
-                            <span className="balance" onClick={() => setAmount((isNativeToken ? bankAlte : bankUst),(isNativeToken ? 'ALTE' : 'UST'))}>{isNativeToken && bankUst > 0 ? 'MAX:'+numeral(bankAlte).format('0,0.00')+'ALTE' : bankAlte > 0 ? 'MAX:'+numeral(bankUst).format('0,0.00')+'UST': ''}</span>
+                            <span className="balance" onClick={() => setAmount((isNativeToken ? bankAlte : bankUst),(isNativeToken ? 'ALTE' : 'UST'))}>{isNativeToken ? 'MAX:'+numeral(bankAlte).format('0,0.00')+'ALTE' : 'MAX:'+numeral(bankUst).format('0,0.00')+'UST'}</span>
 
                         )
                     }
