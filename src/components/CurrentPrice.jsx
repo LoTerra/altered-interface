@@ -52,7 +52,7 @@ export default function CurrentPrice(props) {
                     </p>
                     <p className="heading">Market Cap</p>
                     <p className="small">
-                        {numeral(price * total).format('0,0.00')}{' '}
+                        {numeral(price * (total / 1000000)).format('0,0.00')}{' '}
                         <span>UST</span>                        
                     </p>
                 </div>
