@@ -168,11 +168,11 @@ export default function SwapForm(props) {
                 <div className="swap-final-info">
                    
                         <small>
-                            Commission:  {commissionOfferAmount > 0 && (<>{commissionOfferAmount} UST</>)} 
+                            Commission:  {commissionOfferAmount > 0 && (<>{commissionOfferAmount} {!isNativeToken ? 'ALTE' : 'UST'}</>)} 
                         </small>
                     
                    
-                        <small>Spread:  {spreadAmount > 0 && (<>{spreadAmount} UST</>)}</small>
+                        <small>Spread:  {spreadAmount > 0 && (<>{spreadAmount} {!isNativeToken ? 'ALTE' : 'UST'}</>)}</small>
                    
                 </div>
                 <div className="col-12 mb-3">
