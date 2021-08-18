@@ -21,7 +21,8 @@ export default function SwapForm(props) {
         isNativeToken,
         inputChange,
         returnAmount,
-        current,
+        commissionOfferAmount,
+        spreadAmount,
         doSwap,
         amount,
     } = props
@@ -135,7 +136,8 @@ export default function SwapForm(props) {
                     <input                          
                         type="number"
                         className="form-control amount"
-                        onChange={handleChange}                    
+                        onChange={handleChange}     
+                        step="any"               
                         placeholder="0"
                     />
                 </div>
@@ -164,14 +166,14 @@ export default function SwapForm(props) {
                     />
                 </div>
                 <div className="swap-final-info">
-                    {current.commissionOfferAmount && (
+                   
                         <small>
-                            Commission: {current.commissionOfferAmount}
+                            Commission:  {commissionOfferAmount > 0 && (<>{commissionOfferAmount} UST</>)} 
                         </small>
-                    )}
-                    {current.spreadAmount && (
-                        <small>Spread: {current.spreadAmount}</small>
-                    )}
+                    
+                   
+                        <small>Spread:  {spreadAmount > 0 && (<>{spreadAmount} UST</>)}</small>
+                   
                 </div>
                 <div className="col-12 mb-3">
                     <button

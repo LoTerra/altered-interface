@@ -44,6 +44,8 @@
         border-radius: 100px;
         background: #303030;
         margin-bottom: 10px;
+        height: 30px;
+        margin-top: 20px;
         .progress-bar {
             color: #000;
             background: linear-gradient(
@@ -58,14 +60,16 @@
     }
     .prediction-intro {
         p {
-            color: #5f5f5f;
+            color: #d1e125;
             text-transform: uppercase;
-            margin: 15px 0 15px 0;
+            margin: 19px 0 15px 0;
+            text-shadow: 0px 0px 31px #d1e225;
+            font-size: 17px;
         }
     }
     .prediction-amount {
         color: #fff;
-        text-align: center;
+        text-align: left;
         p {
             color:$primary;
             text-transform:uppercase;
@@ -73,9 +77,9 @@
             font-size:11px;
         }
         span {
+            font-size: 30px;
             font-family: 'Cosmos';
-            font-weight: 600;
-            font-size: 21px;
+            font-weight:600;
             i {
                 font-size: 12px;
                 font-weight: 400;

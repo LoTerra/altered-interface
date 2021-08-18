@@ -409,7 +409,8 @@ export default () => {
                                 switchValuta={() => switchValuta()}
                                 doSwap={() => doSwap()}
                                 amount={amount}
-                                current={(commissionOfferAmount, spreadAmount)}
+                                commissionOfferAmount={commissionOfferAmount}
+                                spreadAmount={spreadAmount}
                                 inputChange={(e) => inputChange(e)}
                                 returnAmount={returnAmount}
                                 isNativeToken={isNativeToken}
