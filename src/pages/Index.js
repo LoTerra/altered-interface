@@ -12,7 +12,7 @@ import Countdown from '../components/Countdown'
 import CurrentPrice from '../components/CurrentPrice'
 import SwapForm from '../components/SwapForm'
 import Notification from '../components/Notification'
-import { Swap, Warning,ArrowSquareOut } from 'phosphor-react'
+import { Swap, Warning,ArrowSquareOut,ChartLine } from 'phosphor-react'
 
 
 let useConnectedWallet = {}
@@ -366,9 +366,8 @@ export default () => {
             <div className="col-12 text-center logo">
                 <h1>ALTERED</h1>
             </div>  
-            { connectedWallet && 
-            (
-                <div className="col-12 text-center">
+           
+                <div className="col-md-6 text-center text-md-end mb-4">
             <a
                                 href="https://docs.alteredprotocol.com"
                                 target="_blank"
@@ -384,9 +383,25 @@ export default () => {
                                 Learn more about <strong>Altered</strong>
                             </a>
             </div>
-            )
-            }
+            <div className="col-md-6 text-center text-md-start mb-4">
+        <a
+                                href="https://coinhall.org/charts/terra/terra18adm0emn6j3pnc90ldechhun62y898xrdmfgfz"
+                                target="_blank"
+                                className="btn btn-outline-secondary nav-item mx-3 learn-altered"
+                            >
+                                <ChartLine
+                                    size={18}
+                                    style={{
+                                        marginTop: '-4px',
+                                        marginRight: '4px',
+                                    }}
+                                />{' '}
+                                View chart on <strong>Coinhall</strong>
+                            </a>
         </div>
+
+        </div>
+        
             <div className="row order-3 order-lg-2">                           
                 <div className="col-12 col-lg-8 mx-auto">
                     <div className="row">
