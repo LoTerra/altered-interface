@@ -37,7 +37,7 @@ export default () => {
     const [predictedPrice, setPredictedPrice] = useState(0)
     const [predictedTotalSupply, setPredictedTotalSupply] = useState(0)
     const [price, setPrice] = useState(0)
-    const [stakingModal, setStakingModal] = useState(false)
+    const [stakingModal, setStakingModal] = useState(0)
     const [totalSupply, setTotalSupply] = useState(0)
     const [expiryTimestamp, setExpiryTimestamp] =
         useState(1) /** default timestamp need to be > 1 */
@@ -370,7 +370,7 @@ export default () => {
                 <h1>ALTERED</h1>
             </div>  
            
-                <div className="col-md-6 text-center text-md-end mb-4">
+                <div className="col-md-4 text-center text-md-end mb-4">
             <a
                                 href="https://docs.alteredprotocol.com"
                                 target="_blank"
@@ -386,7 +386,7 @@ export default () => {
                                 Learn more about <strong>Altered</strong>
                             </a>
             </div>
-            <div className="col-md-6 text-center text-md-start mb-4">
+            <div className="col-md-4 text-center text-md-start mb-4">
         <a
                                 href="https://coinhall.org/charts/terra/terra18adm0emn6j3pnc90ldechhun62y898xrdmfgfz"
                                 target="_blank"
@@ -400,6 +400,22 @@ export default () => {
                                     }}
                                 />{' '}
                                 View chart on <strong>Coinhall</strong>
+                            </a>
+        </div>
+
+        <div className="col-md-4 text-center text-md-start mb-4">
+        <a
+                                onClick={() => setStakingModal(!stakingModal)}                                
+                                className="btn btn-outline-secondary nav-item mx-3 learn-altered"
+                            >
+                                <ChartLine
+                                    size={18}
+                                    style={{
+                                        marginTop: '-4px',
+                                        marginRight: '4px',
+                                    }}
+                                />{' '}
+                                Stake ALTE
                             </a>
         </div>
 
@@ -463,7 +479,7 @@ export default () => {
                     </div>
                 </div>
             </div>
-            <StakingModal/>
+            <StakingModal open={stakingModal} toggleModal={() => setStakingModal(!stakingModal)}/>
             <Notification notification={notification} close={() => hideNotification()}/>
         </div>
     )
