@@ -12,7 +12,7 @@ import Countdown from '../components/Countdown'
 import CurrentPrice from '../components/CurrentPrice'
 import SwapForm from '../components/SwapForm'
 import Notification from '../components/Notification'
-import { Swap, Warning,ArrowSquareOut,ChartLine } from 'phosphor-react'
+import { Swap, Warning,ArrowSquareOut,ChartLine,Bank } from 'phosphor-react'
 import StakingModal from '../components/StakingModal'
 
 
@@ -388,6 +388,21 @@ export default () => {
             </div>
             <div className="col-md-4 text-center text-md-start mb-4">
         <a
+                                onClick={() => setStakingModal(!stakingModal)}                                
+                                className="btn btn-outline-secondary nav-item mx-3 learn-staking"
+                            >
+                                <Bank
+                                    size={18}
+                                    style={{
+                                        marginTop: '-4px',
+                                        marginRight: '4px',
+                                    }}
+                                />{' '}
+                                Stake ALTE
+                            </a>
+        </div>
+            <div className="col-md-4 text-center text-md-start mb-4">
+        <a
                                 href="https://coinhall.org/charts/terra/terra18adm0emn6j3pnc90ldechhun62y898xrdmfgfz"
                                 target="_blank"
                                 className="btn btn-outline-secondary nav-item mx-3 learn-altered"
@@ -402,22 +417,7 @@ export default () => {
                                 View chart on <strong>Coinhall</strong>
                             </a>
         </div>
-
-        <div className="col-md-4 text-center text-md-start mb-4">
-        <a
-                                onClick={() => setStakingModal(!stakingModal)}                                
-                                className="btn btn-outline-secondary nav-item mx-3 learn-altered"
-                            >
-                                <ChartLine
-                                    size={18}
-                                    style={{
-                                        marginTop: '-4px',
-                                        marginRight: '4px',
-                                    }}
-                                />{' '}
-                                Stake ALTE
-                            </a>
-        </div>
+        
 
         </div>
         
