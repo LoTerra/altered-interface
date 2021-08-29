@@ -12,8 +12,9 @@ import Countdown from '../components/Countdown'
 import CurrentPrice from '../components/CurrentPrice'
 import SwapForm from '../components/SwapForm'
 import Notification from '../components/Notification'
-import { Swap, Warning,ArrowSquareOut } from 'phosphor-react'
+import { Swap, Warning,ArrowSquareOut,ChartLine } from 'phosphor-react'
 import StakingModal from '../components/StakingModal'
+
 
 
 let useConnectedWallet = {}
@@ -25,7 +26,7 @@ if (typeof document !== 'undefined') {
 const altered_address = process.env.DEV == true ? process.env.ALTERED_ADDR_TESTNET : process.env.ALTERED_ADDR
 const alte_ust_pair = process.env.DEV == true ? process.env.POOL_ADDR_TESTNET : process.env.POOL_ADDR
 
-const fees = process.env.DEV == true ? new StdFee(400_000, { uusd: 60000 + 2000000 }) :new StdFee(600_000, { uusd: 90000 + 1520379 })
+const fees = process.env.DEV == true ? new StdFee(400_000, { uusd: 60000 + 2000000 }) :new StdFee(600_000, { uusd: 90000 + 1610379 })
 let api = {}
 
 export default () => {
@@ -368,9 +369,8 @@ export default () => {
             <div className="col-12 text-center logo">
                 <h1>ALTERED</h1>
             </div>  
-            { connectedWallet && 
-            (
-                <div className="col-12 text-center">
+           
+                <div className="col-md-6 text-center text-md-end mb-4">
             <a
                                 href="https://docs.alteredprotocol.com"
                                 target="_blank"
@@ -386,9 +386,25 @@ export default () => {
                                 Learn more about <strong>Altered</strong>
                             </a>
             </div>
-            )
-            }
+            <div className="col-md-6 text-center text-md-start mb-4">
+        <a
+                                href="https://coinhall.org/charts/terra/terra18adm0emn6j3pnc90ldechhun62y898xrdmfgfz"
+                                target="_blank"
+                                className="btn btn-outline-secondary nav-item mx-3 learn-altered"
+                            >
+                                <ChartLine
+                                    size={18}
+                                    style={{
+                                        marginTop: '-4px',
+                                        marginRight: '4px',
+                                    }}
+                                />{' '}
+                                View chart on <strong>Coinhall</strong>
+                            </a>
         </div>
+
+        </div>
+        
             <div className="row order-3 order-lg-2">                           
                 <div className="col-12 col-lg-8 mx-auto">
                     <div className="row">
