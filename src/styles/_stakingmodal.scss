@@ -1,0 +1,42 @@
+.staking-modal {
+    visibility: hidden;
+    width: 400px;
+    z-index: 3;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 200ms linear;
+    background: linear-gradient(328.75deg, #493C85 -5.49%, #0F0038 104.44%);
+    box-shadow: 0px 20px 56px #0f0038;
+    opacity: 0;
+    border-radius: 10px;
+    padding: 0px 0;
+    margin-top: -100px;
+
+    &.show {
+        opacity: 1;
+        margin-top: 0;
+        visibility: visible;
+    }
+}
+
+.backdrop {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    z-index: 2;
+    background: rgba(15, 0, 56, 0.6);
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    transition: all 200ms linear;
+
+    &.show {
+        opacity: 1;
+        visibility: visible;
+    }
+}

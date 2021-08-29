@@ -13,6 +13,7 @@ import CurrentPrice from '../components/CurrentPrice'
 import SwapForm from '../components/SwapForm'
 import Notification from '../components/Notification'
 import { Swap, Warning,ArrowSquareOut } from 'phosphor-react'
+import StakingModal from '../components/StakingModal'
 
 
 let useConnectedWallet = {}
@@ -35,6 +36,7 @@ export default () => {
     const [predictedPrice, setPredictedPrice] = useState(0)
     const [predictedTotalSupply, setPredictedTotalSupply] = useState(0)
     const [price, setPrice] = useState(0)
+    const [stakingModal, setStakingModal] = useState(false)
     const [totalSupply, setTotalSupply] = useState(0)
     const [expiryTimestamp, setExpiryTimestamp] =
         useState(1) /** default timestamp need to be > 1 */
@@ -445,6 +447,7 @@ export default () => {
                     </div>
                 </div>
             </div>
+            <StakingModal/>
             <Notification notification={notification} close={() => hideNotification()}/>
         </div>
     )
