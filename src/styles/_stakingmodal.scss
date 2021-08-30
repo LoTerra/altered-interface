@@ -14,7 +14,16 @@
     padding: 0px 0;
     height: 500px;
     margin-top: -100px;
-
+    .max-balance {
+        position: absolute;
+        font-size: 12px;
+        right: 0;
+        margin-right: 25px;
+        margin-top: -22px;
+        text-decoration: underline;
+        color:#fff;
+        opacity: 0.5;  
+    }
     h2 {
         text-align: center;
         font-family: 'Cosmos';

@@ -11,6 +11,8 @@ import {
 
 import { Wallet, CaretRight, ArrowSquareOut,Power } from 'phosphor-react'
 import numeral from 'numeral'
+import {useStore} from "../store";
+
 
 const altered_address = process.env.DEV == true ? process.env.ALTERED_ADDR_TESTNET : process.env.ALTERED_ADDR
 
@@ -46,6 +48,9 @@ export default function ConnectWallet() {
     const [yourPercentage, setYourPercentage] = useState(0)
     const [bankAlte, setBankAlte] = useState()
     const [connected, setConnected] = useState(false)
+
+    const {state, dispatch} = useStore();    
+
     let wallet = ''
     if (typeof document !== 'undefined') {
         wallet = useWallet()
@@ -121,6 +126,7 @@ export default function ConnectWallet() {
             setBank(ust)
             let alte = parseInt(token.balance) / 1000000
             setBankAlte(alte)
+            dispatch({type: "setBankAlte", message: alte})
 
             setTotalSupply(contractConfigInfo.total_supply)
             let share = token.balance * 100 / contractConfigInfo.total_supply
