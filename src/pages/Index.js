@@ -12,7 +12,7 @@ import Countdown from '../components/Countdown'
 import CurrentPrice from '../components/CurrentPrice'
 import SwapForm from '../components/SwapForm'
 import Notification from '../components/Notification'
-import { Swap, Warning,ArrowSquareOut } from 'phosphor-react'
+import { Swap, Warning,ArrowSquareOut,ChartLine } from 'phosphor-react'
 
 
 let useConnectedWallet = {}
@@ -24,7 +24,7 @@ if (typeof document !== 'undefined') {
 const altered_address = process.env.DEV == true ? process.env.ALTERED_ADDR_TESTNET : process.env.ALTERED_ADDR
 const alte_ust_pair = process.env.DEV == true ? process.env.POOL_ADDR_TESTNET : process.env.POOL_ADDR
 
-const fees = process.env.DEV == true ? new StdFee(400_000, { uusd: 60000 + 2000000 }) :new StdFee(600_000, { uusd: 90000 + 1520379 })
+const fees = process.env.DEV == true ? new StdFee(400_000, { uusd: 60000 + 2000000 }) :new StdFee(600_000, { uusd: 90000 + 1610379 })
 let api = {}
 
 export default () => {
@@ -362,13 +362,12 @@ export default () => {
 
     return (
         <div className="wrapper" style={{display:'flex',flexDirection:'column'}}>
-        <div className="row order-1">
+        <div className="row">
             <div className="col-12 text-center logo">
                 <h1>ALTERED</h1>
             </div>  
-            { connectedWallet && 
-            (
-                <div className="col-12 text-center">
+           
+                <div className="col-md-6 text-center text-md-end mb-4">
             <a
                                 href="https://docs.alteredprotocol.com"
                                 target="_blank"
@@ -384,13 +383,29 @@ export default () => {
                                 Learn more about <strong>Altered</strong>
                             </a>
             </div>
-            )
-            }
+            <div className="col-md-6 text-center text-md-start mb-4">
+        <a
+                                href="https://coinhall.org/charts/terra/terra18adm0emn6j3pnc90ldechhun62y898xrdmfgfz"
+                                target="_blank"
+                                className="btn btn-outline-secondary nav-item mx-3 learn-altered"
+                            >
+                                <ChartLine
+                                    size={18}
+                                    style={{
+                                        marginTop: '-4px',
+                                        marginRight: '4px',
+                                    }}
+                                />{' '}
+                                View chart on <strong>Coinhall</strong>
+                            </a>
         </div>
-            <div className="row order-3 order-lg-2">                           
-                <div className="col-12 col-lg-8 mx-auto">
+
+        </div>
+        
+            <div className="row">                           
+                <div className="col-12 col-lg-12 mx-auto">
                     <div className="row">
-                        <div className="col-lg-6 mb-4">
+                        <div className="col-lg-4 mb-4 order-2 order-lg-1">
                             <div className="card">
                                 <div className="card-body">
                                     <Countdown
@@ -403,27 +418,13 @@ export default () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-6 mb-4">
-                            <div className="card h-100">
-                                <div className="card-body">
-                                    <CurrentPrice
-                                        price={price}
-                                        total={totalSupply}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="row order-2 order-lg-3">
-                <div className="col-lg-4 mb-4 mx-auto">
+                        <div className="col-lg-4 mb-4 order-1 order-lg-2">
                     <div className="card special">
                         <div className="card-body">
                         {process.env.DEV == true &&
                     <span className="badge bg-primary" style={{color:'#000', fontSize:'18px', display:'block',marginBottom:'15px'}}><Warning size={21} style={{position:'relative',top:'-2px'}}/> Testnet mode</span>
                 }
-                            <h2>Make your move</h2>
+                            <h2>SWAP</h2>
                           
                             <SwapForm                                
                                 switchValuta={() => switchValuta()}
@@ -444,7 +445,20 @@ export default () => {
                         </div>
                     </div>
                 </div>
+                        <div className="col-lg-4 order-3 mb-4">
+                            <div className="card h-100">
+                                <div className="card-body">
+                                    <CurrentPrice
+                                        price={price}
+                                        total={totalSupply}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            
             <Notification notification={notification} close={() => hideNotification()}/>
         </div>
     )

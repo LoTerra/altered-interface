@@ -181,21 +181,7 @@ export default function ConnectWallet() {
             <div className="container-fluid">
                 <div className="navbar-nav ms-auto">
                     {!connectedWallet && (
-                        <>
-                            <a
-                                href="https://docs.alteredprotocol.com"
-                                target="_blank"
-                                className="btn btn-outline-secondary nav-item mx-3"
-                            >
-                                <ArrowSquareOut
-                                    size={18}
-                                    style={{
-                                        marginTop: '-4px',
-                                        marginRight: '4px',
-                                    }}
-                                />{' '}
-                                Docs
-                            </a>
+                        <>                           
                             <div className="btn-group">
                                 <button
                                     className="btn btn-outline-primary nav-item dropdown-toggle"
