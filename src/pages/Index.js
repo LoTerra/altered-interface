@@ -127,7 +127,7 @@ export default () => {
 
     function inputChange(e) {
         // e.preventDefault();
-        let swapAmount = e.target.value
+        let swapAmount = parseInt(e.target.value)
         setAmount(swapAmount)
         console.log(amount)
     }
