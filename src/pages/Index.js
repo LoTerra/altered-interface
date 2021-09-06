@@ -155,7 +155,7 @@ export default () => {
         const contractSimulationInfo = await api.contractQuery(alte_ust_pair, {
             simulation: {
                 offer_asset: {
-                    amount: String(amount * 1000000),
+                    amount: String((amount * 1000000).toFixed()),
                     info: {
                         native_token: {
                             denom: 'uusd',
@@ -214,7 +214,7 @@ export default () => {
         const contractSimulationInfo = await api.contractQuery(alte_ust_pair, {
             simulation: {
                 offer_asset: {
-                    amount: String(amount * 1000000),
+                    amount: String((amount * 1000000).toFixed()),
                     info: {
                         token: {
                             contract_addr: altered_address,
