@@ -18,10 +18,13 @@
                 rgba(0, 0, 0, 0) 146.58%
             ),
             #171717;
+            box-shadow: 0px 0px 90px #d3e04730;
+            border: 1px solid #313131;
         h2 {
             text-align: center;
             font-family: 'Cosmos';
             color: $primary;
+            font-size: 80px;
             background: linear-gradient(
                     180deg,
                     rgba(208, 224, 39, 0.2) -0.05%,
@@ -33,7 +36,15 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             filter: drop-shadow(0px 0px 14px rgba(208, 224, 39, 0.39));
-            margin-bottom: 20px;
+            margin-bottom:35px;
+        }
+        .slogan {
+            margin-bottom: 40px;
+    margin-top: -12px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #b8b8b88f;
+    font-family: 'Oswald', sans-serif;
         }
     }
 }

@@ -362,7 +362,7 @@ export default () => {
 
     return (
         <div className="wrapper" style={{display:'flex',flexDirection:'column'}}>
-        <div className="row order-1">
+        <div className="row">
             <div className="col-12 text-center logo">
                 <h1>ALTERED</h1>
             </div>  
@@ -402,10 +402,10 @@ export default () => {
 
         </div>
         
-            <div className="row order-3 order-lg-2">                           
-                <div className="col-12 col-lg-8 mx-auto">
+            <div className="row">                           
+                <div className="col-12 col-lg-12 mx-auto">
                     <div className="row">
-                        <div className="col-lg-6 mb-4">
+                        <div className="col-lg-4 mb-4 order-2 order-lg-1">
                             <div className="card">
                                 <div className="card-body">
                                     <Countdown
@@ -418,28 +418,14 @@ export default () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-6 mb-4">
-                            <div className="card h-100">
-                                <div className="card-body">
-                                    <CurrentPrice
-                                        price={price}
-                                        total={totalSupply}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="row order-2 order-lg-3">
-                <div className="col-lg-4 mb-4 mx-auto">
+                        <div className="col-lg-4 mb-4 order-1 order-lg-2">
                     <div className="card special">
                         <div className="card-body">
                         {process.env.DEV == true &&
                     <span className="badge bg-primary" style={{color:'#000', fontSize:'18px', display:'block',marginBottom:'15px'}}><Warning size={21} style={{position:'relative',top:'-2px'}}/> Testnet mode</span>
                 }
-                            <h2>Make your move</h2>
-                          
+                            <h2>SWAP</h2>
+                            {/* <p className="slogan">Easily swap UST to ALTE</p> */}
                             <SwapForm                                
                                 switchValuta={() => switchValuta()}
                                 doSwap={() => doSwap()}
@@ -459,7 +445,20 @@ export default () => {
                         </div>
                     </div>
                 </div>
+                        <div className="col-lg-4 order-3 mb-4">
+                            <div className="card h-100">
+                                <div className="card-body">
+                                    <CurrentPrice
+                                        price={price}
+                                        total={totalSupply}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            
             <Notification notification={notification} close={() => hideNotification()}/>
         </div>
     )
