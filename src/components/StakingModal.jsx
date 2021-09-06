@@ -15,7 +15,11 @@ export default function StakingModal(props) {
     const doStake = (type) => {
         if(type == 'stake'){
             //Do stake
-        } else {
+        }
+        if(type == 'lpstake'){
+            //Do lpstake
+        }
+        if(type == 'unstake'){
             //Do unstake
         }
     }
@@ -31,11 +35,15 @@ export default function StakingModal(props) {
                             <div className="col-12 mb-3">                                
                                 <input type="number" step="any" className="form-control"/>
                             </div>
-                            <div className="col-6 mb-3 position-relative">
+                            <div className="col-4 mb-3 position-relative">
                                 <span className="max-balance">MAX: {numeral(state.bankAlte).format('0.00')} ALTE</span>
                                 <button className="btn btn-default w-100" onClick={() => doStake('stake')}>Stake</button>
                             </div>
-                            <div className="col-6 mb-3 position-relative"> 
+                            <div className="col-4 mb-3 position-relative">
+                                <span className="max-balance">MAX: {numeral(state.bankAlte).format('0.00')} ALTE</span>
+                                <button className="btn btn-default w-100" onClick={() => doStake('lpstake')}>LP Stake</button>
+                            </div>
+                            <div className="col-4 mb-3 position-relative"> 
                                 <span className="max-balance">MAX: 0.00 ALTE</span>
                                 <button className="btn btn-default w-100" onClick={() => doStake('unstake')}>Unstake</button>
                             </div>

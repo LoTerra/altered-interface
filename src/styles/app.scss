@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
 
+* {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
+
 html {
     height: 100%;
 }
@@ -18,6 +23,8 @@ body {
     height: 100%;
     overflow-x: hidden;
 }
+
+
 
 .logo {
     margin:25px 0;
