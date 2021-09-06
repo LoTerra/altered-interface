@@ -127,7 +127,7 @@ export default () => {
 
     function inputChange(e) {
         // e.preventDefault();
-        let swapAmount = parseInt(e.target.value)
+        let swapAmount = e.target.value
         setAmount(swapAmount)
         console.log(amount)
     }
@@ -425,7 +425,7 @@ export default () => {
                     <span className="badge bg-primary" style={{color:'#000', fontSize:'18px', display:'block',marginBottom:'15px'}}><Warning size={21} style={{position:'relative',top:'-2px'}}/> Testnet mode</span>
                 }
                             <h2>SWAP</h2>
-                            {/* <p className="slogan">Easily swap UST to ALTE</p> */}
+                          
                             <SwapForm                                
                                 switchValuta={() => switchValuta()}
                                 doSwap={() => doSwap()}
