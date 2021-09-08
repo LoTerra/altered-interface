@@ -118,6 +118,10 @@ export default function SwapForm(props) {
     return (
         <div className="swap-form">
             <div className="row">
+                <div className="col-12">
+                <p className="input-heading">The amount you want to swap</p>
+                <p className="input-slogan mb-4">Easily change token by using the  <Swap size={18} color={'#DCEF14'} /> button</p>
+                </div>
                 {/* <div className="col-12 text-center mb-5">
                     <h3>Swap</h3>
                 </div> */}

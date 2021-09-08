@@ -13,7 +13,7 @@ import CurrentPrice from '../components/CurrentPrice'
 import SwapForm from '../components/SwapForm'
 import Notification from '../components/Notification'
 import { Swap, Warning,ArrowSquareOut,ChartLine,Bank } from 'phosphor-react'
-import StakingModal from '../components/StakingModal'
+import StakingForm from '../components/StakingForm'
 
 
 
@@ -158,7 +158,7 @@ export default () => {
         const contractSimulationInfo = await api.contractQuery(alte_ust_pair, {
             simulation: {
                 offer_asset: {
-                    amount: String(amount * 1000000),
+                    amount: String((amount * 1000000).toFixed()),
                     info: {
                         native_token: {
                             denom: 'uusd',
@@ -217,7 +217,7 @@ export default () => {
         const contractSimulationInfo = await api.contractQuery(alte_ust_pair, {
             simulation: {
                 offer_asset: {
-                    amount: String(amount * 1000000),
+                    amount: String((amount * 1000000).toFixed()),
                     info: {
                         token: {
                             contract_addr: altered_address,
@@ -365,12 +365,13 @@ export default () => {
 
     return (
         <div className="wrapper" style={{display:'flex',flexDirection:'column'}}>
-        <div className="row order-1">
+        <div className="row">
             <div className="col-12 text-center logo">
                 <h1>ALTERED</h1>
+                <p>Terras first syntethic token</p>
             </div>  
            
-                <div className="col-md-4 text-center text-md-end mb-4">
+                <div className="col-md-6 text-center text-md-end mb-4">
             <a
                                 href="https://docs.alteredprotocol.com"
                                 target="_blank"
@@ -385,23 +386,8 @@ export default () => {
                                 />{' '}
                                 Learn more about <strong>Altered</strong>
                             </a>
-            </div>
-            <div className="col-md-4 text-center text-md-start mb-4">
-        <a
-                                onClick={() => setStakingModal(!stakingModal)}                                
-                                className="btn btn-outline-secondary nav-item mx-3 learn-staking"
-                            >
-                                <Bank
-                                    size={18}
-                                    style={{
-                                        marginTop: '-4px',
-                                        marginRight: '4px',
-                                    }}
-                                />{' '}
-                                Stake ALTE
-                            </a>
-        </div>
-            <div className="col-md-4 text-center text-md-start mb-4">
+            </div>     
+            <div className="col-md-6 text-center text-md-start mb-4">
         <a
                                 href="https://coinhall.org/charts/terra/terra18adm0emn6j3pnc90ldechhun62y898xrdmfgfz"
                                 target="_blank"
@@ -421,43 +407,16 @@ export default () => {
 
         </div>
         
-            <div className="row order-3 order-lg-2">                           
-                <div className="col-12 col-lg-8 mx-auto">
+            <div className="row">                           
+                <div className="col-12 col-lg-12 mx-auto">
                     <div className="row">
-                        <div className="col-lg-6 mb-4">
-                            <div className="card">
-                                <div className="card-body">
-                                    <Countdown
-                                        expiryTimestamp={expiryTimestamp}
-                                        predictedPrice={predictedPrice}
-                                        predictedTotalSupply={predictedTotalSupply}
-                                        doRebase={() => rebase()}
-                                        loading={isLoaded}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-6 mb-4">
-                            <div className="card h-100">
-                                <div className="card-body">
-                                    <CurrentPrice
-                                        price={price}
-                                        total={totalSupply}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="row order-2 order-lg-3">
-                <div className="col-lg-4 mb-4 mx-auto">
+                    <div className="col-lg-4 mb-4">
                     <div className="card special">
                         <div className="card-body">
                         {process.env.DEV == true &&
                     <span className="badge bg-primary" style={{color:'#000', fontSize:'18px', display:'block',marginBottom:'15px'}}><Warning size={21} style={{position:'relative',top:'-2px'}}/> Testnet mode</span>
                 }
-                            <h2>Make your move</h2>
+                            <h2>SWAP</h2>
                           
                             <SwapForm                                
                                 switchValuta={() => switchValuta()}
@@ -477,9 +436,39 @@ export default () => {
                                 </div> */}
                         </div>
                     </div>
+                </div>       
+                <div className="col-lg-4 mb-4">
+                            <div className="card h-100">
+                                <div className="card-body">
+                                    <CurrentPrice
+                                        price={price}
+                                        total={totalSupply}
+                                    />
+                                    <Countdown
+                                        expiryTimestamp={expiryTimestamp}
+                                        predictedPrice={predictedPrice}
+                                        predictedTotalSupply={predictedTotalSupply}
+                                        doRebase={() => rebase()}
+                                        loading={isLoaded}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-lg-4 mb-4">
+                    <StakingForm showNotification={(message,type,dur) => showNotification(message,type,dur)} />
+                </div>         
+                        {/* <div className="col-lg-4 mb-4">
+                            <div className="card">
+                                <div className="card-body">
+                                    
+                                </div>
+                            </div>
+                        </div> */}
+                
+                        
+                    </div>
                 </div>
             </div>
-            <StakingModal open={stakingModal} toggleModal={() => setStakingModal(!stakingModal)}/>
             <Notification notification={notification} close={() => hideNotification()}/>
         </div>
     )

@@ -83,6 +83,7 @@ export default function ConnectWallet() {
         } else if (to == 'mobile') {
             wallet.connect(wallet.availableConnectTypes[2])
         } else if (to == 'disconnect') {
+            dispatch({type: "setWallet", message: {}})  
             wallet.disconnect()
         }
         setConnected(!connected)
@@ -91,6 +92,8 @@ export default function ConnectWallet() {
     async function contactBalance() {
         if (connectedWallet && connectedWallet.walletAddress && lcd) {
             //   setShowConnectOptions(false);
+            dispatch({type: "setWallet", message: connectedWallet})    
+
             let coins
             let token
             let contractConfigInfo
@@ -131,6 +134,40 @@ export default function ConnectWallet() {
             setTotalSupply(contractConfigInfo.total_supply)
             let share = token.balance * 100 / contractConfigInfo.total_supply
             setYourPercentage(share)
+
+            const tokenLP = await api.contractQuery(
+                state.alteLPAddress,
+                {
+                    balance: { address: connectedWallet.walletAddress},
+                })
+            dispatch({type: "setLPBalance", message: tokenLP})
+            
+            console.log(tokenLP)
+            const LPHolderAccruedRewards = await api.contractQuery(
+                state.alteStakingLPAddress,
+                {
+                    accrued_rewards: { address: connectedWallet.walletAddress },
+                }
+            );
+            dispatch({type: "setLPHolderAccruedRewards", message: LPHolderAccruedRewards.rewards})
+
+            const holderLP = await api.contractQuery(
+                state.alteStakingLPAddress,
+                {
+                    holder: { address: connectedWallet.walletAddress },
+                }
+            );
+            dispatch({type: "setAllHolderLP", message: holderLP})
+
+            const claimsLP = await api.contractQuery(
+                state.alteStakingLPAddress,
+                {
+                    claims: { address: connectedWallet.walletAddress },
+                }
+            );
+
+            dispatch({type: "setHolderClaimsLP", message: claimsLP.claims})
+
             // connectTo("extension")
             setConnected(true)
         } else {

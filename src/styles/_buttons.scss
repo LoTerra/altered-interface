@@ -63,7 +63,7 @@
         color: #fff;
         border-radius: 7px;
         border: 1px solid #252525;
-        font-family: 'Oswald', sans-serif;
+        font-family: 'Cosmos';
         font-size: 19px;
         text-transform: uppercase;
         background: linear-gradient(
@@ -73,5 +73,17 @@
             position:relative;
             top:-3px;
         }
+    }
+    &.btn-secondary {
+        color: #000;
+        border-radius: 7px;
+        border: 1px solid #d0e027;
+        font-family: 'Cosmos';
+        font-size: 19px;
+        text-transform: uppercase;
+        background: linear-gradient(
+180deg
+, rgba(208, 224, 39, 0.2) -0.05%, rgba(220, 239, 20, 0.2) 47.89%, rgba(91, 97, 31, 0.2) 47.9%, rgba(233, 255, 0, 0.2) 100%), #d0e027;
+    color: #000;
     }
 }
