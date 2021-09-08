@@ -202,8 +202,7 @@ export default function LpStaking(props){
                                     (<>{numeral(parseInt(state.LPHolderAccruedRewards) / 1000000).format('0.00000')} LOTA</>)
                                     }</p>
                         <button className="btn btn-secondary w-100 mb-3" disabled={state.LPHolderAccruedRewards <= 0 ? true : false} onClick={()=> claimLPRewards()}
-                            style={{marginTop:'10px'}}>Claim Rewards
-                            unstake</button>
+                            style={{marginTop:'10px'}}>Claim Rewards</button>
                         <p className="input-heading">Claim unstake</p>
                             <p className="input-slogan">Unbonding period of 700,000 block height ~1.5 | 2 Months, ⚠️ unbonding token get no rewards</p>
                         <button className="btn btn-default w-100" onClick={()=> claimUnstake()}
