@@ -24,11 +24,16 @@ a {
     color: $primary;
 }
 
+.text-muted {
+    color: #6d6d6d !important;
+}
+
 @import './buttons';
 @import './cards';
 @import './countdown';
 @import './currentprice';
 @import './swapform';
 @import './notifications';
+@import './stakingform';
 @import './footer';
 @import './app.scss';

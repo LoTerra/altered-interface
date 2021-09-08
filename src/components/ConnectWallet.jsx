@@ -11,6 +11,8 @@ import {
 
 import { Wallet, CaretRight, ArrowSquareOut,Power } from 'phosphor-react'
 import numeral from 'numeral'
+import {useStore} from "../store";
+
 
 const altered_address = process.env.DEV == true ? process.env.ALTERED_ADDR_TESTNET : process.env.ALTERED_ADDR
 
@@ -46,6 +48,9 @@ export default function ConnectWallet() {
     const [yourPercentage, setYourPercentage] = useState(0)
     const [bankAlte, setBankAlte] = useState()
     const [connected, setConnected] = useState(false)
+
+    const {state, dispatch} = useStore();    
+
     let wallet = ''
     if (typeof document !== 'undefined') {
         wallet = useWallet()
@@ -78,6 +83,7 @@ export default function ConnectWallet() {
         } else if (to == 'mobile') {
             wallet.connect(wallet.availableConnectTypes[2])
         } else if (to == 'disconnect') {
+            dispatch({type: "setWallet", message: {}})  
             wallet.disconnect()
         }
         setConnected(!connected)
@@ -86,12 +92,14 @@ export default function ConnectWallet() {
     async function contactBalance() {
         if (connectedWallet && connectedWallet.walletAddress && lcd) {
             //   setShowConnectOptions(false);
+            dispatch({type: "setWallet", message: connectedWallet})    
+
             let coins
             let token
             let contractConfigInfo
 
             try {
-                const api = new WasmAPI(lcd.apiRequester);
+                api = new WasmAPI(lcd.apiRequester);
                 coins = await lcd.bank.balance(connectedWallet.walletAddress)
 
                 token = await api.contractQuery(altered_address, {
@@ -121,10 +129,45 @@ export default function ConnectWallet() {
             setBank(ust)
             let alte = parseInt(token.balance) / 1000000
             setBankAlte(alte)
+            dispatch({type: "setBankAlte", message: alte})
 
             setTotalSupply(contractConfigInfo.total_supply)
             let share = token.balance * 100 / contractConfigInfo.total_supply
             setYourPercentage(share)
+
+            const tokenLP = await api.contractQuery(
+                state.alteLPAddress,
+                {
+                    balance: { address: connectedWallet.walletAddress},
+                })
+            dispatch({type: "setLPBalance", message: tokenLP})
+            
+            console.log(tokenLP)
+            const LPHolderAccruedRewards = await api.contractQuery(
+                state.alteStakingLPAddress,
+                {
+                    accrued_rewards: { address: connectedWallet.walletAddress },
+                }
+            );
+            dispatch({type: "setLPHolderAccruedRewards", message: LPHolderAccruedRewards.rewards})
+
+            const holderLP = await api.contractQuery(
+                state.alteStakingLPAddress,
+                {
+                    holder: { address: connectedWallet.walletAddress },
+                }
+            );
+            dispatch({type: "setAllHolderLP", message: holderLP})
+
+            const claimsLP = await api.contractQuery(
+                state.alteStakingLPAddress,
+                {
+                    claims: { address: connectedWallet.walletAddress },
+                }
+            );
+
+            dispatch({type: "setHolderClaimsLP", message: claimsLP.claims})
+
             // connectTo("extension")
             setConnected(true)
         } else {
@@ -136,7 +179,7 @@ export default function ConnectWallet() {
         if(connectedWallet){
             contactBalance()  
         }   
-    }, [connectedWallet, lcd])
+    }, [connectedWallet, lcd, state.config])
 
     function renderDialog() {
         if (isDisplayDialog) {

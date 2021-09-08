@@ -50,9 +50,9 @@ if (typeof document !== 'undefined') {
                 }}
             >
                 <AppContainer>
-                    <Provider store={store}>
+                    {/* <Provider store={store}> */}
                         <Comp />
-                    </Provider>
+                    {/* </Provider> */}
                 </AppContainer>
             </Wallet>,
             target

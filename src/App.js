@@ -12,6 +12,8 @@ if (typeof document !== 'undefined') {
     bootstrap = require('bootstrap')
 }
 
+import { StoreProvider } from "./store";
+
 class App extends Component {
     render() {
         return (
@@ -19,7 +21,7 @@ class App extends Component {
               <div className="align-self-center w-100 text-center">
               <h1 style={{fontSize:'75px', marginBottom:'0'}}>ALTERED</h1>
                 <p style={{                
-                textTransform: 'uppercase',
+                textTransform: 'uppercase', 
                 fontSize: '18px',  
                 color:'#fff',
                 fontFamily: 'Cosmos',     
@@ -31,10 +33,7 @@ class App extends Component {
                 <Root>
                     <Head>
                         <meta charSet="UTF-8" />
-                        <meta
-                            name="viewport"
-                            content="width=device-width, initial-scale=1"
-                        />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/> 
                         <title>Altered protocol</title>
                         <link
                             rel="shortcut icon"
@@ -62,11 +61,13 @@ class App extends Component {
                             content="Altered protocol is a synthetic commodity-money with near-perfect supply elasticity on Terra. Supply is elastic and can change every day while the ownership of the ALTE tokens is never diluted"
                         />
                     </Head>
+                    <StoreProvider>
                     <Navbar />
                     <div className="container">
                         <Routes default />
                     </div>
                     <Footer />
+                    </StoreProvider>
                 </Root>
             </Suspense>
         )

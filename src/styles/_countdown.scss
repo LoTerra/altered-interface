@@ -1,6 +1,7 @@
 .countdown {
     font-family: 'Oswald', sans-serif;
     .title {
+        margin-top:25px;
         color: $primary;
         margin-bottom: 15px;
         -webkit-animation: flickerAnimation 1s infinite;
