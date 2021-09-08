@@ -30,10 +30,10 @@ export default function LpStaking(props){
         if(type == 'stake'){
             msg = new MsgExecuteContract(
                 state.wallet.walletAddress,
-                state.loterraLPAddress,
+                state.alteLPAddress,
                 {
                   send: {
-                    contract: state.loterraStakingLPAddress,
+                    contract: state.alteStakingLPAddress,
                     amount: amount.toString(),
                     msg: 'eyAiYm9uZF9zdGFrZSI6IHt9IH0=',
                   },
@@ -42,7 +42,7 @@ export default function LpStaking(props){
         } else {
             msg = new MsgExecuteContract(
                 state.wallet.walletAddress,
-                state.loterraStakingLPAddress,
+                state.alteStakingLPAddress,
                 {
                   unbond_stake: { amount: amount.toString() },
                 }
@@ -100,7 +100,7 @@ export default function LpStaking(props){
     function claimUnstake() {
         const msg = new MsgExecuteContract(
             state.wallet.walletAddress,
-            state.loterraStakingLPAddress,
+            state.alteStakingLPAddress,
             {
               withdraw_stake: {},
             }
@@ -127,7 +127,7 @@ export default function LpStaking(props){
         <div className="row">
             <div className="col-md-12">
                 <p className="input-heading">The amount you want to LP Stake</p>
-                <p className="input-slogan">Provide liquidity on pair ALTE-UST and stake your LP token to share: 273.00 ALTE daily rewards | 100,000.00 ALTE year rewards</p>
+                <p className="input-slogan">Provide liquidity on pair ALTE-UST and stake your LP token to share: 410.00 ALTE daily rewards | 150,000.00 ALTE year rewards</p>
                 <div className="input-group mb-3">
                 <span className="input-group-text" id="basic-addon1"><img src="/ALTEUST.png" width="30px" className="img-fluid"/></span>
                 <input type="number" className="form-control amount-input-lpstaking" autoComplete="off" placeholder="0.00"  name="amount" />
@@ -157,7 +157,7 @@ export default function LpStaking(props){
                 <small className="float-end text-muted mt-2">Available: <strong style={{textDecoration:'underline'}} onClick={()=> setInputAmount(parseInt(state.LPBalance.balance))}>{ state.wallet &&
                         state.wallet.walletAddress &&
                         (<>{(numeral(parseInt(state.LPBalance.balance) / 1000000).format('0.00'))}</>)
-                        } ALTE</strong></small>
+                        } LP token</strong></small>
             </div>
             <div className="col-6 my-3">
         
@@ -166,7 +166,7 @@ export default function LpStaking(props){
                 <small className="float-end text-muted mt-2">Available: <strong style={{textDecoration:'underline'}} onClick={()=> setInputAmount(state.allHolderLP.balance)}>{ state.wallet &&
                         state.wallet.walletAddress &&
                         (<>{numeral(parseInt(state.allHolderLP.balance) / 1000000).format('0.00')}</>)
-                        } ALTE</strong></small>
+                        } LP token</strong></small>
             </div>
             
             <div className="col-md-12 my-3">
@@ -180,13 +180,13 @@ export default function LpStaking(props){
                         <span className="info">
                             <Info size={14} weight="fill" className="me-1" />
                             Your pending claim amount available soon:
-                            <strong> {pendingClaim()} ALTE</strong>
+                            <strong> {pendingClaim()} LP token</strong>
                         </span>
                         <small className="float-end text-muted mt-2">Available: <strong>
                                 {
                                 state.wallet && state.wallet.walletAddress && claimInfo()
                                 }
-                                ALTE</strong></small>
+                                LP token</strong></small>
                         </div>
             </div>
 

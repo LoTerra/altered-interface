@@ -179,7 +179,7 @@ export default function ConnectWallet() {
         if(connectedWallet){
             contactBalance()  
         }   
-    }, [connectedWallet, lcd])
+    }, [connectedWallet, lcd, state.config])
 
     function renderDialog() {
         if (isDisplayDialog) {
