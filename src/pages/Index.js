@@ -367,7 +367,7 @@ export default () => {
         <div className="row">
             <div className="col-12 text-center logo">
                 <h1>ALTERED</h1>
-                <p>Terras first synthetic token</p>
+                <p>Terras first elastic token</p>
             </div>  
            
                 <div className="col-md-6 text-center text-md-end mb-4">

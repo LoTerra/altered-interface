@@ -123,6 +123,32 @@ export default function LpStaking(props){
         })
     }
 
+    function claimLPRewards() {
+        const msg = new MsgExecuteContract(
+            state.wallet.walletAddress,
+            state.alteStakingLPAddress,
+            {
+                claim_rewards: {},
+            }
+        )
+        state.wallet.post({
+            msgs: [msg],
+            fee: obj
+            // gasPrices: obj.gasPrices(),
+            // gasAdjustment: 1.5,
+        }).then(e => {
+            if (e.success) {
+                showNotification('Claim rewards succes','success',4000)
+            }
+            else{
+                console.log(e)
+            }
+        }).catch(e =>{
+            console.log(e.message)
+            showNotification(e.message,'error',4000)
+        })
+    }
+
     return (
         <div className="row">
             <div className="col-md-12">
@@ -171,6 +197,13 @@ export default function LpStaking(props){
             
             <div className="col-md-12 my-3">
                         <div className="claim-unstake">
+                        <p className="input-heading">Claim rewards</p>
+                        <p className="rewards-counter w-100 mb-0">{ state.wallet && state.wallet.walletAddress &&
+                                    (<>{numeral(parseInt(state.LPHolderAccruedRewards) / 1000000).format('0.00000')} LOTA</>)
+                                    }</p>
+                        <button className="btn btn-secondary w-100 mb-3" disabled={state.LPHolderAccruedRewards <= 0 ? true : false} onClick={()=> claimLPRewards()}
+                            style={{marginTop:'10px'}}>Claim Rewards
+                            unstake</button>
                         <p className="input-heading">Claim unstake</p>
                             <p className="input-slogan">Unbonding period of 700,000 block height ~1.5 | 2 Months, ⚠️ unbonding token get no rewards</p>
                         <button className="btn btn-default w-100" onClick={()=> claimUnstake()}
