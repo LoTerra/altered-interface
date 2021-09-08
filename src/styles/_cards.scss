@@ -51,7 +51,9 @@
             margin: 0;
             font-weight: normal;
             text-transform: uppercase;
-       
+            @media (max-width: 515px) {
+                font-size:16px;
+            }
         }
 
         .input-slogan {

@@ -39,6 +39,12 @@ body {
         font-weight: 100;
         font-family: 'Oswald', sans-serif;
         letter-spacing: 10px;
+        @media (max-width: 515px) {
+        font-size: 16px;
+        margin-top: -30px;
+        margin-bottom: 46px;
+        letter-spacing: 4px;
+        }
     }
     @media(max-width:660px){
         margin:0;
@@ -126,6 +132,17 @@ input[type='number'] {
         color: #fff;
     }
 }
+
+.info {
+    font-size: 12px;
+    border: 1px solid #3c3c3c;
+    padding: 8px;
+    background: #0c0c0ca3;
+    display: block;
+    border-radius: 10px;
+    margin: 5px 0;
+    color: #ffffff73;
+  }
 
 .loading_animation{
     animation-name: flickerAnimation;

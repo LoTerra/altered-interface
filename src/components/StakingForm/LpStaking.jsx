@@ -128,8 +128,8 @@ export default function LpStaking(props){
             <div className="col-md-12">
                 <p className="input-heading">The amount you want to LP Stake</p>
                 <p className="input-slogan">Provide liquidity on pair ALTE-UST and stake your LP token to share: 273.00 ALTE daily rewards | 100,000.00 ALTE year rewards</p>
-                <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1"><img src="/ALTEUST.png" width="30px" className="img-fluid"/></span>
+                <div className="input-group mb-3">
+                <span className="input-group-text" id="basic-addon1"><img src="/ALTEUST.png" width="30px" className="img-fluid"/></span>
                 <input type="number" className="form-control amount-input-lpstaking" autoComplete="off" placeholder="0.00"  name="amount" />
                 </div>
             </div>
@@ -174,7 +174,7 @@ export default function LpStaking(props){
                         <p className="input-heading">Claim unstake</p>
                             <p className="input-slogan">Unbonding period of 700,000 block height ~1.5 | 2 Months, ⚠️ unbonding token get no rewards</p>
                         <button className="btn btn-default w-100" onClick={()=> claimUnstake()}
-                            style={{marginTop:'21px'}}>Claim
+                            style={{marginTop:'10px'}}>Claim
                             unstake</button>
                         {/* If unstake claiming condition */}
                         <span className="info">

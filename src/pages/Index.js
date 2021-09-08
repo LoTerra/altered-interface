@@ -368,14 +368,14 @@ export default () => {
         <div className="row">
             <div className="col-12 text-center logo">
                 <h1>ALTERED</h1>
-                <p>Terras first syntethic token</p>
+                <p>Terras first synthetic token</p>
             </div>  
            
                 <div className="col-md-6 text-center text-md-end mb-4">
             <a
                                 href="https://docs.alteredprotocol.com"
                                 target="_blank"
-                                className="btn btn-outline-secondary nav-item mx-3 learn-altered"
+                                className="btn btn-outline-secondary nav-item mx-lg-3 learn-altered"
                             >
                                 <ArrowSquareOut
                                     size={18}
@@ -391,7 +391,7 @@ export default () => {
         <a
                                 href="https://coinhall.org/charts/terra/terra18adm0emn6j3pnc90ldechhun62y898xrdmfgfz"
                                 target="_blank"
-                                className="btn btn-outline-secondary nav-item mx-3 learn-altered"
+                                className="btn btn-outline-secondary nav-item mx-lg-3 learn-altered"
                             >
                                 <ChartLine
                                     size={18}
@@ -455,8 +455,8 @@ export default () => {
                             </div>
                         </div>
                         <div className="col-lg-4 mb-4">
-                    <StakingForm showNotification={(message,type,dur) => showNotification(message,type,dur)} />
-                </div>         
+                            <StakingForm showNotification={(message,type,dur) => showNotification(message,type,dur)} />
+                        </div>         
                         {/* <div className="col-lg-4 mb-4">
                             <div className="card">
                                 <div className="card-body">
