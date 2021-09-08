@@ -153,7 +153,7 @@ export default function LpStaking(props){
         <div className="row">
             <div className="col-md-12">
                 <p className="input-heading">The amount you want to LP Stake</p>
-                <p className="input-slogan">Provide liquidity on pair ALTE-UST and stake your LP token to share: 410.00 ALTE daily rewards | 150,000.00 ALTE year rewards</p>
+                <p className="input-slogan">Provide liquidity on Terraswap for pair ALTE-UST and stake your LP token to share: 410.00 LOTA daily rewards | 150,000.00 LOTA year rewards</p>
                 <div className="input-group mb-3">
                 <span className="input-group-text" id="basic-addon1"><img src="/ALTEUST.png" width="30px" className="img-fluid"/></span>
                 <input type="number" className="form-control amount-input-lpstaking" autoComplete="off" placeholder="0.00"  name="amount" />
@@ -179,7 +179,7 @@ export default function LpStaking(props){
             </div>*/}
             <div className="col-6 my-3">
                
-                <button className="btn btn-secondary w-100" onClick={()=> stakeOrUnstake('stake')}>Stake</button>
+                <button className="btn btn-secondary w-100" onClick={()=> stakeOrUnstake('stake')}>Stake Now (⚠️ REWARDS COMING SOON)</button>
                 <small className="float-end text-muted mt-2">Available: <strong style={{textDecoration:'underline'}} onClick={()=> setInputAmount(parseInt(state.LPBalance.balance))}>{ state.wallet &&
                         state.wallet.walletAddress &&
                         (<>{(numeral(parseInt(state.LPBalance.balance) / 1000000).format('0.00'))}</>)
