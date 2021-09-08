@@ -2,49 +2,110 @@
     background: rgba(0, 0, 0, 0.5);
     box-shadow: 0px 30px 48px 5px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
+
     .card-body {
         padding: 25px;
-        @media(max-width:660px){
+
+        @media(max-width:660px) {
             padding: 15px 25px;
         }
     }
 
     &.special {
         background: linear-gradient(
-                228.88deg,
-                rgba(0, 0, 0, 0.2) 18.2%,
-                rgba(176, 176, 176, 0.107292) 77.71%,
-                rgba(0, 0, 0, 0.0885417) 99.78%,
-                rgba(0, 0, 0, 0) 146.58%
-            ),
-            #171717;
-            box-shadow: 0px 0px 90px #d3e04730;
-            border: 1px solid #313131;
+            228.88deg
+            , rgba(0, 0, 0, 0.2) 18.2%, rgba(176, 176, 176, 0.107292) 77.71%, rgba(0, 0, 0, 0.0885417) 99.78%, rgba(0, 0, 0, 0) 146.58%), #171717;
+                box-shadow: 0px 11px 10px #0b0b0b96;
+                border: 1px solid #313131;
+                font-family: 'Oswald', sans-serif;
         h2 {
             text-align: center;
             font-family: 'Cosmos';
             color: $primary;
-            font-size: 80px;
-            background: linear-gradient(
-                    180deg,
+            font-size: 45px;
+            background: linear-gradient(180deg,
                     rgba(208, 224, 39, 0.2) -0.05%,
                     rgba(220, 239, 20, 0.2) 47.89%,
                     rgba(91, 97, 31, 0.2) 47.9%,
-                    rgba(233, 255, 0, 0.2) 100%
-                ),
+                    rgba(233, 255, 0, 0.2) 100%),
                 #d0e027;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             filter: drop-shadow(0px 0px 14px rgba(208, 224, 39, 0.39));
-            margin-bottom:35px;
+            margin-bottom: 35px;
         }
+
         .slogan {
             margin-bottom: 40px;
-    margin-top: -12px;
-    text-transform: uppercase;
-    text-align: center;
-    color: #b8b8b88f;
-    font-family: 'Oswald', sans-serif;
+            margin-top: -12px;
+            text-transform: uppercase;
+            text-align: center;
+            color: #b8b8b88f;
+            font-family: 'Oswald', sans-serif;
+        }
+        .input-heading {
+            margin-bottom: 0;
+            font-size: 21px;
+            display: block;
+            color: #dcef14;
+            margin: 0;
+            font-weight: normal;
+            text-transform: uppercase;
+            @media (max-width: 515px) {
+                font-size:16px;
+            }
+        }
+
+        .input-slogan {
+            margin-bottom: 0;
+            font-size: 12px;
+            opacity: 0.5;
+            margin-bottom: 10px;
+         
+        }
+        &.staking {
+            color: #fff;
+            font-family: 'Oswald', sans-serif;
+           
+
+            .input-group {
+                .input-group-text {
+                    background-color: #121212;
+                    border: 1px solid #424242;
+                }
+            }
+
+            .nav-pills {
+                .nav-item {
+                    background: #0c0c0c;
+
+                    .nav-link {
+                        color: #fff;
+                        opacity: 0.6;
+
+                        label {
+                            position: absolute;
+                            background: $primary;
+                            font-size: 12px;
+                            padding: 0px 4px;
+                            margin-top: -15px;
+                            margin-left: -12px;
+                            border-radius: 4px;
+                            transform: rotate(6deg);
+                            font-weight: 700;
+                            color: #000;
+                        }
+
+                        &.active {
+                            opacity: 1;
+                            background: linear-gradient(328.75deg, #121212 -5.49%, #1b1b18 19.13%, #212121 104.44%);
+                            border: 1px solid #121211;
+                        }
+                    }
+                }
+            }
+
+
         }
     }
 }

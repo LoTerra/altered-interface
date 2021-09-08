@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
 
+* {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
+
 html {
     height: 100%;
 }
@@ -19,8 +24,28 @@ body {
     overflow-x: hidden;
 }
 
+
+
 .logo {
     margin:25px 0;
+    p {
+        text-transform: uppercase;
+        color: #868681;
+        font-size: 21px;
+        margin-top: -15px;
+        margin-bottom: 25px;
+        z-index: 99;
+        position: relative;
+        font-weight: 100;
+        font-family: 'Oswald', sans-serif;
+        letter-spacing: 10px;
+        @media (max-width: 515px) {
+        font-size: 16px;
+        margin-top: -30px;
+        margin-bottom: 46px;
+        letter-spacing: 4px;
+        }
+    }
     @media(max-width:660px){
         margin:0;
     }
@@ -108,6 +133,17 @@ input[type='number'] {
     }
 }
 
+.info {
+    font-size: 12px;
+    border: 1px solid #3c3c3c;
+    padding: 8px;
+    background: #0c0c0ca3;
+    display: block;
+    border-radius: 10px;
+    margin: 5px 0;
+    color: #ffffff73;
+  }
+
 .loading_animation{
     animation-name: flickerAnimation;
     animation-duration: 1s;
@@ -126,6 +162,31 @@ input[type='number'] {
     font-size: 14px;
     margin-bottom: 15px;
     margin-top: -28px;
+    width:100%;
+  }
+
+  .learn-staking {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-bottom: 15px;
+    margin-top: -28px;
+    width:100%;
+    color:#fff;
+    border-color: #1f1f1f;
+    background: linear-gradient(
+228.88deg
+, rgba(0, 0, 0, 0.2) 18.2%, rgba(176, 176, 176, 0.107292) 77.71%, rgba(0, 0, 0, 0.0885417) 99.78%, rgba(0, 0, 0, 0) 146.58%), #171717;
+    &:hover {
+        color:#d0e027;
+        border-color: #1f1f1f;
+        background: linear-gradient(
+    228.88deg
+    , rgba(0, 0, 0, 0.2) 18.2%, rgba(176, 176, 176, 0.107292) 77.71%, rgba(0, 0, 0, 0.0885417) 99.78%, rgba(0, 0, 0, 0) 146.58%), #171717;
+    }
+    svg {
+        color:#d0e027;
+    }
   }
 
 .user-info {
