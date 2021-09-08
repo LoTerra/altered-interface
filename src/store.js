@@ -47,6 +47,11 @@ const StoreContext = createContext();
             ...state,
             LPBalance: action.message
         }
+        case "setLPHolderAccruedRewards":
+            return {
+                ...state,
+                LPHolderAccruedRewards: action.message
+            }
         default:
             throw new Error(`Unhandled action type: ${action.type}`);
         }

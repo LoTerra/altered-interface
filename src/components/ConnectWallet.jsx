@@ -99,7 +99,7 @@ export default function ConnectWallet() {
             let contractConfigInfo
 
             try {
-                const api = new WasmAPI(lcd.apiRequester);
+                api = new WasmAPI(lcd.apiRequester);
                 coins = await lcd.bank.balance(connectedWallet.walletAddress)
 
                 token = await api.contractQuery(altered_address, {
