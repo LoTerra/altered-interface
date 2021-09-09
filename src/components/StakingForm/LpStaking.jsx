@@ -159,6 +159,14 @@ export default function LpStaking(props){
                 <input type="number" className="form-control amount-input-lpstaking" autoComplete="off" placeholder="0.00"  name="amount" />
                 </div>
             </div>
+            <div className="col-md-12 my-3">
+                <small>
+                    total staked LP in ALTE:
+                    <p className="input-heading">{state.totalAlteStaked != 0 ? numeral(state.totalAlteStaked).format("0,0.00") + 'ALTE': '...'}</p>
+                </small>
+                APY:
+                <p className="input-heading mb-2">{state.APY != 0 ? numeral(state.APY).format("0") : '...' }%</p>
+            </div>
             {/*<div className="col-md-12">
                 <div className="total-stats w-100">
                     <div className="row">
@@ -178,12 +186,6 @@ export default function LpStaking(props){
                 </div>
             </div>*/}
             <div className="col-6 my-3">
-                <small>
-                    total staked LP in ALTE:
-                    <p>{state.totalAlteStaked != 0 ? numeral(state.totalAlteStaked).format("0,0.000000") + 'ALTE': '...'}</p>
-                    APY:
-                    <p>{state.APY != 0 ? numeral(state.APY).format("0") : '...' }%</p>
-                </small>
                 <button className="btn btn-secondary w-100" onClick={()=> stakeOrUnstake('stake')}>Stake Now (⚠️ REWARDS COMING SOON)</button>
                 <small className="float-end text-muted mt-2">Available: <strong style={{textDecoration:'underline'}} onClick={()=> setInputAmount(parseInt(state.LPBalance.balance))}>{ state.wallet &&
                         state.wallet.walletAddress &&
@@ -199,7 +201,7 @@ export default function LpStaking(props){
                         (<>{numeral(parseInt(state.allHolderLP.balance) / 1000000).format('0.00')}</>)
                         } LP token</strong></small>
             </div>
-            
+
             <div className="col-md-12 my-3">
                         <div className="claim-unstake">
                         <p className="input-heading">Claim rewards</p>
