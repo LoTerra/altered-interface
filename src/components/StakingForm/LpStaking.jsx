@@ -179,7 +179,7 @@ export default function LpStaking(props){
             </div>*/}
             <div className="col-6 my-3">
                 <small>
-                    total staked LP in LOTA:
+                    total staked LP in ALTE:
                     <p>{state.totalAlteStaked != 0 ? numeral(state.totalAlteStaked).format("0,0.000000") + 'ALTE': '...'}</p>
                     APY:
                     <p>{state.APY != 0 ? numeral(state.APY).format("0") : '...' }%</p>
