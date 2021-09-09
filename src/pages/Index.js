@@ -14,7 +14,7 @@ import SwapForm from '../components/SwapForm'
 import Notification from '../components/Notification'
 import { Swap, Warning,ArrowSquareOut,ChartLine,Bank } from 'phosphor-react'
 import StakingForm from '../components/StakingForm'
-
+import { useStore } from "../../src/store";
 
 
 let useConnectedWallet = {}
@@ -25,11 +25,14 @@ if (typeof document !== 'undefined') {
 
 const altered_address = process.env.DEV == true ? process.env.ALTERED_ADDR_TESTNET : process.env.ALTERED_ADDR
 const alte_ust_pair = process.env.DEV == true ? process.env.POOL_ADDR_TESTNET : process.env.POOL_ADDR
+const lota_ust_pair = process.env.DEV == true ? process.env.POOL_ADDR_LOTA_TESTNET : process.env.POOL_ADDR_LOTA
 
 const fees = process.env.DEV == true ? new StdFee(400_000, { uusd: 60000 + 2000000 }) :new StdFee(600_000, { uusd: 90000 + 1610379 })
 let api = {}
 
 export default () => {
+    const {state, dispatch} = useStore();
+
     const targetPrice = 1
     const [notification,setNotification] = useState({type:'success',message:'',show:false})
     const [altePool, setAltePool] = useState(0)
@@ -74,17 +77,17 @@ export default () => {
             setExpiryTimestamp(parseInt(contractConfigInfo.rebase * 1000))
             setTotalSupply(contractConfigInfo.total_supply)
 
-            const contractPairInfo = await api.contractQuery(alte_ust_pair, {
+            const poolAlte = await api.contractQuery(alte_ust_pair, {
                 pool: {},
             })
 
-            setAltePool(contractPairInfo.assets[0].amount)
-            setUstPool(contractPairInfo.assets[1].amount)
+            setAltePool(poolAlte.assets[0].amount)
+            setUstPool(poolAlte.assets[1].amount)
 
 
 
-            let ust = new BigNumber(contractPairInfo.assets[1].amount)
-            let alte = new BigNumber(contractPairInfo.assets[0].amount)
+            let ust = new BigNumber(poolAlte.assets[1].amount)
+            let alte = new BigNumber(poolAlte.assets[0].amount)
 
             if (ust.isLessThan(alte)){
                 let totalSupplyBig = new BigNumber(contractConfigInfo.total_supply)
@@ -110,6 +113,30 @@ export default () => {
 
             let formatPrice = ust.dividedBy(alte)
             setPrice(formatPrice.toFixed())
+
+            // Get pool alte
+            const poolLota = await api.contractQuery(
+                state.lotaPoolAddress,
+                {
+                    pool: {},
+                }
+            )
+            let pricePerAlte = poolAlte.assets[1].amount / poolAlte.assets[0].amount;
+            let pricePerLota = poolLota.assets[1].amount / poolLota.assets[0].amount;
+            const state_lp_staking = await api.contractQuery(state.alteStakingLPAddress, {
+                state:{}
+            })
+            dispatch({type: "setStateLPStaking", message: state_lp_staking})
+            let ratio = poolAlte.total_share / poolAlte.assets[0].amount
+            const inAlte = state_lp_staking.total_balance / ratio
+            console.log("inAlte")
+            console.log(inAlte)
+            let amountInAlte = inAlte * pricePerAlte / 1000000
+            let amountInLota = amountInAlte / pricePerLota
+            console.log(amountInLota)
+            console.log(150000 / amountInLota * 100)
+            dispatch({type: "setTotalAlteStaked", message: inAlte / 1000000})
+            dispatch({type: "setAPY", message: 150000 / amountInLota * 100})
             // Set loaded
             setLoaded(true)
         } catch (e) {
