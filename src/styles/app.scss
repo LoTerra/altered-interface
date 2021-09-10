@@ -28,6 +28,20 @@ body {
 
 .logo {
     margin:25px 0;
+    small {
+        color: #ffffff8c;
+        text-transform: uppercase;
+        position: relative;
+        top: -22px;
+        font-family: 'Oswald', sans-serif;
+        a {
+            color: #ffffff8c;
+            font-weight:bold;
+        }
+        @media(max-width:680px){
+            top:-45px;
+        }
+    }
     p {
         text-transform: uppercase;
         color: #868681;

@@ -395,6 +395,7 @@ export default () => {
             <div className="col-12 text-center logo">
                 <h1>ALTERED</h1>
                 <p>Terras first elastic token</p>
+                <small>Build by team <a href="https://loterra.io/" target="_blank">LoTerra</a></small>
             </div>  
            
                 <div className="col-md-6 text-center text-md-end mb-4">
