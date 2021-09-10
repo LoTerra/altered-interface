@@ -142,6 +142,22 @@ input[type='number'] {
     border-radius: 10px;
     margin: 5px 0;
     color: #ffffff73;
+    &.special {
+        color: #fff;
+        text-align: center;
+        font-size: 16px;
+        border-color: #0d0d0d;
+        background: #121212;
+        p {
+            line-height: 20px;
+            margin-bottom: 5px;
+        }
+        strong {
+            color:$primary;
+            text-transform:uppercase;
+            font-size:12px;
+        }
+    }
   }
 
 .loading_animation{

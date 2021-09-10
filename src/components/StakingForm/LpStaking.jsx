@@ -154,19 +154,29 @@ export default function LpStaking(props){
             <div className="col-md-12">
                 <p className="input-heading">The amount you want to LP Stake</p>
                 <p className="input-slogan">Provide liquidity on Terraswap for pair ALTE-UST and stake your LP token to share: 410.00 LOTA daily rewards | 150,000.00 LOTA year rewards</p>
+                <span className="info special">
+                    <div className="row">
+                        <div className="col-6">
+                            <p><strong>Total staked LP in ALTE</strong><br/>{state.totalAlteStaked != 0 ? numeral(state.totalAlteStaked).format("0,0.00") + 'ALTE': '...'}</p>
+                        </div>
+                        <div className="col-6">
+                            <p><strong>APY</strong><br/> {state.APY != 0 ? numeral(state.APY).format("0") : '...' }%</p>
+                        </div>
+                    </div>                   
+                </span>
                 <div className="input-group mb-3">
                 <span className="input-group-text" id="basic-addon1"><img src="/ALTEUST.png" width="30px" className="img-fluid"/></span>
                 <input type="number" className="form-control amount-input-lpstaking" autoComplete="off" placeholder="0.00"  name="amount" />
                 </div>
             </div>
-            <div className="col-md-12 my-3">
+            {/* <div className="col-md-12 my-3">
                 <small>
                     total staked LP in ALTE:
                     <p className="input-heading">{state.totalAlteStaked != 0 ? numeral(state.totalAlteStaked).format("0,0.00") + 'ALTE': '...'}</p>
                 </small>
                 APY:
                 <p className="input-heading mb-2">{state.APY != 0 ? numeral(state.APY).format("0") : '...' }%</p>
-            </div>
+            </div> */}
             {/*<div className="col-md-12">
                 <div className="total-stats w-100">
                     <div className="row">
@@ -186,7 +196,7 @@ export default function LpStaking(props){
                 </div>
             </div>*/}
             <div className="col-6 my-3">
-                <button className="btn btn-secondary w-100" onClick={()=> stakeOrUnstake('stake')}>Stake Now (⚠️ REWARDS COMING SOON)</button>
+                <button className="btn btn-secondary w-100" onClick={()=> stakeOrUnstake('stake')}>Stake Now <small>(⚠️ REWARDS COMING SOON)</small></button>
                 <small className="float-end text-muted mt-2">Available: <strong style={{textDecoration:'underline'}} onClick={()=> setInputAmount(parseInt(state.LPBalance.balance))}>{ state.wallet &&
                         state.wallet.walletAddress &&
                         (<>{(numeral(parseInt(state.LPBalance.balance) / 1000000).format('0.00'))}</>)
