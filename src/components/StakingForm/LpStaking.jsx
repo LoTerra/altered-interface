@@ -196,7 +196,7 @@ export default function LpStaking(props){
                 </div>
             </div>*/}
             <div className="col-6 my-3">
-                <button className="btn btn-secondary w-100" onClick={()=> stakeOrUnstake('stake')}>Stake Now <small>(⚠️ REWARDS COMING SOON)</small></button>
+                <button className="btn btn-secondary w-100" onClick={()=> stakeOrUnstake('stake')}>Stake Now</button>
                 <small className="float-end text-muted mt-2">Available: <strong style={{textDecoration:'underline'}} onClick={()=> setInputAmount(parseInt(state.LPBalance.balance))}>{ state.wallet &&
                         state.wallet.walletAddress &&
                         (<>{(numeral(parseInt(state.LPBalance.balance) / 1000000).format('0.00'))}</>)
