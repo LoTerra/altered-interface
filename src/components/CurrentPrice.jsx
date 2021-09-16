@@ -80,22 +80,22 @@ export default function CurrentPrice(props) {
                             <p className="heading">
                                 Current <strong>ALTE</strong> price
                             </p>
-                            <p className="small" style={{ lineHeight: '34px' }}>
+                            <p className="small" style={{ lineHeight: '34px', fontSize: '30px' }}>
                                 {numeral(price).format('0,0.000000')}{' '}
                                 <span>UST</span>
                             </p>
                         </div>
 
-                        <div className="col-6">
+                        <div className="col-12">
                             <p className="heading">Total supply</p>
-                            <p className="small" style={{ fontSize: '16px' }}>
+                            <p className="small" style={{ fontSize: '35px' }}>
                                 {numeral(total / 1000000).format('0,0.00')}{' '}
                                 <span>ALTE</span>
                             </p>
                         </div>
-                        <div className="col-6">
+                        <div className="col-12">
                             <p className="heading">Market Cap</p>
-                            <p className="small" style={{ fontSize: '16px' }}>
+                            <p className="small" style={{ fontSize: '40px' }}>
                                 {numeral(price * (total / 1000000)).format(
                                     '0,0.00'
                                 )}{' '}
