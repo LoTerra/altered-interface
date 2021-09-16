@@ -36,7 +36,14 @@
         color: #d0e027;
         font-family: 'Cosmos';
         text-transform: uppercase;
-        background: linear-gradient(180deg, rgba(44, 44, 44, 0.2) -0.05%, rgba(159, 159, 159, 0.2) 47.89%, rgba(0, 0, 0, 0.2) 47.9%, rgba(33, 33, 33, 0.2) 100%), #363636;
+        background: linear-gradient(
+                180deg,
+                rgba(44, 44, 44, 0.2) -0.05%,
+                rgba(159, 159, 159, 0.2) 47.89%,
+                rgba(0, 0, 0, 0.2) 47.9%,
+                rgba(33, 33, 33, 0.2) 100%
+            ),
+            #363636;
         transition: all 150ms ease-in-out;
         filter: drop-shadow(0px 0px 0px rgba(208, 224, 39, 0.39));
         &.grow {
@@ -67,11 +74,16 @@
         font-size: 19px;
         text-transform: uppercase;
         background: linear-gradient(
-    180deg
-    , rgba(44, 44, 44, 0.2) -0.05%, rgba(159, 159, 159, 0.2) 47.89%, rgba(0, 0, 0, 0.2) 47.9%, rgba(33, 33, 33, 0.2) 100%), #363636;
+                180deg,
+                rgba(44, 44, 44, 0.2) -0.05%,
+                rgba(159, 159, 159, 0.2) 47.89%,
+                rgba(0, 0, 0, 0.2) 47.9%,
+                rgba(33, 33, 33, 0.2) 100%
+            ),
+            #363636;
         svg {
-            position:relative;
-            top:-3px;
+            position: relative;
+            top: -3px;
         }
     }
     &.btn-secondary {
@@ -82,12 +94,17 @@
         font-size: 19px;
         text-transform: uppercase;
         background: linear-gradient(
-180deg
-, rgba(208, 224, 39, 0.2) -0.05%, rgba(220, 239, 20, 0.2) 47.89%, rgba(91, 97, 31, 0.2) 47.9%, rgba(233, 255, 0, 0.2) 100%), #d0e027;
-    color: #000;
-    small {
-        display:block;
-        font-size:11px;
-    }
+                180deg,
+                rgba(208, 224, 39, 0.2) -0.05%,
+                rgba(220, 239, 20, 0.2) 47.89%,
+                rgba(91, 97, 31, 0.2) 47.9%,
+                rgba(233, 255, 0, 0.2) 100%
+            ),
+            #d0e027;
+        color: #000;
+        small {
+            display: block;
+            font-size: 11px;
+        }
     }
 }

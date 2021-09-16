@@ -6,8 +6,8 @@
         font-family: 'Oswald', sans-serif;
         text-transform: uppercase;
         font-weight: 500;
-        margin-bottom:0;
-        color:#fff;
+        margin-bottom: 0;
+        color: #fff;
     }
     .heading {
         display: block;
@@ -42,55 +42,62 @@
             }
         }
     }
-    
 
     .eq {
-        width:100%;
-        position:relative;
-        margin-bottom:35px;
-        margin-top:15px;
+        width: 100%;
+        position: relative;
+        margin-bottom: 35px;
+        margin-top: 15px;
         svg {
-            max-width:100%;
-            width:100%;
+            max-width: 100%;
+            width: 100%;
         }
         .indicator {
             position: absolute;
             bottom: -20px;
             text-align: center;
-            z-index:9;
+            z-index: 9;
 
             .colored-in {
-                color:$primary;
+                color: $primary;
             }
             .colored-out {
-                color:$thirsty;
+                color: $thirsty;
             }
             .span-in {
                 width: 1px;
                 height: 138px;
-                background: linear-gradient(180deg, rgba(220, 239, 20, 0) 0%, $primary 100%);
+                background: linear-gradient(
+                    180deg,
+                    rgba(220, 239, 20, 0) 0%,
+                    $primary 100%
+                );
                 display: block;
                 margin: 0 auto;
-                position:absolute;
-                bottom:0;
+                position: absolute;
+                bottom: 0;
             }
             .span-out {
                 width: 1px;
                 height: 138px;
-                background: linear-gradient(180deg, rgba(220, 239, 20, 0) 0%, $thirsty 100%);
+                background: linear-gradient(
+                    180deg,
+                    rgba(220, 239, 20, 0) 0%,
+                    $thirsty 100%
+                );
                 display: block;
                 margin: 0 auto;
-                position:absolute;
-                bottom:0;
+                position: absolute;
+                bottom: 0;
             }
 
             label {
-                margin-left:10px;
+                margin-left: 10px;
 
                 i {
-                    font-style:normal;
-                    font-size:13px;
-                    margin-left:3px;
+                    font-style: normal;
+                    font-size: 13px;
+                    margin-left: 3px;
                 }
                 &.current {
                     position: relative;
@@ -98,53 +105,58 @@
                     padding: 2px 10px;
                     left: -11px;
                     border-radius: 23px;
-                    font-size:14px;
+                    font-size: 14px;
                 }
             }
             &.subtle {
-                color:#aaa;
-                top:0px;
+                color: #aaa;
+                top: 0px;
                 label {
                     margin-left: -63px;
-    background: #0a0a0ac7;
-    padding: 4px 15px;
-    color: #d0e026;
-    border-radius: 6px;
-    box-shadow: 0px 3px 7px #00000063;
-    z-index: 99;
-    position: relative;
-    font-size: 14px;
-    border: 1px solid #373737;
+                    background: #0a0a0ac7;
+                    padding: 4px 15px;
+                    color: #d0e026;
+                    border-radius: 6px;
+                    box-shadow: 0px 3px 7px #00000063;
+                    z-index: 99;
+                    position: relative;
+                    font-size: 14px;
+                    border: 1px solid #373737;
                 }
                 .span-stable {
                     width: 1px;
                     height: 120px;
-                    background: linear-gradient(180deg, #AAAAAA 0%, rgba(170, 170, 170, 0) 54.17%, rgba(170, 170, 170, 0) 100%);
+                    background: linear-gradient(
+                        180deg,
+                        #aaaaaa 0%,
+                        rgba(170, 170, 170, 0) 54.17%,
+                        rgba(170, 170, 170, 0) 100%
+                    );
                     display: block;
                     margin: 0 auto;
-                    position:absolute;
-                    top:0;
+                    position: absolute;
+                    top: 0;
                 }
             }
         }
         .static-indicator {
-            position:absolute;
-            width:100%;
-            top:3px;
-            z-index:9;
+            position: absolute;
+            width: 100%;
+            top: 3px;
+            z-index: 9;
             span {
                 background: #212121;
                 padding: 2px 10px;
                 color: #b7b7b7;
                 border-radius: 21px;
                 box-shadow: 0px 3px 7px #00000063;
-                &:first-child{
-                    left:0;
-                    position:absolute;
+                &:first-child {
+                    left: 0;
+                    position: absolute;
                 }
                 &:last-child {
-                    right:0;
-                    position:absolute;
+                    right: 0;
+                    position: absolute;
                 }
             }
         }

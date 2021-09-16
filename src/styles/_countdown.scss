@@ -3,7 +3,7 @@
     border-top: 1px solid #303030;
     margin-top: 25px;
     .title {
-        margin-top:25px;
+        margin-top: 25px;
         color: $primary;
         margin-bottom: 15px;
         -webkit-animation: flickerAnimation 1s infinite;
@@ -48,7 +48,7 @@
         background: #303030;
         margin-bottom: 10px;
         height: 20px;
-        margin-top:0px;
+        margin-top: 0px;
         .progress-bar {
             color: #000;
             background: linear-gradient(
@@ -64,14 +64,14 @@
     .prediction-intro {
         h2 {
             font-size: 24px;
-    font-family: 'Oswald', sans-serif;
-    text-transform: uppercase;
-    font-weight: 500;
-    margin-bottom: 0;
-    margin-top: 25px;
-    padding-top: 25px;
-    color: #d0e124;
-    border-top: 1px solid #303030;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 0;
+            margin-top: 25px;
+            padding-top: 25px;
+            color: #d0e124;
+            border-top: 1px solid #303030;
         }
         .heading {
             display: block;
@@ -80,49 +80,73 @@
             font-weight: normal;
             font-size: 11px;
             text-transform: uppercase;
-            margin-bottom:10px;
+            margin-bottom: 10px;
         }
     }
     .prediction-amount {
         color: #fff;
         text-align: left;
         p {
-            color:$primary;
-            text-transform:uppercase;
-            margin:0;
-            font-size:11px;
+            color: $primary;
+            text-transform: uppercase;
+            margin: 0;
+            font-size: 11px;
         }
         span {
             font-size: 30px;
             font-family: 'Cosmos';
-            font-weight:600;
+            font-weight: 600;
             i {
                 font-size: 12px;
                 font-weight: 400;
-                font-style:normal;
-                font-weight:normal;
+                font-style: normal;
+                font-weight: normal;
             }
         }
     }
 }
 
 @keyframes flickerAnimation {
-    0%   { opacity:1; }
-    50%  { opacity:0.5; }
-    100% { opacity:1; }
-  }
-  @-o-keyframes flickerAnimation{
-    0%   { opacity:1; }
-    50%  { opacity:0.5; }
-    100% { opacity:1; }
-  }
-  @-moz-keyframes flickerAnimation{
-    0%   { opacity:1; }
-    50%  { opacity:0.5; }
-    100% { opacity:1; }
-  }
-  @-webkit-keyframes flickerAnimation{
-    0%   { opacity:1; }
-    50%  { opacity:0.5; }
-    100% { opacity:1; }
-  }
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-o-keyframes flickerAnimation {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-moz-keyframes flickerAnimation {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-webkit-keyframes flickerAnimation {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}

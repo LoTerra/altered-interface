@@ -12,28 +12,42 @@ if (typeof document !== 'undefined') {
     bootstrap = require('bootstrap')
 }
 
-import { StoreProvider } from "./store";
+import { StoreProvider } from './store'
 
 class App extends Component {
     render() {
         return (
-            <Suspense fallback={<div className="vh-100 d-flex">
-              <div className="align-self-center w-100 text-center">
-              <h1 style={{fontSize:'75px', marginBottom:'0'}}>ALTERED</h1>
-                <p style={{                
-                textTransform: 'uppercase', 
-                fontSize: '18px',  
-                color:'#fff',
-                fontFamily: 'Cosmos',     
-                fontWeight: '300',
-                marginTop: '-30px'                   
-            }} className="loading_animation">Loading... </p>
-              </div>
-            </div>}>
+            <Suspense
+                fallback={
+                    <div className="vh-100 d-flex">
+                        <div className="align-self-center w-100 text-center">
+                            <h1 style={{ fontSize: '75px', marginBottom: '0' }}>
+                                ALTERED
+                            </h1>
+                            <p
+                                style={{
+                                    textTransform: 'uppercase',
+                                    fontSize: '18px',
+                                    color: '#fff',
+                                    fontFamily: 'Cosmos',
+                                    fontWeight: '300',
+                                    marginTop: '-30px',
+                                }}
+                                className="loading_animation"
+                            >
+                                Loading...{' '}
+                            </p>
+                        </div>
+                    </div>
+                }
+            >
                 <Root>
                     <Head>
                         <meta charSet="UTF-8" />
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/> 
+                        <meta
+                            name="viewport"
+                            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+                        />
                         <title>Altered protocol</title>
                         <link
                             rel="shortcut icon"
@@ -62,11 +76,11 @@ class App extends Component {
                         />
                     </Head>
                     <StoreProvider>
-                    <Navbar />
-                    <div className="container">
-                        <Routes default />
-                    </div>
-                    <Footer />
+                        <Navbar />
+                        <div className="container">
+                            <Routes default />
+                        </div>
+                        <Footer />
                     </StoreProvider>
                 </Root>
             </Suspense>

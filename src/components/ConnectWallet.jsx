@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useMemo, useCallback } from 'react'
 
 import { LCDClient, WasmAPI } from '@terra-money/terra.js'
@@ -9,12 +8,14 @@ import {
     ConnectType,
 } from '@terra-money/wallet-provider'
 
-import { Wallet, CaretRight, ArrowSquareOut,Power } from 'phosphor-react'
+import { Wallet, CaretRight, ArrowSquareOut, Power } from 'phosphor-react'
 import numeral from 'numeral'
-import {useStore} from "../store";
+import { useStore } from '../store'
 
-
-const altered_address = process.env.DEV == true ? process.env.ALTERED_ADDR_TESTNET : process.env.ALTERED_ADDR
+const altered_address =
+    process.env.DEV == true
+        ? process.env.ALTERED_ADDR_TESTNET
+        : process.env.ALTERED_ADDR
 
 // let useWallet = {}
 // if (typeof document !== 'undefined') {
@@ -49,7 +50,7 @@ export default function ConnectWallet() {
     const [bankAlte, setBankAlte] = useState()
     const [connected, setConnected] = useState(false)
 
-    const {state, dispatch} = useStore();    
+    const { state, dispatch } = useStore()
 
     let wallet = ''
     if (typeof document !== 'undefined') {
@@ -64,7 +65,7 @@ export default function ConnectWallet() {
         return new LCDClient({
             URL: connectedWallet.network.lcd,
             chainID: connectedWallet.network.chainID,
-          });
+        })
     }, [connectedWallet])
 
     //const installChrome = useInstallChromeExtension();
@@ -83,7 +84,7 @@ export default function ConnectWallet() {
         } else if (to == 'mobile') {
             wallet.connect(wallet.availableConnectTypes[2])
         } else if (to == 'disconnect') {
-            dispatch({type: "setWallet", message: {}})  
+            dispatch({ type: 'setWallet', message: {} })
             wallet.disconnect()
         }
         setConnected(!connected)
@@ -92,14 +93,14 @@ export default function ConnectWallet() {
     async function contactBalance() {
         if (connectedWallet && connectedWallet.walletAddress && lcd) {
             //   setShowConnectOptions(false);
-            dispatch({type: "setWallet", message: connectedWallet})    
+            dispatch({ type: 'setWallet', message: connectedWallet })
 
             let coins
             let token
             let contractConfigInfo
 
             try {
-                api = new WasmAPI(lcd.apiRequester);
+                api = new WasmAPI(lcd.apiRequester)
                 coins = await lcd.bank.balance(connectedWallet.walletAddress)
 
                 token = await api.contractQuery(altered_address, {
@@ -108,15 +109,11 @@ export default function ConnectWallet() {
                     },
                 })
 
-                contractConfigInfo = await api.contractQuery(
-                    altered_address,
-                    {
-                        extra_token_info: {},
-                    }
-                )
+                contractConfigInfo = await api.contractQuery(altered_address, {
+                    extra_token_info: {},
+                })
 
                 console.log(token)
-
             } catch (e) {
                 console.log(e)
             }
@@ -129,44 +126,45 @@ export default function ConnectWallet() {
             setBank(ust)
             let alte = parseInt(token.balance) / 1000000
             setBankAlte(alte)
-            dispatch({type: "setBankAlte", message: alte})
+            dispatch({ type: 'setBankAlte', message: alte })
 
             setTotalSupply(contractConfigInfo.total_supply)
-            let share = token.balance * 100 / contractConfigInfo.total_supply
+            let share = (token.balance * 100) / contractConfigInfo.total_supply
             setYourPercentage(share)
 
-            const tokenLP = await api.contractQuery(
-                state.alteLPAddress,
-                {
-                    balance: { address: connectedWallet.walletAddress},
-                })
-            dispatch({type: "setLPBalance", message: tokenLP})
-            
+            const tokenLP = await api.contractQuery(state.alteLPAddress, {
+                balance: { address: connectedWallet.walletAddress },
+            })
+            dispatch({ type: 'setLPBalance', message: tokenLP })
+
             console.log(tokenLP)
             const LPHolderAccruedRewards = await api.contractQuery(
                 state.alteStakingLPAddress,
                 {
                     accrued_rewards: { address: connectedWallet.walletAddress },
                 }
-            );
-            dispatch({type: "setLPHolderAccruedRewards", message: LPHolderAccruedRewards.rewards})
+            )
+            dispatch({
+                type: 'setLPHolderAccruedRewards',
+                message: LPHolderAccruedRewards.rewards,
+            })
 
             const holderLP = await api.contractQuery(
                 state.alteStakingLPAddress,
                 {
                     holder: { address: connectedWallet.walletAddress },
                 }
-            );
-            dispatch({type: "setAllHolderLP", message: holderLP})
+            )
+            dispatch({ type: 'setAllHolderLP', message: holderLP })
 
             const claimsLP = await api.contractQuery(
                 state.alteStakingLPAddress,
                 {
                     claims: { address: connectedWallet.walletAddress },
                 }
-            );
+            )
 
-            dispatch({type: "setHolderClaimsLP", message: claimsLP.claims})
+            dispatch({ type: 'setHolderClaimsLP', message: claimsLP.claims })
 
             // connectTo("extension")
             setConnected(true)
@@ -176,9 +174,9 @@ export default function ConnectWallet() {
     }
 
     useEffect(() => {
-        if(connectedWallet){
-            contactBalance()  
-        }   
+        if (connectedWallet) {
+            contactBalance()
+        }
     }, [connectedWallet, lcd, state.config])
 
     function renderDialog() {
@@ -213,8 +211,8 @@ export default function ConnectWallet() {
                     size={21}
                     style={{ display: 'inline-block', marginTop: '-3px' }}
                 />{' '}
-                {bankAlte == null ? "0.00" : numeral(bankAlte).format('0,0.00')} <span className="text-sm">ALTE</span>
-
+                {bankAlte == null ? '0.00' : numeral(bankAlte).format('0,0.00')}{' '}
+                <span className="text-sm">ALTE</span>
             </>
         )
     }
@@ -224,7 +222,7 @@ export default function ConnectWallet() {
             <div className="container-fluid">
                 <div className="navbar-nav ms-auto">
                     {!connectedWallet && (
-                        <>                           
+                        <>
                             <div className="btn-group">
                                 <button
                                     className="btn btn-outline-primary nav-item dropdown-toggle"
@@ -272,32 +270,35 @@ export default function ConnectWallet() {
                     )}
                     {connectedWallet && (
                         <>
-                        <div className="nav-item user-info">
-                            <p className="top">Your stats</p>
-                            <p className="bottom">{numeral(yourPercentage).format('0.000000')}% of total supply </p>
-                        </div>
-                        <button                            
-                            className="btn btn-outline-primary nav-item dropdown-toggle"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                        >
-                            {connectedWallet ? returnBank() : ''}
-                        </button>
-                        <ul
-                        className="dropdown-menu dropdown-menu-end"
-                        aria-labelledby="dropdownMenuButton2"
-                        >
+                            <div className="nav-item user-info">
+                                <p className="top">Your stats</p>
+                                <p className="bottom">
+                                    {numeral(yourPercentage).format('0.000000')}
+                                    % of total supply{' '}
+                                </p>
+                            </div>
                             <button
-                                        onClick={() => connectTo('disconnect')}
-                                        className="dropdown-item"
-                                    >
-                                        <Power
-                                            size={16}
-                                            style={{ marginTop: '-4px' }}
-                                        />{' '}
-                                        Disconnect
-                                    </button>
-                        </ul>
+                                className="btn btn-outline-primary nav-item dropdown-toggle"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                {connectedWallet ? returnBank() : ''}
+                            </button>
+                            <ul
+                                className="dropdown-menu dropdown-menu-end"
+                                aria-labelledby="dropdownMenuButton2"
+                            >
+                                <button
+                                    onClick={() => connectTo('disconnect')}
+                                    className="dropdown-item"
+                                >
+                                    <Power
+                                        size={16}
+                                        style={{ marginTop: '-4px' }}
+                                    />{' '}
+                                    Disconnect
+                                </button>
+                            </ul>
                         </>
                     )}
                 </div>

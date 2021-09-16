@@ -51,7 +51,7 @@ if (typeof document !== 'undefined') {
             >
                 <AppContainer>
                     {/* <Provider store={store}> */}
-                        <Comp />
+                    <Comp />
                     {/* </Provider> */}
                 </AppContainer>
             </Wallet>,

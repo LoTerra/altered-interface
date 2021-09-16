@@ -12,10 +12,9 @@ import Countdown from '../components/Countdown'
 import CurrentPrice from '../components/CurrentPrice'
 import SwapForm from '../components/SwapForm'
 import Notification from '../components/Notification'
-import { Swap, Warning,ArrowSquareOut,ChartLine,Bank } from 'phosphor-react'
+import { Swap, Warning, ArrowSquareOut, ChartLine, Bank } from 'phosphor-react'
 import StakingForm from '../components/StakingForm'
-import { useStore } from "../../src/store";
-
+import { useStore } from '../../src/store'
 
 let useConnectedWallet = {}
 if (typeof document !== 'undefined') {
@@ -23,18 +22,34 @@ if (typeof document !== 'undefined') {
         require('@terra-money/wallet-provider').useConnectedWallet
 }
 
-const altered_address = process.env.DEV == true ? process.env.ALTERED_ADDR_TESTNET : process.env.ALTERED_ADDR
-const alte_ust_pair = process.env.DEV == true ? process.env.POOL_ADDR_TESTNET : process.env.POOL_ADDR
-const lota_ust_pair = process.env.DEV == true ? process.env.POOL_ADDR_LOTA_TESTNET : process.env.POOL_ADDR_LOTA
+const altered_address =
+    process.env.DEV == true
+        ? process.env.ALTERED_ADDR_TESTNET
+        : process.env.ALTERED_ADDR
+const alte_ust_pair =
+    process.env.DEV == true
+        ? process.env.POOL_ADDR_TESTNET
+        : process.env.POOL_ADDR
+const lota_ust_pair =
+    process.env.DEV == true
+        ? process.env.POOL_ADDR_LOTA_TESTNET
+        : process.env.POOL_ADDR_LOTA
 
-const fees = process.env.DEV == true ? new StdFee(400_000, { uusd: 60000 + 2000000 }) :new StdFee(600_000, { uusd: 90000 + 1610379 })
+const fees =
+    process.env.DEV == true
+        ? new StdFee(400_000, { uusd: 60000 + 2000000 })
+        : new StdFee(600_000, { uusd: 90000 + 1610379 })
 let api = {}
 
 export default () => {
-    const {state, dispatch} = useStore();
+    const { state, dispatch } = useStore()
 
     const targetPrice = 1
-    const [notification,setNotification] = useState({type:'success',message:'',show:false})
+    const [notification, setNotification] = useState({
+        type: 'success',
+        message: '',
+        show: false,
+    })
     const [altePool, setAltePool] = useState(0)
     const [ustPool, setUstPool] = useState(0)
     const [predictedPrice, setPredictedPrice] = useState(0)
@@ -54,15 +69,20 @@ export default () => {
 
     const formswap = useRef(null)
 
-
     const fetchContractQuery = useCallback(async () => {
         console.log(process.env.URL)
 
         const terra = new LCDClient({
             /*URL: "https://bombay-lcd.terra.dev",
         chainID: "bombay-0008",*/
-            URL: process.env.DEV == true ? process.env.URL_TESTNET : process.env.URL_MAINNET ,
-            chainID: process.env.DEV == true ? process.env.CHAIN_ID_TESTNET : process.env.CHAIN_ID_MAINNET,
+            URL:
+                process.env.DEV == true
+                    ? process.env.URL_TESTNET
+                    : process.env.URL_MAINNET,
+            chainID:
+                process.env.DEV == true
+                    ? process.env.CHAIN_ID_TESTNET
+                    : process.env.CHAIN_ID_MAINNET,
         })
         api = new WasmAPI(terra.apiRequester)
 
@@ -84,29 +104,64 @@ export default () => {
             setAltePool(poolAlte.assets[0].amount)
             setUstPool(poolAlte.assets[1].amount)
 
-
-
             let ust = new BigNumber(poolAlte.assets[1].amount)
             let alte = new BigNumber(poolAlte.assets[0].amount)
 
-            if (ust.isLessThan(alte)){
-                let totalSupplyBig = new BigNumber(contractConfigInfo.total_supply)
-                let percentageSupply = alte.multipliedBy(100).dividedBy(totalSupplyBig);
-                let rebasedSupply = ust.multipliedBy(totalSupplyBig.dividedBy(alte));
-                let rebase = totalSupplyBig.minus(rebasedSupply).dividedBy(Date.now() / 1000 > contractConfigInfo.rebase_damping_launch ? 10 : 30);
+            if (ust.isLessThan(alte)) {
+                let totalSupplyBig = new BigNumber(
+                    contractConfigInfo.total_supply
+                )
+                let percentageSupply = alte
+                    .multipliedBy(100)
+                    .dividedBy(totalSupplyBig)
+                let rebasedSupply = ust.multipliedBy(
+                    totalSupplyBig.dividedBy(alte)
+                )
+                let rebase = totalSupplyBig
+                    .minus(rebasedSupply)
+                    .dividedBy(
+                        Date.now() / 1000 >
+                            contractConfigInfo.rebase_damping_launch
+                            ? 10
+                            : 30
+                    )
                 let expectedRebaseSupply = totalSupplyBig.minus(rebase)
-                let expectedPoolSupplyAlte = expectedRebaseSupply.multipliedBy(percentageSupply).dividedBy(100)
-                setPredictedPrice(ust.dividedBy(1000000).dividedBy(expectedPoolSupplyAlte.dividedBy(1000000)).toFixed())
-                setPredictedTotalSupply(expectedRebaseSupply.dividedBy(1000000).toFixed())
-            }else {
-                let totalSupplyBig = new BigNumber(contractConfigInfo.total_supply)
-                let percentageSupply = alte.multipliedBy(100).dividedBy(totalSupplyBig);
-                let rebasedSupply = alte.multipliedBy(totalSupplyBig.dividedBy(ust));
-                let rebase = totalSupplyBig.minus(rebasedSupply).dividedBy(10);
+                let expectedPoolSupplyAlte = expectedRebaseSupply
+                    .multipliedBy(percentageSupply)
+                    .dividedBy(100)
+                setPredictedPrice(
+                    ust
+                        .dividedBy(1000000)
+                        .dividedBy(expectedPoolSupplyAlte.dividedBy(1000000))
+                        .toFixed()
+                )
+                setPredictedTotalSupply(
+                    expectedRebaseSupply.dividedBy(1000000).toFixed()
+                )
+            } else {
+                let totalSupplyBig = new BigNumber(
+                    contractConfigInfo.total_supply
+                )
+                let percentageSupply = alte
+                    .multipliedBy(100)
+                    .dividedBy(totalSupplyBig)
+                let rebasedSupply = alte.multipliedBy(
+                    totalSupplyBig.dividedBy(ust)
+                )
+                let rebase = totalSupplyBig.minus(rebasedSupply).dividedBy(10)
                 let expectedRebaseSupply = totalSupplyBig.minus(rebase)
-                let expectedPoolSupplyAlte = expectedRebaseSupply.multipliedBy(percentageSupply).dividedBy(100)
-                setPredictedPrice(ust.dividedBy(1000000).dividedBy(expectedPoolSupplyAlte.dividedBy(1000000)).toFixed())
-                setPredictedTotalSupply(expectedRebaseSupply.dividedBy(1000000).toFixed())
+                let expectedPoolSupplyAlte = expectedRebaseSupply
+                    .multipliedBy(percentageSupply)
+                    .dividedBy(100)
+                setPredictedPrice(
+                    ust
+                        .dividedBy(1000000)
+                        .dividedBy(expectedPoolSupplyAlte.dividedBy(1000000))
+                        .toFixed()
+                )
+                setPredictedTotalSupply(
+                    expectedRebaseSupply.dividedBy(1000000).toFixed()
+                )
             }
             console.log(ust.toString())
             console.log(alte.toString())
@@ -115,28 +170,31 @@ export default () => {
             setPrice(formatPrice.toFixed())
 
             // Get pool alte
-            const poolLota = await api.contractQuery(
-                state.lotaPoolAddress,
+            const poolLota = await api.contractQuery(state.lotaPoolAddress, {
+                pool: {},
+            })
+            let pricePerAlte =
+                poolAlte.assets[1].amount / poolAlte.assets[0].amount
+            let pricePerLota =
+                poolLota.assets[1].amount / poolLota.assets[0].amount
+            const state_lp_staking = await api.contractQuery(
+                state.alteStakingLPAddress,
                 {
-                    pool: {},
+                    state: {},
                 }
             )
-            let pricePerAlte = poolAlte.assets[1].amount / poolAlte.assets[0].amount;
-            let pricePerLota = poolLota.assets[1].amount / poolLota.assets[0].amount;
-            const state_lp_staking = await api.contractQuery(state.alteStakingLPAddress, {
-                state:{}
-            })
-            dispatch({type: "setStateLPStaking", message: state_lp_staking})
+            dispatch({ type: 'setStateLPStaking', message: state_lp_staking })
             let ratio = poolAlte.total_share / poolAlte.assets[0].amount
             const inAlte = state_lp_staking.total_balance / ratio
-            console.log("inAlte")
+            console.log('inAlte')
             console.log(inAlte)
-            let amountInAlte = inAlte * pricePerAlte / 1000000
+            let amountInAlte = (inAlte * pricePerAlte) / 1000000
             let amountInLota = amountInAlte / pricePerLota
             console.log(amountInLota)
-            console.log(150000 / amountInLota * 100)
-            dispatch({type: "setTotalAlteStaked", message: inAlte / 1000000})
-            dispatch({type: "setAPY", message: 150000 / amountInLota * 100})
+            console.log((150000 / amountInLota) * 100)
+            dispatch({ type: 'setTotalAlteStaked', message: inAlte / 1000000 })
+            dispatch({ type: 'setAPY', message: (150000 / amountInLota) * 100 })
+            dispatch({ type: 'setPricePerLota', message: pricePerLota })
             // Set loaded
             setLoaded(true)
         } catch (e) {
@@ -323,53 +381,57 @@ export default () => {
             // let tx = await terra.tx.broadcast(tx_play)
             // console.log(tx)
             console.log(tx_play)
-            showNotification('Successful','success',4000)
+            showNotification('Successful', 'success', 4000)
         } catch (e) {
             console.log(e)
-            showNotification('Error','error',4000)
+            showNotification('Error', 'error', 4000)
         }
     }
     // rebase function
-    async function rebase(){
+    async function rebase() {
         try {
-            let rebaseMsg = new MsgExecuteContract(connectedWallet.walletAddress, altered_address, {
-                rebase: {}
-            })
+            let rebaseMsg = new MsgExecuteContract(
+                connectedWallet.walletAddress,
+                altered_address,
+                {
+                    rebase: {},
+                }
+            )
             let txRebase = await connectedWallet.post({
                 msgs: [rebaseMsg],
-                fee: fees
+                fee: fees,
             })
             console.log(txRebase)
-        }catch (e) {
+        } catch (e) {
             console.log(e)
         }
     }
 
-    function hideNotification(){
+    function hideNotification() {
         setNotification({
-            message:notification.message,
+            message: notification.message,
             type: notification.type,
-            show: false
+            show: false,
         })
     }
 
-    function showNotification(message,type,duration){
+    function showNotification(message, type, duration) {
         console.log('fired notification')
         setNotification({
-            message:message,
+            message: message,
             type: type,
-            show: true
+            show: true,
         })
         console.log(notification)
         //Disable after $var seconds
-        setTimeout(() => {           
-            setNotification({ 
-                message:message,
-                type: type,              
-                show: false
-            })        
-            console.log('disabled',notification)
-        },duration)
+        setTimeout(() => {
+            setNotification({
+                message: message,
+                type: type,
+                show: false,
+            })
+            console.log('disabled', notification)
+        }, duration)
     }
 
     //Final swap function
@@ -390,81 +452,106 @@ export default () => {
     }
 
     return (
-        <div className="wrapper" style={{display:'flex',flexDirection:'column'}}>
-        <div className="row">
-            <div className="col-12 text-center logo">
-                <h1>ALTERED</h1>
-                <p>Terras first elastic token</p>
-                <small>Build by team <a href="https://loterra.io/" target="_blank">LoTerra</a></small>
-            </div>  
-           
-                <div className="col-md-6 text-center text-md-end mb-4">
-            <a
-                                href="https://docs.alteredprotocol.com"
-                                target="_blank"
-                                className="btn btn-outline-secondary nav-item mx-lg-3 learn-altered"
-                            >
-                                <ArrowSquareOut
-                                    size={18}
-                                    style={{
-                                        marginTop: '-4px',
-                                        marginRight: '4px',
-                                    }}
-                                />{' '}
-                                Learn more about <strong>Altered</strong>
-                            </a>
-            </div>     
-            <div className="col-md-6 text-center text-md-start mb-4">
-        <a
-                                href="https://coinhall.org/charts/terra/terra18adm0emn6j3pnc90ldechhun62y898xrdmfgfz"
-                                target="_blank"
-                                className="btn btn-outline-secondary nav-item mx-lg-3 learn-altered"
-                            >
-                                <ChartLine
-                                    size={18}
-                                    style={{
-                                        marginTop: '-4px',
-                                        marginRight: '4px',
-                                    }}
-                                />{' '}
-                                View chart on <strong>Coinhall</strong>
-                            </a>
-        </div>
-        
+        <div
+            className="wrapper"
+            style={{ display: 'flex', flexDirection: 'column' }}
+        >
+            <div className="row">
+                <div className="col-12 text-center logo">
+                    <h1>ALTERED</h1>
+                    <p>Terras first elastic token</p>
+                    <small>
+                        Build by team{' '}
+                        <a href="https://loterra.io/" target="_blank">
+                            LoTerra
+                        </a>
+                    </small>
+                </div>
 
-        </div>
-        
-            <div className="row">                           
+                <div className="col-md-6 text-center text-md-end mb-4">
+                    <a
+                        href="https://docs.alteredprotocol.com"
+                        target="_blank"
+                        className="btn btn-outline-secondary nav-item mx-lg-3 learn-altered"
+                    >
+                        <ArrowSquareOut
+                            size={18}
+                            style={{
+                                marginTop: '-4px',
+                                marginRight: '4px',
+                            }}
+                        />{' '}
+                        Learn more about <strong>Altered</strong>
+                    </a>
+                </div>
+                <div className="col-md-6 text-center text-md-start mb-4">
+                    <a
+                        href="https://coinhall.org/charts/terra/terra18adm0emn6j3pnc90ldechhun62y898xrdmfgfz"
+                        target="_blank"
+                        className="btn btn-outline-secondary nav-item mx-lg-3 learn-altered"
+                    >
+                        <ChartLine
+                            size={18}
+                            style={{
+                                marginTop: '-4px',
+                                marginRight: '4px',
+                            }}
+                        />{' '}
+                        View chart on <strong>Coinhall</strong>
+                    </a>
+                </div>
+            </div>
+
+            <div className="row">
                 <div className="col-12 col-lg-12 mx-auto">
                     <div className="row">
-                    <div className="col-lg-4 mb-4">
-                    <div className="card special">
-                        <div className="card-body">
-                        {process.env.DEV == true &&
-                    <span className="badge bg-primary" style={{color:'#000', fontSize:'18px', display:'block',marginBottom:'15px'}}><Warning size={21} style={{position:'relative',top:'-2px'}}/> Testnet mode</span>
-                }
-                            <h2>SWAP</h2>
-                          
-                            <SwapForm                                
-                                switchValuta={() => switchValuta()}
-                                doSwap={() => doSwap()}
-                                amount={amount}
-                                commissionOfferAmount={commissionOfferAmount}
-                                spreadAmount={spreadAmount}
-                                inputChange={(e) => inputChange(e)}
-                                returnAmount={returnAmount}
-                                isNativeToken={isNativeToken}
-                            />
-                            {/* DEV PURPOSES <div style={{color:'#fff', fontSize:'11px'}}>
+                        <div className="col-lg-4 mb-4">
+                            <div className="card special">
+                                <div className="card-body">
+                                    {process.env.DEV == true && (
+                                        <span
+                                            className="badge bg-primary"
+                                            style={{
+                                                color: '#000',
+                                                fontSize: '18px',
+                                                display: 'block',
+                                                marginBottom: '15px',
+                                            }}
+                                        >
+                                            <Warning
+                                                size={21}
+                                                style={{
+                                                    position: 'relative',
+                                                    top: '-2px',
+                                                }}
+                                            />{' '}
+                                            Testnet mode
+                                        </span>
+                                    )}
+                                    <h2>SWAP</h2>
+
+                                    <SwapForm
+                                        switchValuta={() => switchValuta()}
+                                        doSwap={() => doSwap()}
+                                        amount={amount}
+                                        commissionOfferAmount={
+                                            commissionOfferAmount
+                                        }
+                                        spreadAmount={spreadAmount}
+                                        inputChange={(e) => inputChange(e)}
+                                        returnAmount={returnAmount}
+                                        isNativeToken={isNativeToken}
+                                    />
+                                    {/* DEV PURPOSES <div style={{color:'#fff', fontSize:'11px'}}>
                                     <p>amount: {amount}</p>
                                 <p>commission: {commissionOfferAmount}</p>                                
                                 <p>spread: {spreadAmount}</p>
                                 <p>return: {returnAmount}</p>
                                 </div> */}
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>       
-                <div className="col-lg-4 mb-4">
+                        <div className="col-lg-4 mb-4">
                             <div className="card h-100">
                                 <div className="card-body">
                                     <CurrentPrice
@@ -474,7 +561,9 @@ export default () => {
                                     <Countdown
                                         expiryTimestamp={expiryTimestamp}
                                         predictedPrice={predictedPrice}
-                                        predictedTotalSupply={predictedTotalSupply}
+                                        predictedTotalSupply={
+                                            predictedTotalSupply
+                                        }
                                         doRebase={() => rebase()}
                                         loading={isLoaded}
                                     />
@@ -482,8 +571,12 @@ export default () => {
                             </div>
                         </div>
                         <div className="col-lg-4 mb-4">
-                            <StakingForm showNotification={(message,type,dur) => showNotification(message,type,dur)} />
-                        </div>         
+                            <StakingForm
+                                showNotification={(message, type, dur) =>
+                                    showNotification(message, type, dur)
+                                }
+                            />
+                        </div>
                         {/* <div className="col-lg-4 mb-4">
                             <div className="card">
                                 <div className="card-body">
@@ -491,12 +584,13 @@ export default () => {
                                 </div>
                             </div>
                         </div> */}
-                
-                        
                     </div>
                 </div>
             </div>
-            <Notification notification={notification} close={() => hideNotification()}/>
+            <Notification
+                notification={notification}
+                close={() => hideNotification()}
+            />
         </div>
     )
 }

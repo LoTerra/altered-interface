@@ -3,7 +3,10 @@ import React, { useCallback, useState, useMemo, useEffect } from 'react'
 import debounce from 'lodash.debounce'
 import { LCDClient, WasmAPI } from '@terra-money/terra.js'
 
-const altered_address = process.env.DEV == true ? process.env.ALTERED_ADDR_TESTNET : process.env.ALTERED_ADDR
+const altered_address =
+    process.env.DEV == true
+        ? process.env.ALTERED_ADDR_TESTNET
+        : process.env.ALTERED_ADDR
 
 import {
     useWallet,
@@ -12,7 +15,6 @@ import {
     ConnectType,
 } from '@terra-money/wallet-provider'
 import numeral from 'numeral'
-
 
 export default function SwapForm(props) {
     let connectedWallet = ''
@@ -71,7 +73,6 @@ export default function SwapForm(props) {
                 })
 
                 console.log(coins)
-
             } catch (e) {
                 console.log(e)
             }
@@ -91,25 +92,23 @@ export default function SwapForm(props) {
         }
     }
 
-
     const setAmount = (amount) => {
         if (!amount) return
-        let input = document.querySelector('.amount');     
-        const lastValue = input.value;
-        input.value = amount;
+        let input = document.querySelector('.amount')
+        const lastValue = input.value
+        input.value = amount
 
-        const event = new Event("input", { bubbles: true });
-        const tracker = input._valueTracker;
+        const event = new Event('input', { bubbles: true })
+        const tracker = input._valueTracker
         if (tracker) {
-            tracker.setValue(lastValue);
+            tracker.setValue(lastValue)
         }
-            input.dispatchEvent(event);        
+        input.dispatchEvent(event)
     }
 
     useEffect(() => {
         contactBalance()
     }, [connectedWallet, lcd])
-
 
     const cleanInput = () => {
         setAmount(0)
@@ -119,8 +118,11 @@ export default function SwapForm(props) {
         <div className="swap-form">
             <div className="row">
                 <div className="col-12">
-                <p className="input-heading">The amount you want to swap</p>
-                <p className="input-slogan mb-4">Easily change token by using the  <Swap size={18} color={'#DCEF14'} /> button</p>
+                    <p className="input-heading">The amount you want to swap</p>
+                    <p className="input-slogan mb-4">
+                        Easily change token by using the{' '}
+                        <Swap size={18} color={'#DCEF14'} /> button
+                    </p>
                 </div>
                 {/* <div className="col-12 text-center mb-5">
                     <h3>Swap</h3>
@@ -132,16 +134,29 @@ export default function SwapForm(props) {
                     </span>
 
                     {
-                        (
-                            <span className="balance" onClick={() => setAmount((isNativeToken ? bankAlte : bankUst),(isNativeToken ? 'ALTE' : 'UST'))}>{isNativeToken ? 'MAX:'+numeral(bankAlte).format('0,0.00')+'ALTE' : 'MAX:'+numeral(bankUst).format('0,0.00')+'UST'}</span>
-
-                        )
+                        <span
+                            className="balance"
+                            onClick={() =>
+                                setAmount(
+                                    isNativeToken ? bankAlte : bankUst,
+                                    isNativeToken ? 'ALTE' : 'UST'
+                                )
+                            }
+                        >
+                            {isNativeToken
+                                ? 'MAX:' +
+                                  numeral(bankAlte).format('0,0.00') +
+                                  'ALTE'
+                                : 'MAX:' +
+                                  numeral(bankUst).format('0,0.00') +
+                                  'UST'}
+                        </span>
                     }
-                    <input                          
+                    <input
                         type="number"
                         className="form-control amount"
-                        onChange={handleChange}     
-                        step="any"               
+                        onChange={handleChange}
+                        step="any"
                         placeholder="0"
                     />
                 </div>
@@ -152,7 +167,13 @@ export default function SwapForm(props) {
                     </p>
                     <CaretRight size={28} color={'#5F5F5F'} />
                 </div>
-                <button className="swapper" onClick={() => {switchValuta(); cleanInput();}}>
+                <button
+                    className="swapper"
+                    onClick={() => {
+                        switchValuta()
+                        cleanInput()
+                    }}
+                >
                     <Swap size={36} color={'#DCEF14'} />
                 </button>
                 <div className="col-12 mb-3">
@@ -160,7 +181,7 @@ export default function SwapForm(props) {
                     <span className="valuta">
                         {isNativeToken ? 'UST' : 'ALTE'}
                     </span>
-                    
+
                     <input
                         readOnly
                         type="number"
@@ -170,14 +191,24 @@ export default function SwapForm(props) {
                     />
                 </div>
                 <div className="swap-final-info">
-                   
-                        <small>
-                            Commission:  {commissionOfferAmount > 0 && (<>{commissionOfferAmount} {!isNativeToken ? 'ALTE' : 'UST'}</>)} 
-                        </small>
-                    
-                   
-                        <small>Spread:  {spreadAmount > 0 && (<>{spreadAmount} {!isNativeToken ? 'ALTE' : 'UST'}</>)}</small>
-                   
+                    <small>
+                        Commission:{' '}
+                        {commissionOfferAmount > 0 && (
+                            <>
+                                {commissionOfferAmount}{' '}
+                                {!isNativeToken ? 'ALTE' : 'UST'}
+                            </>
+                        )}
+                    </small>
+
+                    <small>
+                        Spread:{' '}
+                        {spreadAmount > 0 && (
+                            <>
+                                {spreadAmount} {!isNativeToken ? 'ALTE' : 'UST'}
+                            </>
+                        )}
+                    </small>
                 </div>
                 <div className="col-12 mb-3">
                     <button
