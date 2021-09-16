@@ -1,5 +1,7 @@
 .countdown {
     font-family: 'Oswald', sans-serif;
+    border-top: 1px solid #303030;
+    margin-top: 25px;
     .title {
         margin-top:25px;
         color: $primary;
@@ -45,8 +47,8 @@
         border-radius: 100px;
         background: #303030;
         margin-bottom: 10px;
-        height: 30px;
-        margin-top: 20px;
+        height: 20px;
+        margin-top:0px;
         .progress-bar {
             color: #000;
             background: linear-gradient(
@@ -60,12 +62,25 @@
         }
     }
     .prediction-intro {
-        p {
-            color: #d1e125;
+        h2 {
+            font-size: 24px;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 0;
+    margin-top: 25px;
+    padding-top: 25px;
+    color: #d0e124;
+    border-top: 1px solid #303030;
+        }
+        .heading {
+            display: block;
+            color: #b3b3b3;
+            margin: 0;
+            font-weight: normal;
+            font-size: 11px;
             text-transform: uppercase;
-            margin: 19px 0 15px 0;
-            text-shadow: 0px 0px 31px #d1e225;
-            font-size: 17px;
+            margin-bottom:10px;
         }
     }
     .prediction-amount {

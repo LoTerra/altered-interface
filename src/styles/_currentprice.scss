@@ -1,6 +1,14 @@
 .current-price {
     color: #fff;
     font-family: 'Oswald', sans-serif;
+    h2 {
+        font-size: 24px;
+        font-family: 'Oswald', sans-serif;
+        text-transform: uppercase;
+        font-weight: 500;
+        margin-bottom:0;
+        color:#fff;
+    }
     .heading {
         display: block;
         color: $primary;
@@ -90,21 +98,23 @@
                     padding: 2px 10px;
                     left: -11px;
                     border-radius: 23px;
+                    font-size:14px;
                 }
             }
             &.subtle {
                 color:#aaa;
                 top:0px;
                 label {
-                    margin-left: -44px;
-                    background: #1f1f1f;
-                    padding: 2px 10px;
-                    color: #d0e026;
-                    border-radius: 21px;
-                    box-shadow: 0px 3px 7px #00000063;
-                    z-index: 99;
-                    position: relative;
-                    font-size: 14px;
+                    margin-left: -63px;
+    background: #0a0a0ac7;
+    padding: 4px 15px;
+    color: #d0e026;
+    border-radius: 6px;
+    box-shadow: 0px 3px 7px #00000063;
+    z-index: 99;
+    position: relative;
+    font-size: 14px;
+    border: 1px solid #373737;
                 }
                 .span-stable {
                     width: 1px;

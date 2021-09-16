@@ -1,6 +1,7 @@
 import React from 'react'
 import numeral from 'numeral'
 import Equilibrium from './Equilibrium';
+import { Crosshair } from 'phosphor-react'
 
 export default function CurrentPrice(props) {
     const { price, total } = props
@@ -20,13 +21,14 @@ export default function CurrentPrice(props) {
         <div className="current-price">
             <div className="row">
                 <div className="col-12 overflow-hidden mb-4">
+                    <h2>Current Stats</h2>
                     <p className="heading" style={{paddingBottom:"10px", fontSize:"16px"}}>Equilibrium Zone</p>
                     <div className="eq">
                         {/* <img src="eq.svg" /> */}
                         <Equilibrium style={{width:'100%', maxWidth:'100%'}}/>
                         <div style={{marginLeft:'50%'}} className="indicator subtle">
                             <span className={"span-stable"}></span>
-                            <label>TARGET 1<i>UST</i></label>
+                            <label><Crosshair size={24} /> TARGET 1<i>UST</i></label>
                         </div>
                         <div style={{marginLeft:(numeral(price).format('0,0.000000') <= 0.95 ? '0%' : indicatorPercentage(price))}} className="indicator" > 
                             <span className={price < 0.95 || price > 1.05 ? "span-out" : "span-in"}></span>
@@ -38,23 +40,32 @@ export default function CurrentPrice(props) {
                         </div>
                     </div>
                 </div>
-                <div className="col-12">                  
-                    <p className="heading">
+                <div className="col-12">                
+                    <div className="row">
+                        <div className="col-12">
+                        <p className="heading">
                         Current <strong>ALTE</strong> price
-                    </p>
-                    <p className="small">
-                        {numeral(price).format('0,0.000000')} <span>UST</span>
-                    </p>
+                        </p>
+                        <p className="small" style={{ lineHeight:'34px' }}>
+                            {numeral(price).format('0,0.000000')} <span>UST</span>
+                        </p>
+                        </div>
+                    
+                    <div className="col-6">
                     <p className="heading">Total supply</p>
-                    <p className="small">
+                    <p className="small" style={{fontSize:'16px'}}>
                         {numeral(total / 1000000).format('0,0.00')}{' '}
                         <span>ALTE</span>
                     </p>
+                    </div>
+                    <div className="col-6">
                     <p className="heading">Market Cap</p>
-                    <p className="small">
+                    <p className="small" style={{fontSize:'16px'}}>
                         {numeral(price * (total / 1000000)).format('0,0.00')}{' '}
                         <span>UST</span>                        
                     </p>
+                    </div>                    
+                    </div>
                 </div>
             </div>           
         </div>
