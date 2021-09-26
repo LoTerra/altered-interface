@@ -128,10 +128,8 @@ export default function SwapForm(props) {
                     <h3>Swap</h3>
                 </div> */}
                 <div className="col-12 mb-3">
-                    <span className="label">FROM</span>
-                    <span className="valuta">
-                        {isNativeToken ? 'ALTE' : 'UST'}
-                    </span>
+                    <div className="input-group">
+                    <span className="label">FROM</span>                  
 
                     {
                         <span
@@ -159,6 +157,21 @@ export default function SwapForm(props) {
                         step="any"
                         placeholder="0"
                     />
+                    <span className="input-group-text">                        
+                        {isNativeToken
+                                ? <img
+                                src="/ALTE.png"
+                                width="20px"
+                                className="img-fluid"
+                            />
+                                : <img
+                                src="/UST.png"
+                                width="20px"
+                                className="img-fluid"
+                            />
+                    }
+                    </span>
+                    </div>                    
                 </div>
                 <div className="swapper-info">
                     <p>
@@ -177,18 +190,30 @@ export default function SwapForm(props) {
                     <Swap size={36} color={'#DCEF14'} />
                 </button>
                 <div className="col-12 mb-3">
-                    <span className="label">TO</span>
-                    <span className="valuta">
-                        {isNativeToken ? 'UST' : 'ALTE'}
+                    <div className="input-group">
+                        <span className="label">TO</span>                      
+                        <input
+                            readOnly
+                            type="number"
+                            className="form-control"
+                            value={returnAmount > 0 ? returnAmount : ''}
+                            placeholder="0"
+                        />
+                        <span className="input-group-text">                        
+                        {isNativeToken
+                                ? <img
+                                src="/UST.png"
+                                width="20px"
+                                className="img-fluid"
+                            />
+                                : <img
+                                src="/ALTE.png"
+                                width="20px"
+                                className="img-fluid"
+                            />
+                    }
                     </span>
-
-                    <input
-                        readOnly
-                        type="number"
-                        className="form-control"
-                        value={returnAmount > 0 ? returnAmount : ''}
-                        placeholder="0"
-                    />
+                    </div>
                 </div>
                 <div className="swap-final-info">
                     <small>

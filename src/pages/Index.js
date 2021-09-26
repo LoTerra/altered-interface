@@ -466,40 +466,7 @@ export default () => {
                             LoTerra
                         </a>
                     </small>
-                </div>
-
-                <div className="col-md-6 text-center text-md-end mb-4">
-                    <a
-                        href="https://docs.alteredprotocol.com"
-                        target="_blank"
-                        className="btn btn-outline-secondary nav-item mx-lg-3 learn-altered"
-                    >
-                        <ArrowSquareOut
-                            size={18}
-                            style={{
-                                marginTop: '-4px',
-                                marginRight: '4px',
-                            }}
-                        />{' '}
-                        Learn more about <strong>Altered</strong>
-                    </a>
-                </div>
-                <div className="col-md-6 text-center text-md-start mb-4">
-                    <a
-                        href="https://coinhall.org/charts/terra/terra18adm0emn6j3pnc90ldechhun62y898xrdmfgfz"
-                        target="_blank"
-                        className="btn btn-outline-secondary nav-item mx-lg-3 learn-altered"
-                    >
-                        <ChartLine
-                            size={18}
-                            style={{
-                                marginTop: '-4px',
-                                marginRight: '4px',
-                            }}
-                        />{' '}
-                        View chart on <strong>Coinhall</strong>
-                    </a>
-                </div>
+                </div>                
             </div>
 
             <div className="row">

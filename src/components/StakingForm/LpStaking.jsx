@@ -157,9 +157,8 @@ export default function LpStaking(props) {
             <div className="col-md-12">
                 <p className="input-heading">The amount you want to LP Stake</p>
                 <p className="input-slogan">
-                    Provide liquidity on Terraswap for pair ALTE-UST and stake
-                    your LP token to share: 410.00 LOTA daily rewards |
-                    150,000.00 LOTA year rewards
+                    <Info size={14} weight="fill" className="me-1"/>Provide liquidity on <a href="https://app.terraswap.io/" target="_blank">Terraswap</a> for pair ALTE-UST and stake
+                    your LP token to share: <strong>410.00 LOTA daily rewards</strong> | <strong>150,000.00 LOTA year rewards</strong>
                 </p>
                 <span className="info special">
                     <div className="row">
@@ -186,14 +185,7 @@ export default function LpStaking(props) {
                         </div>
                     </div>
                 </span>
-                <div className="input-group mb-3">
-                    <span className="input-group-text" id="basic-addon1">
-                        <img
-                            src="/ALTEUST.png"
-                            width="30px"
-                            className="img-fluid"
-                        />
-                    </span>
+                <div className="input-group mb-3">                    
                     <input
                         type="number"
                         className="form-control amount-input-lpstaking"
@@ -201,6 +193,13 @@ export default function LpStaking(props) {
                         placeholder="0.00"
                         name="amount"
                     />
+                    <span className="input-group-text" id="basic-addon1">
+                        <img
+                            src="/ALTEUST.png"
+                            width="30px"
+                            className="img-fluid"
+                        />
+                    </span>
                 </div>
             </div>
             {/* <div className="col-md-12 my-3">

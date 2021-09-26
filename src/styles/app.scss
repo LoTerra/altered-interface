@@ -22,6 +22,7 @@ body {
     width: 100%;
     height: 100%;
     overflow-x: hidden;
+    font-family: 'Oswald', sans-serif;
 }
 
 .logo {
@@ -110,9 +111,17 @@ h1 {
     }
 }
 
+p {
+    a {
+        &:hover {
+            color:$primary;
+        }
+    }
+}
+
 input::placeholder,
 textarea::placeholder {
-    color: dimgrey;
+    color: rgba(255, 255, 255, 0.288);
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -131,7 +140,7 @@ input[type='number'] {
     background: #0d0d0d;
     border: 1px solid #424242;
     box-sizing: border-box;
-    border-radius: 10px;
+    border-radius: 0px;
     height: 50px;
     font-size: 18px;
     color: #fff;
@@ -144,6 +153,7 @@ input[type='number'] {
         color: #fff;
     }
 }
+
 
 .info {
     font-size: 12px;
