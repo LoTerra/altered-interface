@@ -461,7 +461,7 @@ export default () => {
                     <h1>ALTERED</h1>
                     <p>Terras first elastic token</p>
                     <small>
-                        Build by team{' '}
+                        Built by team{' '}
                         <a href="https://loterra.io/" target="_blank">
                             LoTerra
                         </a>
