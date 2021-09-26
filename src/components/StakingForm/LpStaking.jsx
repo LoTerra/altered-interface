@@ -364,7 +364,7 @@ export default function LpStaking(props) {
                                                             parseInt(e.amount) /
                                                                 1000000
                                                         ).format('0,0.000000')}
-                                                        LOTA
+                                                        LP token
                                                     </td>{' '}
                                                     <td
                                                         style={{
