@@ -69,15 +69,19 @@
             opacity: 0.5;
             margin-bottom: 10px;
         }
+        .input-group {
+            .input-group-text {
+                background-color: #121212;
+                border: 1px solid #424242;
+            }
+        }
         &.staking {
             color: #fff;
             font-family: 'Oswald', sans-serif;
 
-            .input-group {
-                .input-group-text {
-                    background-color: #121212;
-                    border: 1px solid #424242;
-                }
+            .form-control {
+                font-family: 'Cosmos';
+                font-size: 21px;
             }
 
             .nav-pills {
