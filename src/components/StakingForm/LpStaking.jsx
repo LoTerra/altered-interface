@@ -175,7 +175,7 @@ export default function LpStaking(props) {
                         </div>
                         <div className="col-6">
                             <p>
-                                <strong>APY</strong>
+                                <strong>APR</strong>
                                 <br />{' '}
                                 {state.APY != 0
                                     ? numeral(state.APY).format('0')
