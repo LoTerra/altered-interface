@@ -164,12 +164,21 @@ export default function LpStaking(props) {
                     <div className="row">
                         <div className="col-6">
                             <p>
+                                <strong>Total staked LP</strong>
+                                <br />
+                                {state.poolInfoALTE != 0
+                                    ? numeral(parseInt(state.poolInfoALTE.total_share) / 1000000).format(
+                                    '0,0.00'
+                                ) + 'LP'
+                                    : '...'}
+                            </p>
+                            <p>
                                 <strong>Total staked LP in ALTE</strong>
                                 <br />
                                 {state.totalAlteStaked != 0
                                     ? numeral(state.totalAlteStaked).format(
-                                          '0,0.00'
-                                      ) + 'ALTE'
+                                    '0,0.00'
+                                ) + 'ALTE'
                                     : '...'}
                             </p>
                         </div>
@@ -281,6 +290,7 @@ export default function LpStaking(props) {
                         LP token
                     </strong>
                 </small>
+
             </div>
 
             <div className="col-md-12 my-3">

@@ -30,6 +30,11 @@ const initialState = {
 
 const reducer = (state, action) => {
     switch (action.type) {
+        case 'setPoolInfoALTE':
+            return {
+                ...state,
+                poolInfoALTE: action.message,
+            }
         case 'setPricePerLota':
             return {
                 ...state,

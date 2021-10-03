@@ -137,6 +137,10 @@ export default function ConnectWallet() {
             })
             dispatch({ type: 'setLPBalance', message: tokenLP })
 
+            //dispatch({ type: 'setTotalBalancePoolALTE', message: ratioALTE / 1000000 })
+            //dispatch({ type: 'setTotalBalancePoolUST', message: ratioUST / 1000000 })
+
+
             console.log(tokenLP)
             const LPHolderAccruedRewards = await api.contractQuery(
                 state.alteStakingLPAddress,

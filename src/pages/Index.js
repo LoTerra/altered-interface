@@ -103,6 +103,7 @@ export default () => {
 
             setAltePool(poolAlte.assets[0].amount)
             setUstPool(poolAlte.assets[1].amount)
+            dispatch({type: 'setPoolInfoALTE', message: poolAlte})
 
             let ust = new BigNumber(poolAlte.assets[1].amount)
             let alte = new BigNumber(poolAlte.assets[0].amount)
@@ -195,6 +196,8 @@ export default () => {
             dispatch({ type: 'setTotalAlteStaked', message: inAlte / 1000000 })
             dispatch({ type: 'setAPY', message: (150000 / amountInLota) * 100 })
             dispatch({ type: 'setPricePerLota', message: pricePerLota })
+
+
             // Set loaded
             setLoaded(true)
         } catch (e) {
