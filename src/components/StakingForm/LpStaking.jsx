@@ -393,6 +393,7 @@ export default function LpStaking(props) {
                     <button
                         className="btn btn-default w-100"
                         onClick={() => claimUnstake()}
+                        disabled={claimInfo() == 0 ? true: false}
                         style={{ marginTop: '10px' }}
                     >
                         Claim unstake
