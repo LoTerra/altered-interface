@@ -14,6 +14,7 @@ export default function StakingForm(props) {
             'https://lcd.terra.dev/blocks/latest'
         )
         setBlockHeight(latestBlocks.data.block.header.height)
+        dispatch({ type: 'setBlockHeight', message: latestBlocks.data.block.header.height })
         console.log('Block HEIGHT', latestBlocks)
     }
 

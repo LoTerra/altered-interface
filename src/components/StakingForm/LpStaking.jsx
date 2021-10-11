@@ -75,6 +75,8 @@ export default function LpStaking(props) {
         if (state.holderClaimsLP) {
             let total_amount_claimable = 0
             state.holderClaimsLP.map((e) => {
+                console.log("state.blockHeight")
+                console.log(state.blockHeight)
                 if (e.release_at.at_height < state.blockHeight) {
                     total_amount_claimable += parseInt(e.amount)
                 }
@@ -83,6 +85,7 @@ export default function LpStaking(props) {
         }
         return <>0</>
     }
+
     function pendingClaim() {
         if (state.holderClaimsLP) {
             let total_amount_pending = 0
@@ -328,13 +331,6 @@ export default function LpStaking(props) {
                         Unbonding period of 50,000 block height ~4 | 5
                         Days, ⚠️ unbonding token get no rewards
                     </p>
-                    <button
-                        className="btn btn-default w-100"
-                        onClick={() => claimUnstake()}
-                        style={{ marginTop: '10px' }}
-                    >
-                        Claim unstake
-                    </button>
                     {/* If unstake claiming condition */}
                     <span className="info">
                         <Info size={14} weight="fill" className="me-1" />
@@ -394,12 +390,18 @@ export default function LpStaking(props) {
                             </tbody>
                         </table>
                     </span>
+                    <button
+                        className="btn btn-default w-100"
+                        onClick={() => claimUnstake()}
+                        style={{ marginTop: '10px' }}
+                    >
+                        Claim unstake
+                    </button>
                     <small className="float-end text-muted mt-2">
-                        Available:{' '}
+
+                        Available:
                         <strong>
-                            {state.wallet &&
-                                state.wallet.walletAddress &&
-                                claimInfo()}
+                            {claimInfo()}
                             LP token
                         </strong>
                     </small>
