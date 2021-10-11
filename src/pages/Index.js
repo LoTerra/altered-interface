@@ -378,7 +378,8 @@ export default () => {
         try {
             let tx_play = await connectedWallet.post({
                 msgs: [msg],
-                fee: fees,
+                gasPrices: fees.gasPrices(),
+                gasAdjustment: 1.5,
             })
 
             // let tx = await terra.tx.broadcast(tx_play)
