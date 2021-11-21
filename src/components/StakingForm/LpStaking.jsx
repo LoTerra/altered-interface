@@ -185,7 +185,7 @@ export default function LpStaking(props) {
                                 </span>
                             </p>
                         </div>
-                        <div className="col-6">
+                        <div className="col-md-6">
                             <p>
                                 <strong>Daily rewards</strong>
                                 <br />                               
@@ -193,7 +193,7 @@ export default function LpStaking(props) {
                                
                             </p>
                             </div>
-                            <div className="col-6">
+                            <div className="col-md-6">
                             <p>
                                 <strong>Yearly rewards</strong>
                                 <br />                               
@@ -201,7 +201,7 @@ export default function LpStaking(props) {
                                
                             </p>
                             </div>
-                        <div className="col-6">
+                        <div className="col-md-6">
                             <p>
                                 <strong>Total staked LP</strong>
                                 <br />                               
@@ -213,7 +213,7 @@ export default function LpStaking(props) {
                                
                             </p>
                             </div>
-                            <div className="col-6">
+                            <div className="col-md-6">
                             <p>
                                 <strong>Total staked LP in ALTE</strong>
                                 <br />
