@@ -159,22 +159,61 @@ export default function LpStaking(props) {
         <div className="row">
             <div className="col-md-12">
                 <p className="input-heading">The amount you want to LP Stake</p>
-                <p className="input-slogan">
+                <p className="input-slogan" style={{fontWeight:300}}>
                     <Info size={14} weight="fill" className="me-1"/>Provide liquidity on <a href="https://app.terraswap.io/" target="_blank">Terraswap</a> for pair ALTE-UST and stake
-                    your LP token to share: <strong>410.00 LOTA daily rewards</strong> | <strong>150,000.00 LOTA year rewards</strong>
+                    your LP token.
                 </p>
                 <span className="info special">
                     <div className="row">
+                    <div className="col-12">
+                            <p>
+                                <strong  style={{color:'#aaa', fontSize:'18px', fontWeight:500}}>APR</strong>
+                                <br />{' '}
+                                <span style={{
+                                        fontSize: '26px',
+                                        color: '#dcef14',
+                                        position: 'relative',
+                                        top: '5px',
+                                        marginBottom: '15px',
+                                        display: 'block',
+                                        fontWeight:700
+                                }}>
+                                {state.APY != 0
+                                    ? numeral(state.APY).format('0')
+                                    : '...'}
+                                %
+                                </span>
+                            </p>
+                        </div>
+                        <div className="col-6">
+                            <p>
+                                <strong>Daily rewards</strong>
+                                <br />                               
+                                410 LOTA    
+                               
+                            </p>
+                            </div>
+                            <div className="col-6">
+                            <p>
+                                <strong>Yearly rewards</strong>
+                                <br />                               
+                                150.000 LOTA
+                               
+                            </p>
+                            </div>
                         <div className="col-6">
                             <p>
                                 <strong>Total staked LP</strong>
-                                <br />
+                                <br />                               
                                 {state.poolInfoALTE != 0
                                     ? numeral(parseInt(state.poolInfoALTE.total_share) / 1000000).format(
                                     '0,0.00'
                                 ) + 'LP'
                                     : '...'}
+                               
                             </p>
+                            </div>
+                            <div className="col-6">
                             <p>
                                 <strong>Total staked LP in ALTE</strong>
                                 <br />
@@ -184,17 +223,7 @@ export default function LpStaking(props) {
                                 ) + 'ALTE'
                                     : '...'}
                             </p>
-                        </div>
-                        <div className="col-6">
-                            <p>
-                                <strong>APR</strong>
-                                <br />{' '}
-                                {state.APY != 0
-                                    ? numeral(state.APY).format('0')
-                                    : '...'}
-                                %
-                            </p>
-                        </div>
+                        </div>                        
                     </div>
                 </span>
                 <div className="input-group mb-3">                    
