@@ -20,7 +20,7 @@ export default function StakingForm(props) {
 
     useEffect(() => {
         blockHeight()
-    }, [blockHeight])
+    }, [])
 
     return (
         <div className="card special staking">

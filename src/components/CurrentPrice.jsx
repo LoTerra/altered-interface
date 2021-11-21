@@ -7,13 +7,19 @@ export default function CurrentPrice(props) {
     const { price, total } = props
 
     const indicatorPercentage = (data) => {
-        let diff = 1.05 - numeral(data).format('0,0.000000')
-        let percentage = diff * 10
-        if (percentage >= 100) {
-            return '100%'
-        } else {
-            return percentage + '%'
+        //Rewrite
+        let total = 1.05 - 0.95;
+        let perc_total = total / 100;
+        let percentage = (parseFloat(data) - 0.95) / perc_total;
+        if(percentage > 0.95 &&  percentage < 1.05){
+            return percentage+'%';
         }
+        if(percentage >= 1.05){
+            return '100%';
+        }
+        if(percentage <= 0.95){
+            return '0%';       
+         }
     }
 
     return (
@@ -52,21 +58,21 @@ export default function CurrentPrice(props) {
                         >
                             <span
                                 className={
-                                    price < 0.95 || price > 1.05
+                                    price < 0.95
                                         ? 'span-out'
                                         : 'span-in'
                                 }
                             ></span>
-                            <label
+                            {/* <label
                                 className={
-                                    price < 0.95 || price > 1.05
+                                    price < 0.95 || price >= 1.05
                                         ? 'colored-out current'
                                         : 'colored-in current'
                                 }
                             >
                                 {numeral(price).format('0,0.000000')}
                                 <i>UST</i>
-                            </label>
+                            </label> */}
                         </div>
                         <div className="static-indicator">
                             <span> {'<'}0.95</span>
