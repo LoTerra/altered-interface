@@ -140,14 +140,15 @@ export default () => {
                     expectedRebaseSupply.dividedBy(1000000).toFixed()
                 )
             } else {
+
                 let totalSupplyBig = new BigNumber(
                     contractConfigInfo.total_supply
                 )
-                let percentageSupply = alte
+                let percentageSupply = ust
                     .multipliedBy(100)
                     .dividedBy(totalSupplyBig)
-                let rebasedSupply = alte.multipliedBy(
-                    totalSupplyBig.dividedBy(ust)
+                let rebasedSupply = ust.multipliedBy(
+                    totalSupplyBig.dividedBy(alte)
                 )
                 let rebase = totalSupplyBig.minus(rebasedSupply).dividedBy(10)
                 let expectedRebaseSupply = totalSupplyBig.minus(rebase)
