@@ -64,16 +64,16 @@ export default function CurrentPrice(props) {
                                         : 'span-in'
                                 }
                             ></span>
-                            {/* <label
+                            {<label
                                 className={
                                     price < 0.95 || price >= 1.05
                                         ? 'colored-out current'
                                         : 'colored-in current'
                                 }
                             >
-                                {numeral(price).format('0,0.000000')}
+                                {numeral(price).format('0,0.00')}
                                 <i>UST</i>
-                            </label> */}
+                            </label> }
                         </div>
                         <div className="static-indicator">
                             <span> {'<'}0.95</span>
