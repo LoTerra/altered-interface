@@ -15,11 +15,12 @@ export default function CurrentPrice(props) {
         if(data > 0.95 && data < 1.05){
             return percentage+'%';
         }
+        // I changed to minus 5% on all for a better UI displaying
         if(data >= 1.05){
-            return '100%';
+            return '95%';
         }
         if(data <= 0.95){
-            return '0%';       
+            return '5%';
          }
     }
 
