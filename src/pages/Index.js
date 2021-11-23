@@ -139,8 +139,8 @@ export default () => {
                     .dividedBy(expectedPoolSupplyAlte.dividedBy(1000000))
                     .toFixed()
 
-                let priceAfter = predicted > 0.95 && predicted < 1.05 ? formatPrice.toFixed() : predicted
-                let totalSupplyAfter = predicted > 0.95 && predicted < 1.05 ? totalSupplyBig.dividedBy(1000000).toFixed() : expectedRebaseSupply.dividedBy(1000000).toFixed()
+                let priceAfter = formatPrice.toFixed()  > 0.95 && formatPrice.toFixed()  < 1.05 ? formatPrice.toFixed() : predicted
+                let totalSupplyAfter = formatPrice.toFixed()  > 0.95 && formatPrice.toFixed()  < 1.05 ? totalSupplyBig.dividedBy(1000000).toFixed() : expectedRebaseSupply.dividedBy(1000000).toFixed()
 
                 setPredictedPrice(
                     priceAfter
@@ -169,9 +169,9 @@ export default () => {
                     .dividedBy(1000000)
                     .dividedBy(expectedPoolSupplyAlte.dividedBy(1000000))
                     .toFixed()
-
-                let priceAfter = predicted > 0.95 && predicted < 1.05 ? formatPrice.toFixed() : predicted
-                let totalSupplyAfter = predicted > 0.95 && predicted < 1.05 ? totalSupplyBig.dividedBy(1000000).toFixed() : expectedRebaseSupply.dividedBy(1000000).toFixed()
+               
+                let priceAfter = formatPrice.toFixed()  > 0.95 && formatPrice.toFixed()  < 1.05 ? formatPrice.toFixed() : predicted
+                let totalSupplyAfter = formatPrice.toFixed()  > 0.95 && formatPrice.toFixed()  < 1.05 ? totalSupplyBig.dividedBy(1000000).toFixed() : expectedRebaseSupply.dividedBy(1000000).toFixed()
 
                 setPredictedPrice(
                     priceAfter
