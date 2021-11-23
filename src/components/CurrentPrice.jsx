@@ -15,12 +15,12 @@ export default function CurrentPrice(props) {
         if(data > 0.95 && data < 1.05){
             return percentage+'%';
         }
-        // I changed to minus 5% on all for a better UI displaying
+
         if(data >= 1.05){
-            return '95%';
+            return '100%';
         }
         if(data <= 0.95){
-            return '5%';
+            return '0%';
          }
     }
 
@@ -70,7 +70,9 @@ export default function CurrentPrice(props) {
                                     price < 0.95 || price >= 1.05
                                         ? 'colored-out current'
                                         : 'colored-in current'
+
                                 }
+
                             >
                                 {numeral(price).format('0,0.00')}
                             </label> }
