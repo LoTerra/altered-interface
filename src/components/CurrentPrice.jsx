@@ -72,7 +72,6 @@ export default function CurrentPrice(props) {
                                 }
                             >
                                 {numeral(price).format('0,0.00')}
-                                <i>UST</i>
                             </label> }
                         </div>
                         <div className="static-indicator">
