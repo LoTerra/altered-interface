@@ -11,13 +11,14 @@ export default function CurrentPrice(props) {
         let total = 1.05 - 0.95;
         let perc_total = total / 100;
         let percentage = (parseFloat(data) - 0.95) / perc_total;
-        if(percentage > 0.95 &&  percentage < 1.05){
+
+        if(data > 0.95 && data < 1.05){
             return percentage+'%';
         }
-        if(percentage >= 1.05){
+        if(data >= 1.05){
             return '100%';
         }
-        if(percentage <= 0.95){
+        if(data <= 0.95){
             return '0%';       
          }
     }
