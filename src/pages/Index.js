@@ -108,6 +108,9 @@ export default () => {
             let ust = new BigNumber(poolAlte.assets[1].amount)
             let alte = new BigNumber(poolAlte.assets[0].amount)
 
+            let formatPrice = ust.dividedBy(alte)
+            setPrice(formatPrice.toFixed())
+
             if (ust.isLessThan(alte)) {
                 let totalSupplyBig = new BigNumber(
                     contractConfigInfo.total_supply
@@ -130,14 +133,20 @@ export default () => {
                 let expectedPoolSupplyAlte = expectedRebaseSupply
                     .multipliedBy(percentageSupply)
                     .dividedBy(100)
+
+                let predicted = ust
+                    .dividedBy(1000000)
+                    .dividedBy(expectedPoolSupplyAlte.dividedBy(1000000))
+                    .toFixed()
+
+                let priceAfter = predicted > 0.95 && predicted < 1.05 ? formatPrice.toFixed() : predicted
+                let totalSupplyAfter = predicted > 0.95 && predicted < 1.05 ? totalSupplyBig.dividedBy(1000000).toFixed() : expectedRebaseSupply.dividedBy(1000000).toFixed()
+
                 setPredictedPrice(
-                    ust
-                        .dividedBy(1000000)
-                        .dividedBy(expectedPoolSupplyAlte.dividedBy(1000000))
-                        .toFixed()
+                    priceAfter
                 )
                 setPredictedTotalSupply(
-                    expectedRebaseSupply.dividedBy(1000000).toFixed()
+                    totalSupplyAfter
                 )
             } else {
 
@@ -155,21 +164,26 @@ export default () => {
                 let expectedPoolSupplyAlte = expectedRebaseSupply
                     .multipliedBy(percentageSupply)
                     .dividedBy(100)
+
+                let predicted = ust
+                    .dividedBy(1000000)
+                    .dividedBy(expectedPoolSupplyAlte.dividedBy(1000000))
+                    .toFixed()
+
+                let priceAfter = predicted > 0.95 && predicted < 1.05 ? formatPrice.toFixed() : predicted
+                let totalSupplyAfter = predicted > 0.95 && predicted < 1.05 ? totalSupplyBig.dividedBy(1000000).toFixed() : expectedRebaseSupply.dividedBy(1000000).toFixed()
+
                 setPredictedPrice(
-                    ust
-                        .dividedBy(1000000)
-                        .dividedBy(expectedPoolSupplyAlte.dividedBy(1000000))
-                        .toFixed()
+                    priceAfter
                 )
                 setPredictedTotalSupply(
-                    expectedRebaseSupply.dividedBy(1000000).toFixed()
+                    totalSupplyAfter
                 )
             }
             console.log(ust.toString())
             console.log(alte.toString())
 
-            let formatPrice = ust.dividedBy(alte)
-            setPrice(formatPrice.toFixed())
+
 
             // Get pool alte
             const poolLota = await api.contractQuery(state.lotaPoolAddress, {
