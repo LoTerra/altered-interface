@@ -175,10 +175,7 @@ export default () => {
                 console.log("expectedPoolSupplyAlte")
                 console.log(expectedPoolSupplyAlte.toString())
 
-                let predicted = ust
-                    .dividedBy(1000000)
-                    .dividedBy(expectedPoolSupplyAlte.dividedBy(1000000))
-                    .toFixed()
+                let predicted = rebasedSupply.dividedBy(1000000).dividedBy(expectedRebaseSupply.dividedBy(1000000)).toFixed()
 
                 let priceAfter = formatPrice.toFixed()  > 0.95 && formatPrice.toFixed()  < 1.05 ? formatPrice.toFixed() : predicted
                 let totalSupplyAfter = formatPrice.toFixed()  > 0.95 && formatPrice.toFixed()  < 1.05 ? totalSupplyBig.dividedBy(1000000).toFixed() : expectedRebaseSupply.dividedBy(1000000).toFixed()
