@@ -159,17 +159,27 @@ export default () => {
                 let rebasedSupply = ust.multipliedBy(
                     totalSupplyBig.dividedBy(alte)
                 )
-                let rebase = totalSupplyBig.minus(rebasedSupply).dividedBy(10)
-                let expectedRebaseSupply = totalSupplyBig.minus(rebase)
+                console.log(rebasedSupply.toFixed())
+                let rebase =  rebasedSupply.minus(totalSupplyBig).dividedBy(Date.now() / 1000 >
+                contractConfigInfo.rebase_damping_launch
+                    ? 10
+                    : 30)
+                console.log("rebase amount")
+                console.log(rebase.toFixed())
+                let expectedRebaseSupply = totalSupplyBig.plus(rebase)
+                console.log("expectedRebaseSupply")
+                console.log(expectedRebaseSupply.toString())
                 let expectedPoolSupplyAlte = expectedRebaseSupply
                     .multipliedBy(percentageSupply)
                     .dividedBy(100)
+                console.log("expectedPoolSupplyAlte")
+                console.log(expectedPoolSupplyAlte.toString())
 
                 let predicted = ust
                     .dividedBy(1000000)
                     .dividedBy(expectedPoolSupplyAlte.dividedBy(1000000))
                     .toFixed()
-               
+
                 let priceAfter = formatPrice.toFixed()  > 0.95 && formatPrice.toFixed()  < 1.05 ? formatPrice.toFixed() : predicted
                 let totalSupplyAfter = formatPrice.toFixed()  > 0.95 && formatPrice.toFixed()  < 1.05 ? totalSupplyBig.dividedBy(1000000).toFixed() : expectedRebaseSupply.dividedBy(1000000).toFixed()
 
