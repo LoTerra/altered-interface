@@ -197,7 +197,7 @@ export default function LpStaking(props) {
                             <p>
                                 <strong>Yearly rewards</strong>
                                 <br />                               
-                                150,000.00 LOTA
+                                150,000 LOTA
                                
                             </p>
                             </div>
