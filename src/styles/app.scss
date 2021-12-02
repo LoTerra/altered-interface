@@ -262,3 +262,76 @@ input[type='number'] {
         }
     }
 }
+
+.trading-competition-intro {
+    h1 {
+
+    }
+    h3 {
+        text-transform: uppercase;
+    color: #868681;
+    font-size: 21px;
+    margin-top: 0px;
+    margin-bottom: 25px;
+    z-index: 99;
+    position: relative;
+    font-weight: 100;
+    font-family: "Oswald", sans-serif;
+    letter-spacing: 10px;
+    }
+}
+
+.trading-competition-table {
+    color:#fff;
+    background: linear-gradient( 
+        228.88deg, rgba(0, 0, 0, 0.2) 18.2%, rgba(176, 176, 176, 0.107292) 77.71%, rgba(0, 0, 0, 0.0885417) 99.78%, rgba(0, 0, 0, 0) 146.58%), #171717;
+    tr {
+        th {
+            border-bottom: 1px solid #212121 !important;
+        }
+        td {
+            border-bottom:1px solid #212121;
+            &.rank {
+                span {
+                    background: linear-gradient(
+                        45deg, black, #848484);
+                            width: 30px;
+                            height: 30px;
+                            line-height: 30px;
+                            text-align: center;
+                            display: block;
+                            color: #dcef14;
+                }
+            }
+            &.trader-address {
+
+            }
+            &.amount {
+                font-family: "Cosmos";
+            }
+        }
+
+        &.normal {
+            font-size:14px;
+        }
+        &.big {
+            font-size:18px;
+            td {
+                &.rank {
+                    span {
+                        background: linear-gradient(
+                            180deg, rgba(208, 224, 39, 0.2) -0.05%, rgba(220, 239, 20, 0.2) 47.89%, rgba(91, 97, 31, 0.2) 47.9%, rgba(233, 255, 0, 0.2) 100%), #d0e027;
+                                width: 40px;
+                                height: 40px;
+                                line-height: 40px;
+                                text-align: center;
+                                display: block;
+                                color: #000000;
+                                font-weight: 700;
+                    }
+                }
+            }
+        }
+    }
+    
+}
