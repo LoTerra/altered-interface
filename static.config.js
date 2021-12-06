@@ -18,6 +18,10 @@ export default {
             path: '/',
             template: 'src/pages/Index',
         },
+        {
+            path: '/trading-competition',
+            template: 'src/pages/TradingCompetition',
+        },
         // A 404 component
         {
             path: '404',
