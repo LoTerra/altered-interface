@@ -12,7 +12,7 @@ import Countdown from '../components/Countdown'
 import CurrentPrice from '../components/CurrentPrice'
 import SwapForm from '../components/SwapForm'
 import Notification from '../components/Notification'
-import { Swap, Warning, ArrowSquareOut, ChartLine, Bank } from 'phosphor-react'
+import { Swap, Warning, ArrowSquareOut, ChartLine, Bank, Eye } from 'phosphor-react'
 import StakingForm from '../components/StakingForm'
 import { useStore } from '../../src/store'
 
@@ -492,6 +492,18 @@ export default () => {
                             LoTerra
                         </a>
                     </small>
+                    <div classNaame="d-block">
+                    <a href="/trading-competition" target="_blank" className="btn btn-secondary"
+                    style={{                        
+                        boxShadow: '0px 0px 13px #d0e027c4',
+                        fontWeight:'bold'
+                    }}
+                    >
+                        <span className="d-block"><Eye size={17} weight="bold"/> Trading Competition stats</span>
+                        <span className="d-block" style={{fontSize:'12px', marginTop:'-7px', fontWeight:'200', fontFamily:'Oswald'}}>15000 LOTERRA TICKETS TO BE WON!</span>
+                        </a>                    
+                    </div>
+                    <small className="d-block mb-3" style={{top:'8px', fontSize:'12px'}}>Competition Period: 2021-12-06 12:00 PM to 2021-12-24 12:00 PM (UTC)</small>
                 </div>                
             </div>
 
