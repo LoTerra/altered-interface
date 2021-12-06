@@ -86,7 +86,7 @@ export default () => {
                 return (
                 <tr className={getRankClass(index)}>
                     <td className="rank"><span>{getRank(index)}</span> <p>{getRankPrize(index)}</p></td>
-                    <td className="trader-address">{obj.trader_address}</td>
+                    <td className="trader-address">{obj._id}</td>
                     <td className="amount text-end">{(obj.volume_amount / 1000000).toFixed(2)} ALTE</td>
                 </tr>
                 )
