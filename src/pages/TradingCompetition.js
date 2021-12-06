@@ -46,9 +46,10 @@ export default () => {
           if(rank >= 6 && rank <= 10){
             return '500'
           }
-          if(rank >= 11 && rank <= 60){
+          if(rank >= 11 && rank <= 40){
             return '100'
           }
+          return 0;
       }
 
       const getRankClass = (nr) => {
