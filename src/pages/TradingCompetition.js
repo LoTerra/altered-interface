@@ -73,6 +73,7 @@ export default () => {
             <h1 className="text-center">Altered</h1>
             <h3 className="text-center">Trading competition</h3>
         </div>
+        <div class="table-responsive">
         <table className="table trading-competition-table mb-5">
             <thead>
                 <tr>
@@ -96,6 +97,7 @@ export default () => {
             }
             </tbody>
         </table>
+        </div>
         </div>
     )
 }
