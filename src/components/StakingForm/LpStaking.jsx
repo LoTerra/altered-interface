@@ -357,8 +357,7 @@ export default function LpStaking(props) {
                     </button>
                     <p className="input-heading">Claim unstake</p>
                     <p className="input-slogan">
-                        Unbonding period of 50,000 block height ~4 | 5
-                        Days, ⚠️ unbonding token get no rewards
+                        Instant unbonding, no lock time. ⚠️ unbonding token get no rewards
                     </p>
                     {/* If unstake claiming condition */}
                     <span className="info">
