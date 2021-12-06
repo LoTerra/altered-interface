@@ -125,7 +125,7 @@ export default () => {
               <div className="col-6">
               <div className="competition-stats">
                     <p className="title">Total Volume</p>
-                    <p className="nr">{traders && getTradingVolume()}<span className="ms-1">ALTE</span></p>
+                    <p className="nr">{traders && getTradingVolume()}<span className="ms-1">ALTE + UST</span></p>
                   </div>
               </div>
             </div>
@@ -147,7 +147,7 @@ export default () => {
                 return (
                 <tr className={getRankClass(index)}>
                     <td className="rank" style={{minWidth:'50px'}}><span>{getRank(index)}</span></td>                                        
-                    <td className="amount" style={{minWidth:'200px'}}>{(obj.volume_amount / 1000000).toFixed(2)} ALTE</td>
+                    <td className="amount" style={{minWidth:'200px'}}>{(obj.volume_amount / 1000000).toFixed(2)} ALTE + UST</td>
                     <td className="rank" style={{minWidth:'100px'}}><p>{getRankPrize(index)} <Ticket size={21} color={'#858585'} style={{position:'relative', top:'-2px'}}/></p></td>
                     <td className="trader-address text-end">{obj._id}</td>
                 </tr>
