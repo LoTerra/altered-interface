@@ -5,8 +5,7 @@ import { MsgExecuteContract, StdFee } from '@terra-money/terra.js'
 
 import numeral from 'numeral'
 
-const addToGas = 5800
-const obj = new StdFee(700_000, { uusd: 319200 + addToGas })
+const obj = new StdFee(700_000, { uusd: 319200  })
 
 export default function LpStaking(props) {
     const { showNotification } = props
@@ -25,35 +24,51 @@ export default function LpStaking(props) {
             showNotification('Input amount empty', 'error', 4000)
             return
         }
-        let msg
+        let msgs = []
         if (type == 'stake') {
-            msg = new MsgExecuteContract(
-                state.wallet.walletAddress,
-                state.alteLPAddress,
-                {
-                    send: {
-                        contract: state.alteStakingLPAddress,
-                        amount: amount.toString(),
-                        msg: 'eyAiYm9uZF9zdGFrZSI6IHt9IH0=',
-                    },
-                }
+            msgs.push(
+                new MsgExecuteContract(
+                    state.wallet.walletAddress,
+                    state.alteLPAddress,
+                    {
+                        send: {
+                            contract: state.alteStakingLPAddress,
+                            amount: amount.toString(),
+                            msg: 'eyAiYm9uZF9zdGFrZSI6IHt9IH0=',
+                        },
+                    }
+                )
             )
+
         } else {
-            msg = new MsgExecuteContract(
-                state.wallet.walletAddress,
-                state.alteStakingLPAddress,
-                {
-                    unbond_stake: { amount: amount.toString() },
-                }
+            // unbond
+            msgs.push(
+                new MsgExecuteContract(
+                    state.wallet.walletAddress,
+                    state.alteStakingLPAddress,
+                    {
+                        unbond_stake: { amount: amount.toString() },
+                    }
+                )
             )
+            // Withdraw directly after unbond
+            msgs.push(
+                new MsgExecuteContract(
+                    state.wallet.walletAddress,
+                    state.alteStakingLPAddress,
+                    {
+                        withdraw_stake: {},
+                    }
+                )
+            )
+
         }
 
         state.wallet
             .post({
-                msgs: [msg],
-                fee: obj,
-                // gasPrices: obj.gasPrices(),
-                // gasAdjustment: 1.5,
+                msgs: msgs,
+                gasPrices: obj.gasPrices(),
+                gasAdjustment: 1.7,
             })
             .then((e) => {
                 console.log(e)
@@ -160,8 +175,9 @@ export default function LpStaking(props) {
             <div className="col-md-12">
                 <p className="input-heading">The amount you want to LP Stake</p>
                 <p className="input-slogan" style={{fontWeight:300}}>
-                    <Info size={14} weight="fill" className="me-1"/>Provide liquidity on <a href="https://app.terraswap.io/" target="_blank">Terraswap</a> for pair ALTE-UST and stake
-                    your LP token.
+                    <Info size={14} weight="fill" className="me-1"/>Provide liquidity on <a href="https://app.terraswap.io/" target="_blank">Terraswap</a> for pair ALTE-UST.
+                    Rewards are waiting! Stake
+                    now your LP tokens and unstake at any time!
                 </p>
                 <span className="info special">
                     <div className="row">
@@ -355,85 +371,6 @@ export default function LpStaking(props) {
                     >
                         Claim Rewards
                     </button>
-                    <p className="input-heading">Claim unstake</p>
-                    <p className="input-slogan">
-                        Instant unbonding, no lock time. ⚠️ unbonding token get no rewards
-                    </p>
-                    {/* If unstake claiming condition */}
-                    <span className="info">
-                        <Info size={14} weight="fill" className="me-1" />
-                        Your pending claim amount available soon:
-                        <strong> {pendingClaim()} LP token</strong>
-                        <div style={{ marginTop: '20px' }}>
-                            List of pending claims
-                        </div>
-                        <table>
-                            {' '}
-                            <thead>
-                                <tr>
-                                    <td style={{ paddingLeft: '20px' }}>
-                                        Amount
-                                    </td>{' '}
-                                    <td style={{ paddingLeft: '20px' }}>
-                                        Release at blockheight
-                                    </td>
-                                </tr>
-                            </thead>{' '}
-                            <tbody>
-                                {state.holderClaimsLP ? (
-                                    state.holderClaimsLP.map((e) => {
-                                        if (
-                                            e.release_at.at_height >
-                                            state.blockHeight
-                                        ) {
-                                            return (
-                                                <tr>
-                                                    <td
-                                                        style={{
-                                                            paddingLeft: '20px',
-                                                        }}
-                                                    >
-                                                        {numeral(
-                                                            parseInt(e.amount) /
-                                                                1000000
-                                                        ).format('0,0.000000')}
-                                                        LP token
-                                                    </td>{' '}
-                                                    <td
-                                                        style={{
-                                                            paddingLeft: '20px',
-                                                        }}
-                                                    >
-                                                        {e.release_at.at_height}
-                                                    </td>{' '}
-                                                </tr>
-                                            )
-                                        }
-                                    })
-                                ) : (
-                                    <tr>
-                                        <td>Empty</td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </table>
-                    </span>
-                    <button
-                        className="btn btn-default w-100"
-                        onClick={() => claimUnstake()}
-                        disabled={claimInfo() == 0 ? true: false}
-                        style={{ marginTop: '10px' }}
-                    >
-                        Claim unstake
-                    </button>
-                    <small className="float-end text-muted mt-2">
-
-                        Available:
-                        <strong>
-                            {claimInfo()}
-                            LP token
-                        </strong>
-                    </small>
                 </div>
             </div>
         </div>
