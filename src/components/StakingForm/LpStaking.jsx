@@ -96,9 +96,9 @@ export default function LpStaking(props) {
                     total_amount_claimable += parseInt(e.amount)
                 }
             })
-            return <>{total_amount_claimable / 1000000}</>
+            return total_amount_claimable / 1000000
         }
-        return <>0</>
+        return 0
     }
 
     function pendingClaim() {
@@ -109,9 +109,9 @@ export default function LpStaking(props) {
                     total_amount_pending += parseInt(e.amount)
                 }
             })
-            return <>{total_amount_pending / 1000000}</>
+            return total_amount_pending / 1000000
         }
-        return <>0</>
+        return 0
     }
 
     function claimUnstake() {
@@ -375,6 +375,91 @@ export default function LpStaking(props) {
                     >
                         Claim Rewards
                     </button>
+
+                    { claimInfo() && pendingClaim() && pendingClaim() > 0 || claimInfo() > 0 &&
+                        
+                        <>
+                            <p className="input-heading mt-3">Claim unstake</p>
+                            <p className="input-slogan">
+                                Instant unbonding, no lock time. ⚠️ unbonding token get no rewards
+                            </p>
+                            <span className="info">
+                        <Info size={14} weight="fill" className="me-1" />
+                        Your pending claim amount available soon:
+                        <strong> {pendingClaim()} LP token</strong>
+                        <div style={{ marginTop: '20px' }}>
+                            List of pending claims
+                        </div>
+                        <table>
+                            {' '}
+                            <thead>
+                                <tr>
+                                    <td style={{ paddingLeft: '20px' }}>
+                                        Amount
+                                    </td>{' '}
+                                    <td style={{ paddingLeft: '20px' }}>
+                                        Release at blockheight
+                                    </td>
+                                </tr>
+                            </thead>{' '}
+                            <tbody>
+                                {state.holderClaimsLP ? (
+                                    state.holderClaimsLP.map((e) => {
+                                        if (
+                                            e.release_at.at_height >
+                                            state.blockHeight
+                                        ) {
+                                            return (
+                                                <tr>
+                                                    <td
+                                                        style={{
+                                                            paddingLeft: '20px',
+                                                        }}
+                                                    >
+                                                        {numeral(
+                                                            parseInt(e.amount) /
+                                                                1000000
+                                                        ).format('0,0.000000')}
+                                                        LP token
+                                                    </td>{' '}
+                                                    <td
+                                                        style={{
+                                                            paddingLeft: '20px',
+                                                        }}
+                                                    >
+                                                        {e.release_at.at_height}
+                                                    </td>{' '}
+                                                </tr>
+                                            )
+                                        }
+                                    })
+                                ) : (
+                                    <tr>
+                                        <td>Empty</td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
+                    </span>
+                            <button
+                                className="btn btn-default w-100"
+                                onClick={() => claimUnstake()}
+                                disabled={claimInfo() == 0 ? true: false}
+                                style={{ marginTop: '10px' }}
+                            >
+                                Claim unstake
+                            </button>
+                            <small className="float-end text-muted mt-2">
+
+                        Available:
+                        <strong>
+                            {claimInfo()}
+                            LP token
+                        </strong>
+                    </small>
+                            </>
+                        
+                    }
                 </div>
             </div>
         </div>
