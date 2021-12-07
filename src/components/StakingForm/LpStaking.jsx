@@ -344,6 +344,10 @@ export default function LpStaking(props) {
             <div className="col-md-12 my-3">
                 <div className="claim-unstake">
                     <p className="input-heading">Claim rewards</p>
+                    <p className="input-slogan" style={{fontWeight:300}}>
+                        <Info size={14} weight="fill" className="me-1"/>
+                        Daily payout
+                    </p>
                     <p className="rewards-counter w-100 mb-0">
                         {state.wallet && state.wallet.walletAddress && (
                             <>
