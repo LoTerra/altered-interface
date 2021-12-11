@@ -346,7 +346,8 @@ export default function LpStaking(props) {
                     <p className="input-heading">Claim rewards</p>
                     <p className="input-slogan" style={{fontWeight:300}}>
                         <Info size={14} weight="fill" className="me-1"/>
-                        Daily payout
+                        Daily payout! Next payout
+                        {" "+ new Date(parseInt(state.stateLPStakingALTE.open_block_time) * 1000).toUTCString()}
                     </p>
                     <p className="rewards-counter w-100 mb-0">
                         {state.wallet && state.wallet.walletAddress && (
