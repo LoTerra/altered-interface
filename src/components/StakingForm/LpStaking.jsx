@@ -5,7 +5,7 @@ import { MsgExecuteContract, StdFee } from '@terra-money/terra.js'
 
 import numeral from 'numeral'
 
-const obj = new StdFee(700_000, { uusd: 319200  })
+const obj = new StdFee(700_000, { uusd: 150000 })
 
 export default function LpStaking(props) {
     const { showNotification } = props
@@ -125,9 +125,8 @@ export default function LpStaking(props) {
         state.wallet
             .post({
                 msgs: [msg],
-                fee: obj,
-                // gasPrices: obj.gasPrices(),
-                // gasAdjustment: 1.5,
+                gasPrices: obj.gasPrices(),
+                gasAdjustment: 1.5,
             })
             .then((e) => {
                 if (e.success) {
@@ -153,9 +152,8 @@ export default function LpStaking(props) {
         state.wallet
             .post({
                 msgs: [msg],
-                fee: obj,
-                // gasPrices: obj.gasPrices(),
-                // gasAdjustment: 1.5,
+                gasPrices: obj.gasPrices(),
+                gasAdjustment: 1.5,
             })
             .then((e) => {
                 if (e.success) {

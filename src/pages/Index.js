@@ -35,7 +35,7 @@ const lota_ust_pair =
         ? process.env.POOL_ADDR_LOTA_TESTNET
         : process.env.POOL_ADDR_LOTA
 
-const obj = new StdFee(700_000, { uusd: 319200 })
+const obj = new StdFee(700_000, { uusd: 150000 })
 let api = {}
 
 export default () => {
@@ -397,7 +397,7 @@ export default () => {
         try {
             let tx_play = await connectedWallet.post({
                 msgs: [msg],
-                gasPrices: fees.gasPrices(),
+                gasPrices: obj.gasPrices(),
                 gasAdjustment: 1.5,
             })
 
@@ -407,6 +407,7 @@ export default () => {
             showNotification('Successful', 'success', 4000)
         } catch (e) {
             console.log(e)
+            console.log(e.message)
             showNotification('Error', 'error', 4000)
         }
     }
@@ -422,7 +423,7 @@ export default () => {
             )
             let txRebase = await connectedWallet.post({
                 msgs: [rebaseMsg],
-                gasPrices: fees.gasPrices(),
+                gasPrices: obj.gasPrices(),
                 gasAdjustment: 1.5,
             })
             console.log(txRebase)
