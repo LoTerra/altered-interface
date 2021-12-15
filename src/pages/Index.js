@@ -425,7 +425,8 @@ export default () => {
             )
             let txRebase = await connectedWallet.post({
                 msgs: [rebaseMsg],
-                fee: fees,
+                gasPrices: fees.gasPrices(),
+                gasAdjustment: 1.5,
             })
             console.log(txRebase)
         } catch (e) {
