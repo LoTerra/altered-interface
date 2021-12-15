@@ -35,10 +35,7 @@ const lota_ust_pair =
         ? process.env.POOL_ADDR_LOTA_TESTNET
         : process.env.POOL_ADDR_LOTA
 
-const fees =
-    process.env.DEV == true
-        ? new StdFee(400_000, { uusd: 60000 + 2000000 })
-        : new StdFee(600_000, { uusd: 90000 + 1610379 })
+const obj = new StdFee(700_000, { uusd: 319200 })
 let api = {}
 
 export default () => {
