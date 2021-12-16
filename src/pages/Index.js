@@ -374,11 +374,11 @@ export default () => {
                                     denom: 'uusd',
                                 },
                             },
-                            amount: String(amount * 1000000),
+                            amount: String(Math.trunc(amount * 1000000)),
                         },
                     },
                 },
-                { uusd: String(amount * 1000000) }
+                { uusd: String(Math.trunc(amount * 1000000)) }
             )
         } else {
             // This message is for swapping ALTE to UST
@@ -388,7 +388,7 @@ export default () => {
                 {
                     send: {
                         contract: alte_ust_pair,
-                        amount: String(amount * 1000000),
+                        amount: String(Math.trunc(amount * 1000000)),
                         msg: 'eyJzd2FwIjp7fX0=',
                     },
                 }
