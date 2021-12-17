@@ -306,6 +306,24 @@ export default function LpStaking(props) {
                             </>
                         )}{' '}
                         LP token
+                        {' | ('}
+                        {state.wallet && state.wallet.walletAddress && state.poolInfoALTE != 0 &&(
+                            <>
+                                {numeral(
+                                    parseInt(state.poolInfoALTE.assets[0].amount) / parseInt(state.poolInfoALTE.total_share) * parseInt(state.LPBalance.balance) /
+                                    1000000
+                                ).format('0.00')}
+                            </>
+                        )}{' '} ALTE
+                        {' - '}
+                        {state.wallet && state.wallet.walletAddress && state.poolInfoALTE != 0 &&(
+                            <>
+                                {numeral(
+                                    parseInt(state.poolInfoALTE.assets[1].amount) / parseInt(state.poolInfoALTE.total_share) * parseInt(state.LPBalance.balance) /
+                                    1000000
+                                ).format('0.00')}
+                            </>
+                        )}UST{')'}
                     </strong>
                 </small>
             </div>
@@ -333,7 +351,24 @@ export default function LpStaking(props) {
                                 ).format('0.00')}
                             </>
                         )}{' '}
-                        LP token
+                        LP token {' | ('}
+                        {state.wallet && state.wallet.walletAddress && state.poolInfoALTE != 0 &&(
+                            <>
+                                {numeral(
+                                    parseInt(state.poolInfoALTE.assets[0].amount) / parseInt(state.poolInfoALTE.total_share) * parseInt(state.allHolderLP.balance) /
+                                    1000000
+                                ).format('0.00')}
+                            </>
+                        )}{' '} ALTE
+                        {' - '}
+                        {state.wallet && state.wallet.walletAddress && state.poolInfoALTE != 0 &&(
+                            <>
+                                {numeral(
+                                    parseInt(state.poolInfoALTE.assets[1].amount) / parseInt(state.poolInfoALTE.total_share) * parseInt(state.allHolderLP.balance) /
+                                    1000000
+                                ).format('0.00')}
+                            </>
+                        )}UST{')'}
                     </strong>
                 </small>
 
