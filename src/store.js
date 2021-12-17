@@ -22,7 +22,27 @@ const initialState = {
     stateLPStakingLOTA: {},
     poolInfoLOTA: {},
     stateLPStakingALTE: {},
-    poolInfoALTE: {},
+    poolInfoALTE: {
+        assets: [
+            {
+                info: {
+                    token: {
+                        contract_addr: "terra15tztd7v9cmv0rhyh37g843j8vfuzp8kw0k5lqv"
+                    }
+                },
+                amount: "0"
+            },
+            {
+                info: {
+                    native_token: {
+                        denom: "uusd"
+                    }
+                },
+                amount: "0"
+            }
+        ],
+        total_share: "0"
+    },
     totalAlteStaked: 0,
     APY: 0,
     pricePerLota: 0,
