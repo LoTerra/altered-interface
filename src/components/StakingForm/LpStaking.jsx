@@ -352,7 +352,7 @@ export default function LpStaking(props) {
                             </>
                         )}{' '}
                         LP token {' | ('}
-                        {state.wallet && state.wallet.walletAddress && state.poolInfoALTE != 0 &&(
+                        {state.wallet && state.wallet.walletAddress && state.poolInfoALTE &&(
                             <>
                                 {numeral(
                                     parseInt(state.poolInfoALTE.assets[0].amount) / parseInt(state.poolInfoALTE.total_share) * parseInt(state.allHolderLP.balance) /
@@ -361,7 +361,7 @@ export default function LpStaking(props) {
                             </>
                         )}{' '} ALTE
                         {' - '}
-                        {state.wallet && state.wallet.walletAddress && state.poolInfoALTE != 0 &&(
+                        {state.wallet && state.wallet.walletAddress && state.poolInfoALTE &&(
                             <>
                                 {numeral(
                                     parseInt(state.poolInfoALTE.assets[1].amount) / parseInt(state.poolInfoALTE.total_share) * parseInt(state.allHolderLP.balance) /
