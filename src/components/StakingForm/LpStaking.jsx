@@ -5,7 +5,7 @@ import { MsgExecuteContract, StdFee } from '@terra-money/terra.js'
 
 import numeral from 'numeral'
 
-const obj = new StdFee(700_000, { uusd: 319200  })
+const obj = new StdFee(700_000, { uusd: 150000 })
 
 export default function LpStaking(props) {
     const { showNotification } = props
@@ -125,9 +125,8 @@ export default function LpStaking(props) {
         state.wallet
             .post({
                 msgs: [msg],
-                fee: obj,
-                // gasPrices: obj.gasPrices(),
-                // gasAdjustment: 1.5,
+                gasPrices: obj.gasPrices(),
+                gasAdjustment: 1.5,
             })
             .then((e) => {
                 if (e.success) {
@@ -153,9 +152,8 @@ export default function LpStaking(props) {
         state.wallet
             .post({
                 msgs: [msg],
-                fee: obj,
-                // gasPrices: obj.gasPrices(),
-                // gasAdjustment: 1.5,
+                gasPrices: obj.gasPrices(),
+                gasAdjustment: 1.5,
             })
             .then((e) => {
                 if (e.success) {
@@ -308,6 +306,24 @@ export default function LpStaking(props) {
                             </>
                         )}{' '}
                         LP token
+                        {' | ('}
+                        {state.wallet && state.wallet.walletAddress && state.poolInfoALTE &&(
+                            <>
+                                {numeral(
+                                    parseInt(state.poolInfoALTE.assets[0].amount) / parseInt(state.poolInfoALTE.total_share) * parseInt(state.LPBalance.balance) /
+                                    1000000
+                                ).format('0.00')}
+                            </>
+                        )}{' '} ALTE
+                        {' - '}
+                        {state.wallet && state.wallet.walletAddress && state.poolInfoALTE &&(
+                            <>
+                                {numeral(
+                                    parseInt(state.poolInfoALTE.assets[1].amount) / parseInt(state.poolInfoALTE.total_share) * parseInt(state.LPBalance.balance) /
+                                    1000000
+                                ).format('0.00')}
+                            </>
+                        )}UST{')'}
                     </strong>
                 </small>
             </div>
@@ -335,7 +351,24 @@ export default function LpStaking(props) {
                                 ).format('0.00')}
                             </>
                         )}{' '}
-                        LP token
+                        LP token {' | ('}
+                        {state.wallet && state.wallet.walletAddress && state.poolInfoALTE &&(
+                            <>
+                                {numeral(
+                                    parseInt(state.poolInfoALTE.assets[0].amount) / parseInt(state.poolInfoALTE.total_share) * parseInt(state.allHolderLP.balance) /
+                                    1000000
+                                ).format('0.00')}
+                            </>
+                        )}{' '} ALTE
+                        {' - '}
+                        {state.wallet && state.wallet.walletAddress && state.poolInfoALTE &&(
+                            <>
+                                {numeral(
+                                    parseInt(state.poolInfoALTE.assets[1].amount) / parseInt(state.poolInfoALTE.total_share) * parseInt(state.allHolderLP.balance) /
+                                    1000000
+                                ).format('0.00')}
+                            </>
+                        )}UST{')'}
                     </strong>
                 </small>
 
@@ -346,7 +379,8 @@ export default function LpStaking(props) {
                     <p className="input-heading">Claim rewards</p>
                     <p className="input-slogan" style={{fontWeight:300}}>
                         <Info size={14} weight="fill" className="me-1"/>
-                        Daily payout
+                        Daily payout! Next payout
+                        {" "+ new Date(parseInt(state.stateLPStakingALTE.open_block_time) * 1000).toUTCString()}
                     </p>
                     <p className="rewards-counter w-100 mb-0">
                         {state.wallet && state.wallet.walletAddress && (

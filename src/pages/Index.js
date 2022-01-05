@@ -35,10 +35,7 @@ const lota_ust_pair =
         ? process.env.POOL_ADDR_LOTA_TESTNET
         : process.env.POOL_ADDR_LOTA
 
-const fees =
-    process.env.DEV == true
-        ? new StdFee(400_000, { uusd: 60000 + 2000000 })
-        : new StdFee(600_000, { uusd: 90000 + 1610379 })
+const obj = new StdFee(700_000, { uusd: 150000 })
 let api = {}
 
 export default () => {
@@ -377,11 +374,11 @@ export default () => {
                                     denom: 'uusd',
                                 },
                             },
-                            amount: String(amount * 1000000),
+                            amount: String(Math.trunc(amount * 1000000)),
                         },
                     },
                 },
-                { uusd: String(amount * 1000000) }
+                { uusd: String(Math.trunc(amount * 1000000)) }
             )
         } else {
             // This message is for swapping ALTE to UST
@@ -391,7 +388,7 @@ export default () => {
                 {
                     send: {
                         contract: alte_ust_pair,
-                        amount: String(amount * 1000000),
+                        amount: String(Math.trunc(amount * 1000000)),
                         msg: 'eyJzd2FwIjp7fX0=',
                     },
                 }
@@ -400,7 +397,7 @@ export default () => {
         try {
             let tx_play = await connectedWallet.post({
                 msgs: [msg],
-                gasPrices: fees.gasPrices(),
+                gasPrices: obj.gasPrices(),
                 gasAdjustment: 1.5,
             })
 
@@ -410,6 +407,7 @@ export default () => {
             showNotification('Successful', 'success', 4000)
         } catch (e) {
             console.log(e)
+            console.log(e.message)
             showNotification('Error', 'error', 4000)
         }
     }
@@ -425,7 +423,8 @@ export default () => {
             )
             let txRebase = await connectedWallet.post({
                 msgs: [rebaseMsg],
-                fee: fees,
+                gasPrices: obj.gasPrices(),
+                gasAdjustment: 1.5,
             })
             console.log(txRebase)
         } catch (e) {

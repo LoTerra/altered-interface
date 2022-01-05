@@ -155,7 +155,7 @@ export default function SwapForm(props) {
                         className="form-control amount"
                         onChange={handleChange}
                         step="any"
-                        placeholder="0"
+                        placeholder="0.00"
                     />
                     <span className="input-group-text">                        
                         {isNativeToken
@@ -197,7 +197,7 @@ export default function SwapForm(props) {
                             type="number"
                             className="form-control"
                             value={returnAmount > 0 ? returnAmount : ''}
-                            placeholder="0"
+                            placeholder="0.00"
                         />
                         <span className="input-group-text">                        
                         {isNativeToken
