@@ -492,7 +492,7 @@ export default () => {
                             LoTerra
                         </a>
                     </small>
-                    <div classNaame="d-block">
+                    {/* <div classNaame="d-block">
                     <a href="/trading-competition" target="_blank" className="btn btn-secondary"
                     style={{                        
                         boxShadow: '0px 0px 13px #d0e027c4',
@@ -503,7 +503,7 @@ export default () => {
                         <span className="d-block" style={{fontSize:'12px', marginTop:'-7px', fontWeight:'200', fontFamily:'Oswald'}}>15000 LOTERRA TICKETS TO BE WON!</span>
                         </a>                    
                     </div>
-                    <small className="d-block mb-3" style={{top:'8px', fontSize:'12px'}}>Competition Period: 2021-12-06 12:00 PM to 2021-12-24 12:00 PM (UTC)</small>
+                    <small className="d-block mb-3" style={{top:'8px', fontSize:'12px'}}>Competition Period: 2021-12-06 12:00 PM to 2021-12-24 12:00 PM (UTC)</small> */}
                 </div>                
             </div>
 
